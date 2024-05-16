@@ -14,7 +14,7 @@ export default function LandingPage() {
       <nav className={css.nav}>
         <IconLogo className={css.nav__logo} />
         <div className={css.nav__links}>
-          <Link to="/overview" className={css.nav__link}>
+          <Link to="/" className={css.nav__link}>
             Charts
           </Link>
           <Link to="/" className={css.nav__link}>
@@ -41,10 +41,10 @@ export default function LandingPage() {
           </p>
           <div className={css.hero__bar}>
             <div className={css.hero__bGroup}>
-              <Link to="/swap" className={css.hero__button}>
+              <Link to="/lending" className={css.hero__button}>
                 Launch App
               </Link>
-              <Link to="/overview" className={css.hero__button}>
+              <Link to="/" className={css.hero__button}>
                 Charts
               </Link>
             </div>

@@ -7,10 +7,10 @@
 }
 
 @font-face {
-  font-family: "Digital Numbers";
+  font-family: "DigitalNumbers";
   src: url("/fonts/DigitalNumbers-Regular.woff") format("woff");
-  font-style: normal;
   font-weight: normal;
+  font-style: normal;
 }
 
 *,
@@ -23,7 +23,7 @@
   line-height: 1;
   font-size: 16px;
   text-size-adjust: 100%;
-  font-family: "Satoshi", sans-serif;
+  font-family: "Satoshi", "DigitalNumbers", sans-serif;
   color: #fff;
 }
 

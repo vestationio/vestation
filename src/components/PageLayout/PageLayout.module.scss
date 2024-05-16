@@ -1,28 +1,29 @@
 .root {
   width: 100vw;
   min-height: 100vh;
+  background: url("/bg.png");
+  background-size: cover;
 }
 
 .nav {
   display: flex;
   align-items: center;
-  height: rhythm(8);
-  padding-right: rhythm(3);
-  padding-left: rhythm(3);
+  padding: rhythm(4) rhythm(4) rhythm(6);
   background: rgba(0, 0, 0, 0.1);
+  gap: rhythm(6);
 
   &__logo {
-    width: rhythm(3);
-    height: rhythm(3);
-    margin-right: rhythm(2);
+    height: 18px;
   }
 
   &__link {
-    padding: 0 rhythm(2);
-    opacity: 0.5;
+    font-size: 18px;
+    line-height: 28px;
 
     &[aria-current] {
-      opacity: 1;
+      color: #9fb9ff;
+      font-weight: 700;
+      box-shadow: 0 2px 0 currentcolor;
     }
   }
 }

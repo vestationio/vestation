@@ -1,0 +1,23 @@
+.Tabs {
+  padding: rhythm(1);
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  width: max-content;
+  border-radius: 60px;
+}
+
+.Tab {
+  padding: rhythm(0.75) rhythm(3.5);
+  font-size: 22px;
+  line-height: 30px;
+  font-weight: 700;
+  border-radius: 40px;
+
+  &.active {
+    background: linear-gradient(
+      92.15deg,
+      rgba(133, 156, 217, 0.4) -21.34%,
+      rgba(70, 83, 115, 0.4) 117.36%
+    );
+  }
+}

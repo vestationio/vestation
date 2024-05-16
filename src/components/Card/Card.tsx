@@ -6,6 +6,23 @@ type CardProps = {
   children: React.ReactNode;
 };
 
-export default function Card({ className, children }: CardProps) {
-  return <div className={clsx(css.Card, className)}>{children}</div>;
+function Card({ className, children }: CardProps) {
+  return (
+    <div className={clsx(css.card, className)}>
+      <div className={css.card__inner}>{children}</div>
+    </div>
+  );
 }
+
+function Heading({ className, children }: CardProps) {
+  return <h2 className={clsx(css.heading, className)}>{children}</h2>;
+}
+
+function Pane({ className, children }: CardProps) {
+  return <div className={clsx(css.pane, className)}>{children}</div>;
+}
+
+Card.Heading = Heading;
+Card.Pane = Pane;
+
+export default Card;

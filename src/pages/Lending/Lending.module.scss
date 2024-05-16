@@ -1,3 +1,187 @@
-.Lending {
-  
+.lending {
+  max-width: 1280px;
+  padding: rhythm(3);
+  margin: auto;
+  display: grid;
+  gap: rhythm(4);
+}
+
+.overview {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: rhythm(4);
+}
+
+.paneHeading {
+  display: block;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 400;
+  margin-bottom: rhythm(2);
+}
+
+.paneText {
+  display: block;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 400;
+  margin-top: rhythm(1);
+}
+
+.number {
+  display: flex;
+  align-items: end;
+
+  &__value {
+    font-size: 20px;
+    line-height: 28px;
+    font-family: "DigitalNumbers", monospace;
+    text-shadow: 1px 1px 5px #ffffff99;
+  }
+
+  &__unit {
+    font-size: 16px;
+    line-height: 16px;
+    margin-left: rhythm(1);
+  }
+
+  &__percentage {
+    font-size: 12px;
+    line-height: 16px;
+    margin-left: rhythm(2);
+    font-family: "DigitalNumbers", monospace;
+    color: #ce5e5e;
+  }
+
+  &__text {
+    font-size: 12px;
+    line-height: 16px;
+    margin-left: rhythm(1);
+    white-space: nowrap;
+  }
+}
+
+.rewards {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: rhythm(4);
+
+  &__heading {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+  }
+
+  &__intro {
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 400;
+    color: #93a1b8;
+    margin-top: rhythm(2);
+  }
+}
+
+.rewardsValue {
+  font-family: "DigitalNumbers", monospace;
+  font-size: 22px;
+  line-height: 28px;
+  text-shadow: 1px 1px 5px #ffffff99;
+}
+
+.rewardsAmount {
+  font-family: "DigitalNumbers", monospace;
+  font-size: 22px;
+  line-height: 28px;
+  text-shadow: 1px 1px 5px #ffffff99;
+  display: flex;
+  align-items: center;
+
+  &__icon {
+    width: rhythm(3);
+    height: rhythm(3);
+    border-radius: 50%;
+    margin-right: rhythm(0.75);
+    background: #000;
+  }
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: rhythm(4);
+  margin-bottom: rhythm(3);
+}
+
+.controller {
+  display: flex;
+  align-items: center;
+
+  &__heading {
+    display: block;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 500;
+  }
+}
+
+.table {
+  margin-top: rhythm(3);
+  width: 100%;
+
+  th {
+    text-align: left;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 500;
+    color: #93a1b8;
+    padding: rhythm(1);
+  }
+
+  td {
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 500;
+    padding: rhythm(1);
+  }
+}
+
+.coin {
+  &__data {
+    display: flex;
+    align-items: center;
+    gap: rhythm(1);
+  }
+
+  &__name {
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 700;
+  }
+
+  &__label1,
+  &__label2 {
+    font-size: 8px;
+    line-height: 14px;
+    font-weight: 700;
+    letter-spacing: 5%;
+    padding-left: rhythm(1);
+    padding-right: rhythm(1);
+    border-radius: rhythm(1);
+  }
+
+  &__label1 {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  &__label2 {
+    background: #0d1329;
+  }
+
+  &__price {
+    font-size: 10px;
+    line-height: 14px;
+    color: #93a1b8;
+    display: block;
+    margin-top: rhythm(0.5);
+  }
 }

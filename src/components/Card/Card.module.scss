@@ -1,3 +1,30 @@
-.Card {
-  
+.card {
+  border-radius: rhythm(2);
+  background: linear-gradient(
+    90deg,
+    rgba(172, 190, 254, 0.6) 0%,
+    rgba(219, 236, 251, 0.5345) 81.95%,
+    rgba(255, 255, 255, 0) 104.4%
+  );
+  box-shadow: 0px 0px 3px 0px #859ad233;
+  padding: 1px;
+
+  &__inner {
+    border-radius: rhythm(2);
+    background: linear-gradient(30.52deg, #0d1329 29.99%, rgba(98, 98, 98, 0.01) 353.12%);
+    padding: rhythm(4);
+  }
+}
+
+.heading {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+  margin-bottom: rhythm(2.5);
+}
+
+.pane {
+  background: #9fb9ff1a;
+  border-radius: rhythm(1);
+  padding: rhythm(2.5) rhythm(3);
 }
