@@ -13,11 +13,16 @@
 }
 
 .paneHeading {
-  display: block;
-  font-size: 14px;
-  line-height: 16px;
-  font-weight: 400;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 700;
   margin-bottom: rhythm(2);
+
+  &__right {
+    margin-left: auto;
+  }
 }
 
 .paneText {
@@ -112,9 +117,14 @@
   margin-bottom: rhythm(3);
 }
 
+.tablePane {
+  padding: 0 !important;
+}
+
 .controller {
   display: flex;
   align-items: center;
+  padding: rhythm(3) rhythm(4);
 
   &__heading {
     display: block;
@@ -125,7 +135,6 @@
 }
 
 .table {
-  margin-top: rhythm(3);
   width: 100%;
 
   th {
@@ -134,14 +143,24 @@
     line-height: 18px;
     font-weight: 500;
     color: #93a1b8;
-    padding: rhythm(1);
+    padding: rhythm(1) rhythm(1) rhythm(1.5);
   }
 
   td {
     font-size: 12px;
     line-height: 18px;
     font-weight: 500;
-    padding: rhythm(1);
+    padding: rhythm(2) rhythm(1) rhythm(1.5);
+  }
+
+  th:first-child,
+  td:first-child {
+    padding-left: rhythm(4);
+  }
+
+  th:last-child,
+  td:last-child {
+    padding-right: rhythm(4);
   }
 }
 
@@ -182,5 +201,180 @@
     color: #93a1b8;
     display: block;
     margin-top: rhythm(0.5);
+  }
+}
+
+.entry {
+  display: flex;
+  justify-content: space-between;
+
+  &:not(:last-child) {
+    margin-bottom: rhythm(1.5);
+  }
+
+  &__title {
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 500;
+    color: #93a1b8;
+  }
+
+  &__value {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .unit {
+      margin-left: rhythm(1);
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 500;
+    }
+
+    .icon {
+      display: block;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #000;
+      margin-left: rhythm(1);
+    }
+  }
+
+  &__value2 {
+    display: flex;
+    flex-direction: column; //
+    align-items: end;
+    gap: rhythm(1);
+  }
+}
+
+.value {
+  font-family: "DigitalNumbers" monospace;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+
+  &::before {
+    content: attr(data-prefix);
+    font-size: 12px;
+    line-height: 16px;
+    margin-right: rhythm(1);
+    font-family: "Satoshi" sans-serif;
+  }
+}
+
+.button {
+  white-space: nowrap;
+  padding-left: rhythm(3);
+  padding-right: rhythm(3);
+  height: 36px;
+  border-radius: rhythm(3);
+  background: #ffffff33;
+  border: 1px solid #ffffff33;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 500;
+}
+
+.expandTD {
+  padding: 0 !important;
+}
+
+.expandPane {
+  border-top: 8px solid #0d1329;
+  padding: rhythm(4) rhythm(3);
+  display: grid;
+  grid-template-columns: 3fr 3fr 2fr;
+  gap: rhythm(5);
+  background: #333a51;
+  margin-bottom: rhythm(1);
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    gap: rhythm(3);
+  }
+
+  &__right {
+    display: flex;
+    flex-direction: column;
+    gap: rhythm(2);
+    align-items: end;
+    justify-content: end;
+
+    > button {
+      width: 160px !important;
+    }
+  }
+}
+
+.openRow {
+  > td {
+    background: #333a51;
+  }
+}
+.pane {
+  border-radius: rhythm(2);
+  background: linear-gradient(30.52deg, #0d1329 29.99%, rgba(98, 98, 98, 0.01) 353.12%);
+  padding: rhythm(3);
+}
+
+.green {
+  color: #59ae99;
+}
+
+.red {
+  color: #ce5e5e;
+}
+
+.modal {
+  position: fixed;
+  z-index: 10000;
+  inset: 0;
+
+  &__bg {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+  }
+
+  &__box {
+    position: absolute;
+    z-index: 10;
+    inset: 0;
+    width: 50vw;
+    height: max-content;
+    margin: auto;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: rhythm(4);
+  }
+
+  &__text {
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 500;
+    color: #93a1b8;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: rhythm(5);
+  }
+
+  &__bgroup {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+
+    > button {
+      width: 200px;
+    }
   }
 }
