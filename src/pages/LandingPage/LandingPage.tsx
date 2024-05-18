@@ -27,7 +27,7 @@ export default function LandingPage() {
             Chat
           </Link>
         </div>
-        <Link to="/swap" className={css.nav__button}>
+        <Link to="/lending" className={css.nav__button}>
           Launch App
         </Link>
       </nav>
