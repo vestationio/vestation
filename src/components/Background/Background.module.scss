@@ -1,0 +1,25 @@
+.Background {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  cursor-events: none;
+
+  &__top_left {
+    position: absolute;
+    z-index: 1;
+  }
+
+  &__star1 {
+    position: absolute;
+    z-index: 1;
+    bottom: 20vh;
+    left: 20vw;
+  }
+
+  &__star2 {
+    position: absolute;
+    z-index: 1;
+    top: 20vh;
+    right: 25vw;
+  }
+}

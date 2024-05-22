@@ -1,5 +1,6 @@
 // import { clsx } from "clsx";
 import { Link } from "react-router-dom";
+import Background from "~/components/Background";
 import css from "./LandingPage.module.scss";
 
 import IconLogo from "~/assets/logo.svg?react";
@@ -11,6 +12,8 @@ import IconGithub from "~/assets/github.svg?react";
 export default function LandingPage() {
   return (
     <div className={css.page}>
+      <Background />
+
       <nav className={css.nav}>
         <IconLogo className={css.nav__logo} />
         <div className={css.nav__links}>
