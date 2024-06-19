@@ -8,7 +8,7 @@ import PageLayout from "./components/PageLayout";
 import NotMatchPage from "./components/NotMatchPage";
 import LandingPage from "./pages/LandingPage";
 import Lending from "./pages/Lending";
-import VeSCA from "./pages/VeSCA";
+// import VeSCA from "./pages/VeSCA";
 
 const router = createBrowserRouter([
   {
@@ -21,11 +21,11 @@ const router = createBrowserRouter([
       {
         path: "/lending",
         element: <Lending />
-      },
-      {
-        path: "/vesca",
-        element: <VeSCA />
       }
+      // {
+      //   path: "/vesca",
+      //   element: <VeSCA />
+      // }
     ]
   },
   {

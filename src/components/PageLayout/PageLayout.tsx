@@ -12,9 +12,6 @@ export default function Home() {
         <NavLink to="/lending" className={css.nav__link}>
           Lending
         </NavLink>
-        <NavLink to="/vesca" className={css.nav__link}>
-          VeSCA
-        </NavLink>
       </nav>
 
       <Outlet />

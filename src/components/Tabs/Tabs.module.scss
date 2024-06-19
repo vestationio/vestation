@@ -21,3 +21,12 @@
     );
   }
 }
+
+.Tabs.small {
+  padding: rhythm(0.5);
+
+  > .Tab {
+    font-size: 15px;
+    line-height: 24px;
+  }
+}

@@ -25,12 +25,29 @@
   }
 }
 
+.rewardAmount {
+  font-size: 14px;
+  line-height: 24px;
+  font-family: "DigitalNumbers", monospace;
+  text-shadow: 1px 1px 5px #ffffff99;
+}
+
 .paneText {
   display: block;
   font-size: 14px;
   line-height: 16px;
   font-weight: 400;
   margin-top: rhythm(1);
+}
+
+.paneSubheading {
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+  margin-top: rhythm(-1);
+  margin-bottom: rhythm(2);
+  text-align: left;
+  color: #93a1b8;
 }
 
 .number {
@@ -110,15 +127,15 @@
   }
 }
 
-.tabs {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: rhythm(4);
-  margin-bottom: rhythm(3);
-}
+// .tabs {
+//   display: grid;
+//   grid-template-columns: 2fr 1fr 1fr;
+//   gap: rhythm(4);
+//   margin-bottom: rhythm(3);
+// }
 
 .tablePane {
-  padding: 0 !important;
+  padding: rhythm(2) 0 !important;
 }
 
 .controller {
@@ -147,7 +164,7 @@
   }
 
   td {
-    font-size: 12px;
+    font-size: 13px;
     line-height: 18px;
     font-weight: 500;
     padding: rhythm(2) rhythm(1) rhythm(1.5);
@@ -161,6 +178,7 @@
   th:last-child,
   td:last-child {
     padding-right: rhythm(4);
+    text-align: right;
   }
 }
 
@@ -172,7 +190,7 @@
   }
 
   &__name {
-    font-size: 12px;
+    font-size: 13px;
     line-height: 14px;
     font-weight: 700;
   }
@@ -268,7 +286,7 @@
   white-space: nowrap;
   padding-left: rhythm(3);
   padding-right: rhythm(3);
-  height: 36px;
+  height: 44px;
   border-radius: rhythm(3);
   background: #ffffff33;
   border: 1px solid #ffffff33;
@@ -283,12 +301,16 @@
 
 .expandPane {
   border-top: 8px solid #0d1329;
-  padding: rhythm(4) rhythm(3);
-  display: grid;
-  grid-template-columns: 3fr 3fr 2fr;
-  gap: rhythm(5);
+  padding: rhythm(3);
   background: #333a51;
   margin-bottom: rhythm(1);
+
+  &__container {
+    padding-top: rhythm(3);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: rhythm(3);
+  }
 
   &__left {
     display: flex;
@@ -300,8 +322,6 @@
     display: flex;
     flex-direction: column;
     gap: rhythm(2);
-    align-items: end;
-    justify-content: end;
 
     > button {
       width: 160px !important;
@@ -314,6 +334,7 @@
     background: #333a51;
   }
 }
+
 .pane {
   border-radius: rhythm(2);
   background: linear-gradient(30.52deg, #0d1329 29.99%, rgba(98, 98, 98, 0.01) 353.12%);
@@ -377,4 +398,64 @@
       width: 200px;
     }
   }
+}
+
+.input {
+  border: 1px solid #93a1b8;
+  border-radius: rhythm(1);
+  padding: rhythm(1.5) rhythm(2);
+
+  &__top,
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__top {
+    margin-bottom: rhythm(1);
+  }
+
+  &__input {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+.positionPane {
+  display: block;
+  border: 1px solid #93a1b8;
+  border-radius: rhythm(1);
+  text-align: center;
+  padding: rhythm(1.75);
+
+  &:not(:last-child) {
+    margin-bottom: rhythm(2);
+  }
+
+  &__title {
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  &__value {
+    margin-top: rhythm(1);
+    font-size: 18px;
+    line-height: 24px;
+    font-family: "DigitalNumbers", monospace;
+    text-shadow: 1px 1px 5px #ffffff99;
+  }
+
+  &__price {
+    margin-top: rhythm(1);
+    color: #93a1b8;
+    font-size: 14px;
+    line-height: 16px;
+  }
+}
+
+.bgroup {
+  padding-top: rhythm(3);
+  display: flex;
+  gap: rhythm(2);
 }

@@ -5,12 +5,13 @@ type TabsProps = {
   className?: string;
   tabs: string[];
   activeIdx: number;
+  small?: boolean;
   onTabChange: (idx: number) => void;
 };
 
-export default function Tabs({ className, tabs, activeIdx, onTabChange }: TabsProps) {
+export default function Tabs({ className, small, tabs, activeIdx, onTabChange }: TabsProps) {
   return (
-    <div className={clsx(css.Tabs, className)}>
+    <div className={clsx(css.Tabs, small && css.small, className)}>
       {tabs.map((tab, idx) => (
         <button
           key={tab}
