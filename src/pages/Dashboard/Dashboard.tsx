@@ -2,7 +2,7 @@ import React from "react";
 import { clsx } from "clsx";
 import Card from "~/components/Card";
 import Tabs from "~/components/Tabs";
-import css from "./Lending.module.scss";
+import css from "./Dashboard.module.scss";
 
 function Input() {
   return (
@@ -32,9 +32,7 @@ function TableRow() {
         <td>
           <div className={css.coin}>
             <div className={css.coin__data}>
-              <span className={css.coin__name}>SUI</span>
-              <span className={css.coin__label1}>Wormhole</span>
-              <span className={css.coin__label2}>Deprecated</span>
+              <span className={css.coin__name}>VSTA</span>
             </div>
             <div className={css.coin__price}>≈ 1.67 USD</div>
           </div>
@@ -275,9 +273,9 @@ function TableRow() {
 //   );
 // }
 
-export default function Lending() {
+export default function Dashboard() {
   return (
-    <div className={css.lending}>
+    <div className={css.dashboard}>
       <Card>
         <Card.Heading>Staking</Card.Heading>
         <div className={css.overview}>
@@ -331,8 +329,8 @@ export default function Lending() {
           </Card.Pane>
         </div>
         <div className={css.bgroup}>
-          <button className={css.button}>Mint $stUSD</button>
-          <button className={css.button}>Redeem $stUSD</button>
+          <button className={css.button}>Mint $ssUSD</button>
+          <button className={css.button}>Redeem $ssUSD</button>
           <button className={css.button}>Stake $VSTA</button>
         </div>
       </Card>

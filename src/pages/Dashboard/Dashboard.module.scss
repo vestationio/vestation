@@ -1,4 +1,4 @@
-.lending {
+.dashboard {
   max-width: 1280px;
   padding: rhythm(3);
   margin: auto;
@@ -160,14 +160,14 @@
     line-height: 18px;
     font-weight: 500;
     color: #93a1b8;
-    padding: rhythm(1) rhythm(1) rhythm(1.5);
+    padding: rhythm(1);
   }
 
   td {
     font-size: 13px;
     line-height: 18px;
     font-weight: 500;
-    padding: rhythm(2) rhythm(1) rhythm(1.5);
+    padding: rhythm(1);
   }
 
   th:first-child,
@@ -193,24 +193,6 @@
     font-size: 13px;
     line-height: 14px;
     font-weight: 700;
-  }
-
-  &__label1,
-  &__label2 {
-    font-size: 8px;
-    line-height: 14px;
-    font-weight: 700;
-    padding-left: rhythm(1);
-    padding-right: rhythm(1);
-    border-radius: rhythm(1);
-  }
-
-  &__label1 {
-    background: rgba(255, 255, 255, 0.2);
-  }
-
-  &__label2 {
-    background: #0d1329;
   }
 
   &__price {

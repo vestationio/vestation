@@ -10,8 +10,8 @@ export default function Home() {
       <nav className={css.nav}>
         <IconLogo className={css.nav__logo} />
 
-        <NavLink to="/lending" className={css.nav__link}>
-          Lending
+        <NavLink to="/dashboard" className={css.nav__link}>
+          Dashboard
         </NavLink>
       </nav>
       <div className={css.root__content}>

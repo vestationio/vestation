@@ -7,7 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PageLayout from "./components/PageLayout";
 import NotMatchPage from "./components/NotMatchPage";
 import LandingPage from "./pages/LandingPage";
-import Lending from "./pages/Lending";
+import Dashboard from "./pages/Dashboard";
 // import VeSCA from "./pages/VeSCA";
 
 const router = createBrowserRouter([
@@ -19,8 +19,8 @@ const router = createBrowserRouter([
     element: <PageLayout />,
     children: [
       {
-        path: "/lending",
-        element: <Lending />
+        path: "/dashboard",
+        element: <Dashboard />
       }
       // {
       //   path: "/vesca",
