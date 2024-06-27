@@ -6,20 +6,6 @@
   gap: rhythm(4);
 }
 
-.cardRow {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: rhythm(3);
-
-  &:not(:last-child) {
-    margin-bottom: rhythm(3);
-  }
-}
-
-.cardInput {
-  margin-bottom: rhythm(2.5);
-}
-
 .paneHeading {
   display: flex;
   align-items: center;
@@ -31,13 +17,6 @@
   &__right {
     margin-left: auto;
   }
-}
-
-.rewardAmount {
-  font-size: 14px;
-  line-height: 24px;
-  font-family: "DigitalNumbers", monospace;
-  text-shadow: 1px 1px 5px #ffffff99;
 }
 
 .paneText {
@@ -56,83 +35,6 @@
   margin-bottom: rhythm(2);
   text-align: left;
   color: #93a1b8;
-}
-
-.number {
-  display: flex;
-  align-items: end;
-
-  &__value {
-    font-size: 20px;
-    line-height: 28px;
-    font-family: "DigitalNumbers", monospace;
-    text-shadow: 1px 1px 5px #ffffff99;
-  }
-
-  &__unit {
-    font-size: 16px;
-    line-height: 16px;
-    margin-left: rhythm(1);
-  }
-
-  &__percentage {
-    font-size: 12px;
-    line-height: 16px;
-    margin-left: rhythm(2);
-    font-family: "DigitalNumbers", monospace;
-    color: #ce5e5e;
-  }
-
-  &__text {
-    font-size: 12px;
-    line-height: 16px;
-    margin-left: rhythm(1);
-    white-space: nowrap;
-  }
-}
-
-.rewards {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: rhythm(4);
-
-  &__heading {
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 700;
-  }
-
-  &__intro {
-    font-size: 14px;
-    line-height: 18px;
-    font-weight: 400;
-    color: #93a1b8;
-    margin-top: rhythm(2);
-  }
-}
-
-.rewardsValue {
-  font-family: "DigitalNumbers", monospace;
-  font-size: 22px;
-  line-height: 28px;
-  text-shadow: 1px 1px 5px #ffffff99;
-}
-
-.rewardsAmount {
-  font-family: "DigitalNumbers", monospace;
-  font-size: 22px;
-  line-height: 28px;
-  text-shadow: 1px 1px 5px #ffffff99;
-  display: flex;
-  align-items: center;
-
-  &__icon {
-    width: rhythm(3);
-    height: rhythm(3);
-    border-radius: 50%;
-    margin-right: rhythm(0.75);
-    background: #000;
-  }
 }
 
 // .tabs {
@@ -287,32 +189,6 @@
   &.actionButton {
     width: 100%;
     margin-top: rhythm(2);
-  }
-}
-
-.stakeRewardGrid {
-  display: grid;
-  gap: rhythm(2);
-}
-
-.largeValue {
-  display: block;
-  text-align: center;
-
-  &__title {
-    display: block;
-    font-size: 24px;
-    line-height: 36px;
-    font-family: "DigitalNumbers", monospace;
-    text-shadow: 1px 1px 5px #ffffff99;
-  }
-
-  &__price {
-    display: block;
-    margin-top: rhythm(1);
-    color: #93a1b8;
-    font-size: 14px;
-    line-height: 16px;
   }
 }
 
