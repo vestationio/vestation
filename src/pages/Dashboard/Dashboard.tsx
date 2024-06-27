@@ -4,19 +4,20 @@ import Card from "~/components/Card";
 import Tabs from "~/components/Tabs";
 import css from "./Dashboard.module.scss";
 
-function Input() {
+function Input({ className, label, token }: { className?: string; label?: string; token?: any }) {
   return (
-    <div className={css.input}>
+    <div className={clsx(css.input, className)}>
+      {label && <label className={css.input__label}>{label}</label>}
       <div className={css.input__top}>
         <input className={css.input__input} placeholder="0.0" />
         <div className={css.input__token}>
           <div className={css.input__tokenIcon}></div>
-          <div className={css.input__takenSymbol}>WETH</div>
+          <div className={css.input__takenSymbol}>{token?.symbol || "VET"}</div>
         </div>
       </div>
       <div className={css.input__bottom}>
-        <div className={css.input__price}>$ 0.0</div>
-        <div className={css.input__max}>Max: 0.0</div>
+        <span className={css.input__price}>$ 0.0</span>
+        <span className={css.input__max}>Max: 0.0</span>
       </div>
     </div>
   );
@@ -278,7 +279,7 @@ export default function Dashboard() {
     <div className={css.dashboard}>
       <Card>
         <Card.Heading>Staking</Card.Heading>
-        <div className={css.overview}>
+        <div className={css.cardRow}>
           <Card.Pane>
             <strong className={css.paneHeading}>Total APY</strong>
             <div className={css.number}>
@@ -294,21 +295,104 @@ export default function Dashboard() {
             </div>
           </Card.Pane>
           <Card.Pane>
-            <strong className={css.paneHeading}>My Reward</strong>
+            <strong className={css.paneHeading}>My Rewards</strong>
             <div className={css.rewardAmount}>$123 VTHO</div>
             <div className={css.rewardAmount}>$123 BETR</div>
             <div className={css.rewardAmount}>$123 VSTA</div>
           </Card.Pane>
         </div>
-        <div className={css.bgroup}>
-          <button className={css.button}>Stake $VET</button>
-          <button className={css.button}>Unstake & Claim</button>
-          <button className={css.button}>Claim Reward</button>
+        <div className={css.cardRow}>
+          <Card.Pane>
+            <strong className={css.paneHeading}>Stake</strong>
+            <Input className={css.cardInput} label="Select Amount" token={{ symbol: "BETR" }} />
+            <Input className={css.cardInput} label="Receive" token={{ symbol: "VSTA" }} />
+            <div className={css.entry}>
+              <strong className={css.entry__title}>Ratio</strong>
+              <div className={css.entry__value}>
+                <span className={css.value}>1 BETR = 1.24 VSTA</span>
+              </div>
+            </div>
+            <div className={css.entry}>
+              <strong className={css.entry__title}>APR</strong>
+              <div className={css.entry__value}>
+                <span className={css.value}>5.93%</span>
+              </div>
+            </div>
+            <div className={css.divider} />
+            <div className={css.entry}>
+              <strong className={css.entry__title}>BETR</strong>
+              <div className={css.entry__value}>
+                <span className={css.value}>0.0</span>
+              </div>
+            </div>
+            <div className={css.entry}>
+              <strong className={css.entry__title}>VSTA</strong>
+              <div className={css.entry__value}>
+                <span className={css.value}>0.0</span>
+              </div>
+            </div>
+            <button className={clsx(css.button, css.actionButton)}>Stake</button>
+          </Card.Pane>
+          <Card.Pane>
+            <strong className={css.paneHeading}>Unstake</strong>
+            <Input className={css.cardInput} label="Select Amount" token={{ symbol: "VSTA" }} />
+            <Input className={css.cardInput} label="Receive" token={{ symbol: "BETR" }} />
+            <div className={css.entry}>
+              <strong className={css.entry__title}>Ratio</strong>
+              <div className={css.entry__value}>
+                <span className={css.value}>1 BETR = 1.24 VSTA</span>
+              </div>
+            </div>
+            <div className={css.entry}>
+              <strong className={css.entry__title}>APR</strong>
+              <div className={css.entry__value}>
+                <span className={css.value}>5.93%</span>
+              </div>
+            </div>
+            <div className={css.divider} />
+            <div className={css.entry}>
+              <strong className={css.entry__title}>BETR</strong>
+              <div className={css.entry__value}>
+                <span className={css.value}>0.0</span>
+              </div>
+            </div>
+            <div className={css.entry}>
+              <strong className={css.entry__title}>VSTA</strong>
+              <div className={css.entry__value}>
+                <span className={css.value}>0.0</span>
+              </div>
+            </div>
+            <button className={clsx(css.button, css.actionButton)}>Unstake</button>
+          </Card.Pane>
+          <div className={css.stakeRewardGrid}>
+            <Card.Pane>
+              <strong className={css.paneHeading}>Total Supply</strong>
+              <div className={css.largeValue}>
+                <strong className={css.largeValue__title}>123,456.789</strong>
+                <span className={css.largeValue__price}>$987,4321</span>
+              </div>
+            </Card.Pane>
+            <Card.Pane>
+              <strong className={css.paneHeading}>Total Rewards Earned</strong>
+              <div className={css.largeValue}>
+                <strong className={css.largeValue__title}>123,456.789</strong>
+                <span className={css.largeValue__price}>$987,4321</span>
+              </div>
+            </Card.Pane>
+            <Card.Pane>
+              <strong className={css.paneHeading}>Claim my Rewards</strong>
+              <div className={css.largeValue}>
+                <strong className={css.largeValue__title}>123,456.789</strong>
+                <span className={css.largeValue__price}>$987,4321</span>
+              </div>
+              <button className={clsx(css.button, css.actionButton)}>Claim</button>
+            </Card.Pane>
+          </div>
         </div>
       </Card>
       <Card>
-        <Card.Heading>Sustainable - USD</Card.Heading>
-        <div className={css.overview}>
+        <Card.Heading>Sustainable USD</Card.Heading>
+        <div className={css.cardRow}>
           <Card.Pane>
             <strong className={css.paneHeading}>Total Supply</strong>
             <div className={css.number}>
@@ -328,10 +412,42 @@ export default function Dashboard() {
             </div>
           </Card.Pane>
         </div>
-        <div className={css.bgroup}>
-          <button className={css.button}>Mint $ssUSD</button>
-          <button className={css.button}>Redeem $ssUSD</button>
-          <button className={css.button}>Stake $VSTA</button>
+        <div className={css.cardRow}>
+          <Card.Pane>
+            <strong className={css.paneHeading}>Mint $ssUSD</strong>
+            <Input className={css.cardInput} label="Select Amount" token={{ symbol: "BETR" }} />
+            <Input className={css.cardInput} label="Receive" token={{ symbol: "VSTA" }} />
+            <div className={css.entry}>
+              <strong className={css.entry__title}>Title</strong>
+              <div className={css.entry__value}>
+                <span className={css.value}>Value</span>
+              </div>
+            </div>
+            <button className={clsx(css.button, css.actionButton)}>Mint</button>
+          </Card.Pane>
+          <Card.Pane>
+            <strong className={css.paneHeading}>Redeem</strong>
+            <Input className={css.cardInput} label="Select Amount" token={{ symbol: "VSTA" }} />
+            <div className={css.entry}>
+              <strong className={css.entry__title}>Title</strong>
+              <div className={css.entry__value}>
+                <span className={css.value}>Value</span>
+              </div>
+            </div>
+            <button className={clsx(css.button, css.actionButton)}>Redeem</button>
+          </Card.Pane>
+          <Card.Pane>
+            <strong className={css.paneHeading}>Stake $VSTA</strong>
+            <Input className={css.cardInput} label="Select Amount" token={{ symbol: "BETR" }} />
+            <Input className={css.cardInput} label="Receive" token={{ symbol: "VSTA" }} />
+            <div className={css.entry}>
+              <strong className={css.entry__title}>Title</strong>
+              <div className={css.entry__value}>
+                <span className={css.value}>Value</span>
+              </div>
+            </div>
+            <button className={clsx(css.button, css.actionButton)}>Stake</button>
+          </Card.Pane>
         </div>
       </Card>
       <Card>
