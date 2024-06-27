@@ -30,7 +30,7 @@ export default function LandingPage() {
             Chat
           </Link>
         </div>
-        <Link to="/lending" className={css.nav__button}>
+        <Link to="/dashboard" className={css.nav__button}>
           Launch App
         </Link>
       </nav>
@@ -44,7 +44,7 @@ export default function LandingPage() {
           </p>
           <div className={css.hero__bar}>
             <div className={css.hero__bGroup}>
-              <Link to="/lending" className={css.hero__button}>
+              <Link to="/dashboard/" className={css.hero__button}>
                 Launch App
               </Link>
               <Link to="/" className={css.hero__button}>
