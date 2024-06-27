@@ -3,7 +3,18 @@
   padding: rhythm(3);
   margin: auto;
   display: grid;
-  gap: rhythm(4);
+  gap: rhythm(3);
+}
+
+.dashboard__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: rhythm(3);
+}
+
+.dashboardCard {
+  display: grid;
+  gap: rhythm(3);
 }
 
 .paneHeading {
@@ -11,11 +22,66 @@
   align-items: center;
   font-size: 16px;
   line-height: 20px;
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: rhythm(2);
 
   &__right {
     margin-left: auto;
+  }
+}
+
+.cardHeading {
+  display: flex;
+  align-items: center;
+
+  &__icon {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: #000;
+    margin-right: rhythm(2);
+  }
+
+  &__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: rhythm(1);
+  }
+
+  &__title {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+  }
+}
+
+.cardRow {
+  display: flex;
+  align-items: center;
+  gap: rhythm(1.5);
+
+  .number {
+    margin-right: auto;
+  }
+}
+
+.twoColumnGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: rhythm(3);
+}
+
+.number {
+  font-size: 20px;
+  line-height: 32px;
+  font-family: "DigitalNumbers", monospace;
+  text-shadow: 1px 1px 5px #ffffff99;
+
+  > span {
+    font-family: "Satoshi" sans-serif;
+    font-weight: 500;
+    font-weight: 12px;
   }
 }
 
@@ -186,9 +252,11 @@
   line-height: 22px;
   font-weight: 500;
 
-  &.actionButton {
-    width: 100%;
-    margin-top: rhythm(2);
+  &.small {
+    height: 32px;
+    font-size: 14px;
+    padding-left: rhythm(2);
+    padding-right: rhythm(2);
   }
 }
 

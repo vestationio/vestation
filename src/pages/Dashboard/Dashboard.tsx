@@ -277,6 +277,79 @@ function TableRow() {
 export default function Dashboard() {
   return (
     <div className={css.dashboard}>
+      <div className={css.dashboard__row}>
+        <Card>
+          <div className={css.dashboardCard}>
+            <div className={css.cardHeading}>
+              <div className={css.cardHeading__icon}></div>
+              <div className={css.cardHeading__content}>
+                <h3 className={css.cardHeading__title}>$VET Better Staking</h3>
+                <div className={css.cardRow}>
+                  <strong className={css.number}>$123,425</strong>
+                  <button className={clsx(css.button, css.small)}>Stake</button>
+                  <button className={clsx(css.button, css.small)}>Unstake</button>
+                </div>
+              </div>
+            </div>
+            <div className={css.twoColumnGrid}>
+              <Card.Pane>
+                <h3 className={css.paneHeading}>Total APY</h3>
+                <strong className={css.number}>10%</strong>
+              </Card.Pane>
+              <Card.Pane>
+                <h3 className={css.paneHeading}>Total Reward</h3>
+                <strong className={css.number}>$1,234,573</strong>
+              </Card.Pane>
+            </div>
+            <Card.Pane>
+              <h3 className={css.paneHeading}>My Reward</h3>
+              <div className={css.cardRow}>
+                <strong className={css.number}>$1,234</strong>
+                <button className={clsx(css.button, css.small)}>Claim</button>
+              </div>
+            </Card.Pane>
+            <Card.Pane>
+              <h3 className={css.paneHeading}>$VSTA Staking</h3>
+              <div className={css.cardRow}>
+                <strong className={css.number}>$1,234</strong>
+                <button className={clsx(css.button, css.small)}>Stake</button>
+                <button className={clsx(css.button, css.small)}>Unstake</button>
+              </div>
+            </Card.Pane>
+          </div>
+        </Card>
+        <Card>
+          <div className={css.dashboardCard}>
+            <div className={css.cardHeading}>
+              <div className={css.cardHeading__icon}></div>
+              <div className={css.cardHeading__content}>
+                <h3 className={css.cardHeading__title}>Mint $ssUSD</h3>
+                <div className={css.cardRow}>
+                  <strong className={css.number}>$123,425</strong>
+                  <button className={clsx(css.button, css.small)}>Mint</button>
+                  <button className={clsx(css.button, css.small)}>Redeem</button>
+                </div>
+              </div>
+            </div>
+            <div className={css.twoColumnGrid}>
+              <Card.Pane>
+                <h3 className={css.paneHeading}>Total Supply</h3>
+                <strong className={css.number}>$123,212,123</strong>
+              </Card.Pane>
+              <Card.Pane>
+                <h3 className={css.paneHeading}>Risk Status</h3>
+                <strong className={css.number}>$1,234,573</strong>
+              </Card.Pane>
+            </div>
+            <Card.Pane>
+              <h3 className={css.paneHeading}>Credit & Station Level</h3>
+              <strong className={css.number}>
+                335,822 <span>$ssUSD to Mint</span> &quot;PREMIUM&quot;
+              </strong>
+            </Card.Pane>
+          </div>
+        </Card>
+      </div>
       <Card>
         <Card.Heading>My Positions</Card.Heading>
         <Card.Pane className={css.tablePane}>
