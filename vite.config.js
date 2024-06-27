@@ -32,7 +32,7 @@ export default defineConfig({
   plugins: [
     react(),
     svgr({
-      include: "./src/assets/*.svg?react",
+      include: "./src/assets/**/*.svg?react",
       svgrOptions: {
         dimensions: false,
         plugins: ["@svgr/plugin-svgo", "@svgr/plugin-jsx"]

@@ -1,157 +1,160 @@
-import React from "react";
+// import React from "react";
 import { clsx } from "clsx";
 import Card from "~/components/Card";
-import Tabs from "~/components/Tabs";
+// import Tabs from "~/components/Tabs";
 import css from "./Dashboard.module.scss";
 
-function Input({ className, label, token }: { className?: string; label?: string; token?: any }) {
-  return (
-    <div className={clsx(css.input, className)}>
-      {label && <label className={css.input__label}>{label}</label>}
-      <div className={css.input__top}>
-        <input className={css.input__input} placeholder="0.0" />
-        <div className={css.input__token}>
-          <div className={css.input__tokenIcon}></div>
-          <div className={css.input__takenSymbol}>{token?.symbol || "VET"}</div>
-        </div>
-      </div>
-      <div className={css.input__bottom}>
-        <span className={css.input__price}>$ 0.0</span>
-        <span className={css.input__max}>Max: 0.0</span>
-      </div>
-    </div>
-  );
-}
+import IconVet from "~/assets/tokens/vet.svg?react";
+import IconSSUSD from "~/assets/tokens/ssusd.svg?react";
 
-function TableRow() {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [activeTab, setActiveTab] = React.useState(0);
+// function Input({ className, label, token }: { className?: string; label?: string; token?: any }) {
+//   return (
+//     <div className={clsx(css.input, className)}>
+//       {label && <label className={css.input__label}>{label}</label>}
+//       <div className={css.input__top}>
+//         <input className={css.input__input} placeholder="0.0" />
+//         <div className={css.input__token}>
+//           <div className={css.input__tokenIcon}></div>
+//           <div className={css.input__takenSymbol}>{token?.symbol || "VET"}</div>
+//         </div>
+//       </div>
+//       <div className={css.input__bottom}>
+//         <span className={css.input__price}>$ 0.0</span>
+//         <span className={css.input__max}>Max: 0.0</span>
+//       </div>
+//     </div>
+//   );
+// }
 
-  return (
-    <>
-      <tr className={clsx(isOpen && css.openRow)}>
-        <td>
-          <div className={css.coin}>
-            <div className={css.coin__data}>
-              <span className={css.coin__name}>VSTA</span>
-            </div>
-            <div className={css.coin__price}>≈ 1.67 USD</div>
-          </div>
-        </td>
-        <td>$4.36M</td>
-        <td>2.01M</td>
-        <td>38.23k</td>
-        <td>6%</td>
-        <td>-</td>
-        <td>
-          <button onClick={() => setIsOpen(!isOpen)}>{isOpen ? "close" : "open"}</button>
-        </td>
-      </tr>
-      {isOpen && (
-        <tr>
-          <td colSpan={8} className={css.expandTD}>
-            <div className={css.expandPane}>
-              <Tabs
-                small
-                tabs={["Borrow", "Repay"]}
-                activeIdx={activeTab}
-                onTabChange={setActiveTab}
-              />
-              <div className={css.expandPane__container}>
-                {activeTab === 0 ? (
-                  <div className={css.expandPane__left}>
-                    <div className={css.pane}>
-                      <strong className={css.paneHeading}>Deposit Collateral</strong>
-                      <p className={css.paneSubheading}>
-                        Select the amount of WETH to deposit in the Cauldron
-                      </p>
-                      <Input />
-                    </div>
-                    <div className={css.pane}>
-                      <strong className={css.paneHeading}>Mint MIM</strong>
-                      <p className={css.paneSubheading}>
-                        Select the amount of MIM to borrow from the Cauldron
-                      </p>
-                      <Input />
-                    </div>
-                    <button className={css.button}>Connect Wallet</button>
-                  </div>
-                ) : (
-                  <div className={css.expandPane__left}>
-                    <div className={css.pane}>
-                      <strong className={css.paneHeading}>Remove Collateral</strong>
-                      <p className={css.paneSubheading}>
-                        Select the amount of WETH to withdraw from the Cauldron
-                      </p>
-                      <Input />
-                    </div>
-                    <div className={css.pane}>
-                      <strong className={css.paneHeading}>Repay MIM</strong>
-                      <p className={css.paneSubheading}>Select the amount of MIM to Repay</p>
-                      <Input />
-                    </div>
-                    <button className={css.button}>Connect Wallet</button>
-                  </div>
-                )}
-                <div className={css.expandPane__center}>
-                  <div className={css.pane}>
-                    <strong className={css.paneHeading}>Open Position</strong>
-                    <div className={css.positionPane}>
-                      <div className={css.positionPane__title}>Collateral Deposit</div>
-                      <div className={css.positionPane__value}>0.0</div>
-                      <div className={css.positionPane__price}>$0.0</div>
-                    </div>
-                    <div className={css.positionPane}>
-                      <div className={css.positionPane__title}>MIM to Repay</div>
-                      <div className={css.positionPane__value}>0.0</div>
-                    </div>
-                    <div className={css.positionPane}>
-                      <div className={css.positionPane__title}>Liquidation Price</div>
-                      <div className={css.positionPane__value}>$0.0</div>
-                    </div>
-                    <div className={css.positionPane}>
-                      <div className={css.positionPane__title}>Current Price</div>
-                      <div className={css.positionPane__value}>1 = 3,553.7</div>
-                    </div>
-                  </div>
-                </div>
-                <div className={css.expandPane__right}>
-                  <div className={css.pane}>
-                    <strong className={css.paneHeading}>Cauldron Stats</strong>
-                    <div className={css.entry}>
-                      <strong className={css.entry__title}>Mint Fee</strong>
-                      <div className={css.entry__value}>
-                        <span className={css.value}>0.5%</span>
-                      </div>
-                    </div>
-                    <div className={css.entry}>
-                      <strong className={css.entry__title}>Interest Fee</strong>
-                      <div className={css.entry__value}>
-                        <span className={css.value}>6%</span>
-                      </div>
-                    </div>
-                    <div className={css.entry}>
-                      <strong className={css.entry__title}>Liquidation Fee</strong>
-                      <div className={css.entry__value}>
-                        <span className={css.value}>6%</span>
-                      </div>
-                    </div>
-                    <div className={css.entry}>
-                      <strong className={css.entry__title}>MCR</strong>
-                      <div className={css.entry__value}>
-                        <span className={css.value}>80%</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </td>
-        </tr>
-      )}
-    </>
-  );
-}
+// function TableRow() {
+//   const [isOpen, setIsOpen] = React.useState(false);
+//   const [activeTab, setActiveTab] = React.useState(0);
+
+//   return (
+//     <>
+//       <tr className={clsx(isOpen && css.openRow)}>
+//         <td>
+//           <div className={css.coin}>
+//             <div className={css.coin__data}>
+//               <span className={css.coin__name}>VSTA</span>
+//             </div>
+//             <div className={css.coin__price}>≈ 1.67 USD</div>
+//           </div>
+//         </td>
+//         <td>$4.36M</td>
+//         <td>2.01M</td>
+//         <td>38.23k</td>
+//         <td>6%</td>
+//         <td>-</td>
+//         <td>
+//           <button onClick={() => setIsOpen(!isOpen)}>{isOpen ? "close" : "open"}</button>
+//         </td>
+//       </tr>
+//       {isOpen && (
+//         <tr>
+//           <td colSpan={8} className={css.expandTD}>
+//             <div className={css.expandPane}>
+//               <Tabs
+//                 small
+//                 tabs={["Borrow", "Repay"]}
+//                 activeIdx={activeTab}
+//                 onTabChange={setActiveTab}
+//               />
+//               <div className={css.expandPane__container}>
+//                 {activeTab === 0 ? (
+//                   <div className={css.expandPane__left}>
+//                     <div className={css.pane}>
+//                       <strong className={css.paneHeading}>Deposit Collateral</strong>
+//                       <p className={css.paneSubheading}>
+//                         Select the amount of WETH to deposit in the Cauldron
+//                       </p>
+//                       <Input />
+//                     </div>
+//                     <div className={css.pane}>
+//                       <strong className={css.paneHeading}>Mint MIM</strong>
+//                       <p className={css.paneSubheading}>
+//                         Select the amount of MIM to borrow from the Cauldron
+//                       </p>
+//                       <Input />
+//                     </div>
+//                     <button className={css.button}>Connect Wallet</button>
+//                   </div>
+//                 ) : (
+//                   <div className={css.expandPane__left}>
+//                     <div className={css.pane}>
+//                       <strong className={css.paneHeading}>Remove Collateral</strong>
+//                       <p className={css.paneSubheading}>
+//                         Select the amount of WETH to withdraw from the Cauldron
+//                       </p>
+//                       <Input />
+//                     </div>
+//                     <div className={css.pane}>
+//                       <strong className={css.paneHeading}>Repay MIM</strong>
+//                       <p className={css.paneSubheading}>Select the amount of MIM to Repay</p>
+//                       <Input />
+//                     </div>
+//                     <button className={css.button}>Connect Wallet</button>
+//                   </div>
+//                 )}
+//                 <div className={css.expandPane__center}>
+//                   <div className={css.pane}>
+//                     <strong className={css.paneHeading}>Open Position</strong>
+//                     <div className={css.positionPane}>
+//                       <div className={css.positionPane__title}>Collateral Deposit</div>
+//                       <div className={css.positionPane__value}>0.0</div>
+//                       <div className={css.positionPane__price}>$0.0</div>
+//                     </div>
+//                     <div className={css.positionPane}>
+//                       <div className={css.positionPane__title}>MIM to Repay</div>
+//                       <div className={css.positionPane__value}>0.0</div>
+//                     </div>
+//                     <div className={css.positionPane}>
+//                       <div className={css.positionPane__title}>Liquidation Price</div>
+//                       <div className={css.positionPane__value}>$0.0</div>
+//                     </div>
+//                     <div className={css.positionPane}>
+//                       <div className={css.positionPane__title}>Current Price</div>
+//                       <div className={css.positionPane__value}>1 = 3,553.7</div>
+//                     </div>
+//                   </div>
+//                 </div>
+//                 <div className={css.expandPane__right}>
+//                   <div className={css.pane}>
+//                     <strong className={css.paneHeading}>Cauldron Stats</strong>
+//                     <div className={css.entry}>
+//                       <strong className={css.entry__title}>Mint Fee</strong>
+//                       <div className={css.entry__value}>
+//                         <span className={css.value}>0.5%</span>
+//                       </div>
+//                     </div>
+//                     <div className={css.entry}>
+//                       <strong className={css.entry__title}>Interest Fee</strong>
+//                       <div className={css.entry__value}>
+//                         <span className={css.value}>6%</span>
+//                       </div>
+//                     </div>
+//                     <div className={css.entry}>
+//                       <strong className={css.entry__title}>Liquidation Fee</strong>
+//                       <div className={css.entry__value}>
+//                         <span className={css.value}>6%</span>
+//                       </div>
+//                     </div>
+//                     <div className={css.entry}>
+//                       <strong className={css.entry__title}>MCR</strong>
+//                       <div className={css.entry__value}>
+//                         <span className={css.value}>80%</span>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+//           </td>
+//         </tr>
+//       )}
+//     </>
+//   );
+// }
 
 // function Modal({ show, close }: { show: boolean; close: () => void }) {
 //   const [activeTab, setActiveTab] = React.useState(0);
@@ -281,11 +284,13 @@ export default function Dashboard() {
         <Card>
           <div className={css.dashboardCard}>
             <div className={css.cardHeading}>
-              <div className={css.cardHeading__icon}></div>
+              <div className={css.cardHeading__icon}>
+                <IconVet />
+              </div>
               <div className={css.cardHeading__content}>
                 <h3 className={css.cardHeading__title}>$VET Better Staking</h3>
                 <div className={css.cardRow}>
-                  <strong className={css.number}>$123,425</strong>
+                  <strong className={clsx(css.number, css.large)}>$123,425</strong>
                   <button className={clsx(css.button, css.small)}>Stake</button>
                   <button className={clsx(css.button, css.small)}>Unstake</button>
                 </div>
@@ -321,11 +326,13 @@ export default function Dashboard() {
         <Card>
           <div className={css.dashboardCard}>
             <div className={css.cardHeading}>
-              <div className={css.cardHeading__icon}></div>
+              <div className={css.cardHeading__icon}>
+                <IconSSUSD />
+              </div>
               <div className={css.cardHeading__content}>
                 <h3 className={css.cardHeading__title}>Mint $ssUSD</h3>
                 <div className={css.cardRow}>
-                  <strong className={css.number}>$123,425</strong>
+                  <strong className={clsx(css.number, css.large)}>$123,425</strong>
                   <button className={clsx(css.button, css.small)}>Mint</button>
                   <button className={clsx(css.button, css.small)}>Redeem</button>
                 </div>
@@ -338,41 +345,45 @@ export default function Dashboard() {
               </Card.Pane>
               <Card.Pane>
                 <h3 className={css.paneHeading}>Risk Status</h3>
-                <strong className={css.number}>$1,234,573</strong>
+                <strong className={css.number}>42.42%</strong>
               </Card.Pane>
             </div>
             <Card.Pane>
-              <h3 className={css.paneHeading}>Credit & Station Level</h3>
+              <h3 className={css.paneHeading}>Credit</h3>
               <strong className={css.number}>
-                335,822 <span>$ssUSD to Mint</span> &quot;PREMIUM&quot;
+                335,822<span>$ssUSD to Mint</span>
               </strong>
+            </Card.Pane>
+            <Card.Pane>
+              <h3 className={css.paneHeading}>Station Level</h3>
+              <strong className={css.number}>&quot;PREMIUM&quot;</strong>
             </Card.Pane>
           </div>
         </Card>
       </div>
-      <Card>
-        <Card.Heading>My Positions</Card.Heading>
-        <Card.Pane className={css.tablePane}>
-          <table className={css.table}>
-            <thead>
-              <tr>
-                <th>Collateral</th>
-                <th>TVL</th>
-                <th>TMB</th>
-                <th>MIMS LB</th>
-                <th>Interest</th>
-                <th>APR</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <TableRow />
-              <TableRow />
-              <TableRow />
-            </tbody>
-          </table>
-        </Card.Pane>
-      </Card>
+      {/* <Card>
+      <Card.Heading>My Positions</Card.Heading>
+      <Card.Pane className={css.tablePane}>
+      <table className={css.table}>
+      <thead>
+      <tr>
+      <th>Collateral</th>
+      <th>TVL</th>
+      <th>TMB</th>
+      <th>MIMS LB</th>
+      <th>Interest</th>
+      <th>APR</th>
+      <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <TableRow />
+      <TableRow />
+      <TableRow />
+      </tbody>
+      </table>
+      </Card.Pane>
+      </Card> */}
     </div>
   );
 }
