@@ -13,6 +13,12 @@ export default function Home() {
         <NavLink to="/dashboard" className={css.nav__link}>
           Dashboard
         </NavLink>
+        <NavLink to="/my-positions" className={css.nav__link}>
+          My Positions
+        </NavLink>
+        <NavLink to="/reward" className={css.nav__link}>
+          Reward
+        </NavLink>
       </nav>
       <div className={css.root__content}>
         <Outlet />

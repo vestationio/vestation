@@ -1,5 +1,5 @@
 .dashboard {
-  max-width: 1280px;
+  max-width: 520px;
   padding: rhythm(3);
   margin: auto;
   display: grid;
@@ -8,7 +8,6 @@
 
 .dashboard__row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: rhythm(3);
 }
 
@@ -23,10 +22,12 @@
   font-size: 16px;
   line-height: 20px;
   font-weight: 600;
-  margin-bottom: rhythm(2);
+  margin-bottom: rhythm(1.5);
 
-  &__right {
-    margin-left: auto;
+  &.small {
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: rhythm(0.5);
   }
 }
 
@@ -35,11 +36,11 @@
   align-items: center;
 
   &__icon {
-    width: 120px;
-    height: 120px;
+    width: 108px;
+    height: 108px;
     border-radius: 50%;
     background: #000;
-    margin-right: rhythm(2);
+    margin-right: rhythm(3);
   }
 
   &__content {
@@ -50,26 +51,35 @@
   }
 
   &__title {
-    font-size: 16px;
+    font-size: 17px;
     line-height: 24px;
     font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: rhythm(1);
+
+    > strong {
+      font-weight: 600;
+    }
   }
-}
 
-.cardRow {
-  display: flex;
-  align-items: center;
-  gap: rhythm(1.5);
-
-  .number {
-    margin-right: auto;
+  &__row {
+    display: flex;
+    gap: rhythm(1.5);
   }
 }
 
 .twoColumnGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: rhythm(3);
+  gap: rhythm(2.5);
+}
+
+.threeColumnGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: rhythm(1.5);
 }
 
 .number {
@@ -81,6 +91,11 @@
   &.large {
     font-size: 28px;
     line-height: 40px;
+  }
+
+  &.small {
+    font-size: 16px;
+    line-height: 24px;
   }
 
   > span {
@@ -110,143 +125,6 @@
   color: #93a1b8;
 }
 
-// .tabs {
-//   display: grid;
-//   grid-template-columns: 2fr 1fr 1fr;
-//   gap: rhythm(4);
-//   margin-bottom: rhythm(3);
-// }
-
-.tablePane {
-  padding: rhythm(2) 0 !important;
-}
-
-.controller {
-  display: flex;
-  align-items: center;
-  padding: rhythm(3) rhythm(4);
-
-  &__heading {
-    display: block;
-    font-size: 14px;
-    line-height: 16px;
-    font-weight: 500;
-  }
-}
-
-.table {
-  width: 100%;
-
-  th {
-    text-align: left;
-    font-size: 14px;
-    line-height: 18px;
-    font-weight: 500;
-    color: #93a1b8;
-    padding: rhythm(1);
-  }
-
-  td {
-    font-size: 13px;
-    line-height: 18px;
-    font-weight: 500;
-    padding: rhythm(1);
-  }
-
-  th:first-child,
-  td:first-child {
-    padding-left: rhythm(4);
-  }
-
-  th:last-child,
-  td:last-child {
-    padding-right: rhythm(4);
-    text-align: right;
-  }
-}
-
-.coin {
-  &__data {
-    display: flex;
-    align-items: center;
-    gap: rhythm(1);
-  }
-
-  &__name {
-    font-size: 13px;
-    line-height: 14px;
-    font-weight: 700;
-  }
-
-  &__price {
-    font-size: 10px;
-    line-height: 14px;
-    color: #93a1b8;
-    display: block;
-    margin-top: rhythm(0.5);
-  }
-}
-
-.entry {
-  display: flex;
-  justify-content: space-between;
-
-  &:not(:last-child) {
-    margin-bottom: rhythm(1.5);
-  }
-
-  &__title {
-    font-size: 14px;
-    line-height: 18px;
-    font-weight: 500;
-    color: #93a1b8;
-  }
-
-  &__value {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-
-    .unit {
-      margin-left: rhythm(1);
-      font-size: 12px;
-      line-height: 16px;
-      font-weight: 500;
-    }
-
-    .icon {
-      display: block;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: #000;
-      margin-left: rhythm(1);
-    }
-  }
-
-  &__value2 {
-    display: flex;
-    flex-direction: column; //
-    align-items: end;
-    gap: rhythm(1);
-  }
-}
-
-.value {
-  font-family: "DigitalNumbers" monospace;
-  font-size: 12px;
-  line-height: 16px;
-  font-weight: 400;
-
-  &::before {
-    content: attr(data-prefix);
-    font-size: 12px;
-    line-height: 16px;
-    margin-right: rhythm(1);
-    font-family: "Satoshi" sans-serif;
-  }
-}
-
 .button {
   white-space: nowrap;
   padding-left: rhythm(3);
@@ -260,50 +138,12 @@
   font-weight: 500;
 
   &.small {
-    height: 32px;
-    font-size: 14px;
-    padding-left: rhythm(2);
-    padding-right: rhythm(2);
-  }
-}
-
-.expandTD {
-  padding: 0 !important;
-}
-
-.expandPane {
-  border-top: 8px solid #0d1329;
-  padding: rhythm(3);
-  background: #333a51;
-  margin-bottom: rhythm(1);
-
-  &__container {
-    padding-top: rhythm(3);
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: rhythm(3);
-  }
-
-  &__left {
-    display: flex;
-    flex-direction: column;
-    gap: rhythm(3);
-  }
-
-  &__right {
-    display: flex;
-    flex-direction: column;
-    gap: rhythm(2);
-
-    > button {
-      width: 160px !important;
-    }
-  }
-}
-
-.openRow {
-  > td {
-    background: #333a51;
+    height: 28px;
+    font-size: 13px;
+    text-transform: uppercase;
+    padding-left: rhythm(1.5);
+    padding-right: rhythm(1.5);
+    font-weight: 500;
   }
 }
 
@@ -416,44 +256,4 @@
     font-family: "DigitalNumbers", monospace;
     text-shadow: 1px 1px 5px #ffffff99;
   }
-}
-
-.positionPane {
-  display: block;
-  border: 1px solid #93a1b8;
-  border-radius: rhythm(1);
-  text-align: center;
-  padding: rhythm(1.75);
-
-  &:not(:last-child) {
-    margin-bottom: rhythm(2);
-  }
-
-  &__title {
-    font-size: 18px;
-    line-height: 20px;
-  }
-
-  &__value {
-    margin-top: rhythm(1);
-    font-size: 18px;
-    line-height: 24px;
-    font-family: "DigitalNumbers", monospace;
-    text-shadow: 1px 1px 5px #ffffff99;
-  }
-
-  &__price {
-    margin-top: rhythm(1);
-    color: #93a1b8;
-    font-size: 14px;
-    line-height: 16px;
-  }
-}
-
-.divider {
-  display: block;
-  width: 100%;
-  height: 1px;
-  background: #93a1b8;
-  margin: rhythm(2.5) 0;
 }

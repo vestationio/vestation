@@ -8,7 +8,8 @@ import PageLayout from "./components/PageLayout";
 import NotMatchPage from "./components/NotMatchPage";
 import LandingPage from "./pages/LandingPage";
 import Dashboard from "./pages/Dashboard";
-// import VeSCA from "./pages/VeSCA";
+import MyPositions from "./pages/MyPositions";
+import Reward from "./pages/Reward";
 
 const router = createBrowserRouter([
   {
@@ -21,11 +22,15 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <Dashboard />
+      },
+      {
+        path: "/my-positions",
+        element: <MyPositions />
+      },
+      {
+        path: "/reward",
+        element: <Reward />
       }
-      // {
-      //   path: "/vesca",
-      //   element: <VeSCA />
-      // }
     ]
   },
   {

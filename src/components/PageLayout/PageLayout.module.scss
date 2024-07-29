@@ -12,23 +12,24 @@
 .nav {
   display: flex;
   align-items: center;
-  padding: rhythm(4) rhythm(4) rhythm(6);
+  padding: rhythm(4) rhythm(4) rhythm(8);
   background: rgba(0, 0, 0, 0.1);
-  gap: rhythm(6);
+  gap: rhythm(3);
   position: relative;
   z-index: 1;
 
   &__logo {
     height: 18px;
+    margin-right: rhythm(3);
   }
 
   &__link {
-    font-size: 18px;
-    line-height: 28px;
+    font-size: 15px;
+    line-height: 24px;
+    font-weight: 600;
 
     &[aria-current] {
       color: #9fb9ff;
-      font-weight: 700;
       box-shadow: 0 2px 0 currentcolor;
     }
   }

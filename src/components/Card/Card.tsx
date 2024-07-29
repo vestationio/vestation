@@ -18,8 +18,8 @@ function Heading({ className, children }: CardProps) {
   return <h2 className={clsx(css.heading, className)}>{children}</h2>;
 }
 
-function Pane({ className, children }: CardProps) {
-  return <div className={clsx(css.pane, className)}>{children}</div>;
+function Pane({ className, children, small }: { small?: boolean } & CardProps) {
+  return <div className={clsx(css.pane, small && css.small, className)}>{children}</div>;
 }
 
 Card.Heading = Heading;
