@@ -29,37 +29,6 @@ export default function Dashboard() {
         <Card>
           <div className={css.cardHeading}>
             <div className={css.cardHeading__icon}>
-              <IconSSUSD />
-            </div>
-            <div className={css.cardHeading__content}>
-              <h3 className={css.cardHeading__title}>
-                <strong>Mint $ssUSD</strong>
-                <div className={css.cardHeading__row}>
-                  <button className={clsx(css.button, css.small)}>Mint</button>
-                  <button className={clsx(css.button, css.small)}>Redeem</button>
-                </div>
-              </h3>
-
-              <div className={css.threeColumnGrid}>
-                <Card.Pane small>
-                  <h3 className={clsx(css.paneHeading, css.small)}>Available</h3>
-                  <strong className={clsx(css.number, css.small)}>335,822</strong>
-                </Card.Pane>
-                <Card.Pane small>
-                  <h3 className={clsx(css.paneHeading, css.small)}>Minted</h3>
-                  <strong className={clsx(css.number, css.small)}>33,822</strong>
-                </Card.Pane>
-                <Card.Pane small>
-                  <h3 className={clsx(css.paneHeading, css.small)}>Risk</h3>
-                  <strong className={clsx(css.number, css.small, css.green)}>10%</strong>
-                </Card.Pane>
-              </div>
-            </div>
-          </div>
-        </Card>
-        <Card>
-          <div className={css.cardHeading}>
-            <div className={css.cardHeading__icon}>
               <IconVet />
             </div>
             <div className={css.cardHeading__content}>
@@ -83,6 +52,37 @@ export default function Dashboard() {
                 <Card.Pane small>
                   <h3 className={clsx(css.paneHeading, css.small)}>Risk</h3>
                   <strong className={clsx(css.number, css.small, css.red)}>10%</strong>
+                </Card.Pane>
+              </div>
+            </div>
+          </div>
+        </Card>
+        <Card>
+          <div className={css.cardHeading}>
+            <div className={css.cardHeading__icon}>
+              <IconSSUSD />
+            </div>
+            <div className={css.cardHeading__content}>
+              <h3 className={css.cardHeading__title}>
+                <strong>Mint $ssUSD</strong>
+                <div className={css.cardHeading__row}>
+                  <button className={clsx(css.button, css.small)}>Mint</button>
+                  <button className={clsx(css.button, css.small)}>Redeem</button>
+                </div>
+              </h3>
+
+              <div className={css.threeColumnGrid}>
+                <Card.Pane small>
+                  <h3 className={clsx(css.paneHeading, css.small)}>Available</h3>
+                  <strong className={clsx(css.number, css.small)}>335,822</strong>
+                </Card.Pane>
+                <Card.Pane small>
+                  <h3 className={clsx(css.paneHeading, css.small)}>Minted</h3>
+                  <strong className={clsx(css.number, css.small)}>33,822</strong>
+                </Card.Pane>
+                <Card.Pane small>
+                  <h3 className={clsx(css.paneHeading, css.small)}>Risk</h3>
+                  <strong className={clsx(css.number, css.small, css.green)}>10%</strong>
                 </Card.Pane>
               </div>
             </div>
