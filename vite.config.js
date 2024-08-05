@@ -3,27 +3,6 @@ import cssnano from "cssnano";
 import react from "@vitejs/plugin-react-swc";
 import svgr from "vite-plugin-svgr";
 
-let modulesConfig = {
-  generateScopedName: "[local]-[hash:base64:4]"
-};
-
-if (process.env.IS_PROD) {
-  const fileSet = {};
-  const hashSet = {};
-  modulesConfig = {
-    getJSON: function (file, json) {
-      if (fileSet[file]) return;
-
-      fileSet[file] = true;
-      Object.values(json).forEach((i) => {
-        if (hashSet[i]) throw Error("CSS MODULES HASH COLLISION ERROR");
-        hashSet[i] = true;
-      });
-    },
-    generateScopedName: "[hash:base64:2]"
-  };
-}
-
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
@@ -40,7 +19,6 @@ export default defineConfig({
     })
   ],
   css: {
-    modules: modulesConfig,
     postcss: {
       plugins: [
         cssnano({

@@ -19,8 +19,12 @@
   z-index: 1;
 
   &__logo {
-    height: 18px;
     margin-right: rhythm(3);
+
+    > svg {
+      display: block;
+      height: 18px;
+    }
   }
 
   &__link {
@@ -31,6 +35,40 @@
     &[aria-current] {
       color: #9fb9ff;
       box-shadow: 0 2px 0 currentcolor;
+    }
+  }
+
+  @include responsive("tablet") {
+    padding: rhythm(3) rhythm(2) rhythm(3);
+
+    &__logo {
+      margin-right: auto;
+
+      > svg {
+        height: 14px;
+      }
+    }
+  }
+
+  @include responsive("mobile") {
+    gap: rhythm(2);
+
+    &__logo {
+      position: relative;
+
+      > svg {
+        position: absolute;
+        z-index: 1;
+        top: -4px;
+
+        > path:last-of-type {
+          display: none;
+        }
+      }
+    }
+
+    &__link {
+      font-size: 13px;
     }
   }
 }

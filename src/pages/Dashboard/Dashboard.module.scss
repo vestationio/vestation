@@ -4,6 +4,10 @@
   margin: auto;
   display: grid;
   gap: rhythm(3);
+
+  @include responsive("mobile") {
+    padding: rhythm(2) rhythm(2) rhythm(5);
+  }
 }
 
 .dashboard__row {
@@ -68,18 +72,40 @@
     display: flex;
     gap: rhythm(1.5);
   }
+
+  @include responsive("mobile") {
+    display: block;
+
+    &__icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 0 rhythm(2);
+    }
+
+    &__title {
+      font-size: 15px;
+    }
+  }
 }
 
 .twoColumnGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: rhythm(2.5);
+
+  @include responsive("mobile") {
+    grid-template-columns: 1fr;
+  }
 }
 
 .threeColumnGrid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: rhythm(1.5);
+
+  @include responsive("mobile") {
+    grid-template-columns: 1fr;
+  }
 }
 
 .number {

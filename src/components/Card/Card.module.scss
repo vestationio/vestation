@@ -15,6 +15,15 @@
     background: linear-gradient(30.52deg, #0d1329 29.99%, rgba(98, 98, 98, 0.01) 353.12%);
     padding: rhythm(3);
   }
+
+  @include responsive("mobile") {
+    border-radius: rhythm(1.5);
+
+    &__inner {
+      padding: rhythm(2);
+      border-radius: rhythm(1.5);
+    }
+  }
 }
 
 .heading {
@@ -22,6 +31,11 @@
   line-height: 24px;
   font-weight: 600;
   margin-bottom: rhythm(2);
+
+  @include responsive("mobile") {
+    font-size: 16px;
+    line-height: 20px;
+  }
 }
 
 .pane {
@@ -32,5 +46,9 @@
   &.small {
     padding: rhythm(1) rhythm(1.5);
     border-radius: rhythm(1);
+  }
+
+  @include responsive("mobile") {
+    padding: rhythm(2);
   }
 }
