@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import cssnano from "cssnano";
 import react from "@vitejs/plugin-react-swc";
 import svgr from "vite-plugin-svgr";
+import { nodePolyfills } from "vite-plugin-node-polyfills";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -9,6 +10,7 @@ export default defineConfig({
     port: 3000
   },
   plugins: [
+    nodePolyfills(),
     react(),
     svgr({
       include: "./src/assets/**/*.svg?react",
