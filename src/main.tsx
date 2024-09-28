@@ -1,8 +1,10 @@
+import "@mantine/core/styles.css";
 import "./styles/global.css";
 
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createTheme, MantineProvider } from "@mantine/core";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "~/query";
 
@@ -55,6 +57,26 @@ const router = createBrowserRouter([
   }
 ]);
 
+const theme = createTheme({
+  fontFamily: "Satoshi",
+  colors: {
+    vestation: [
+      "#ecf3ff",
+      "#dae2f6",
+      "#b5c3e5",
+      "#8ea2d5",
+      "#6d85c8",
+      "#5773c0",
+      "#4b6abd",
+      "#3c5aa7",
+      "#325096",
+      "#264587"
+    ]
+  },
+  primaryColor: "vestation",
+  primaryShade: 5
+});
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <DAppKitProvider
@@ -65,7 +87,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       themeMode="DARK"
     >
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
+        <MantineProvider theme={theme} defaultColorScheme="dark">
+          <RouterProvider router={router} />
+        </MantineProvider>
       </QueryClientProvider>
     </DAppKitProvider>
   </React.StrictMode>
