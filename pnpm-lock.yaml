@@ -99,6 +99,9 @@ importers:
       vite:
         specifier: ^5.4.8
         version: 5.4.8(@types/node@22.3.0)(sass@1.79.4)
+      vite-plugin-commonjs:
+        specifier: ^0.10.3
+        version: 0.10.3
       vite-plugin-node-polyfills:
         specifier: ^0.22.0
         version: 0.22.0(rollup@4.20.0)(vite@5.4.8(@types/node@22.3.0)(sass@1.79.4))
@@ -1935,6 +1938,9 @@ packages:
   es-iterator-helpers@1.0.19:
     resolution: {integrity: sha512-zoMwbCcH5hwUkKJkT8kDIBZSz9I6mVG//+lDCinLCGov4+r7NIy0ld8o03M0cJxl2spVf6ESYVS6/gpIfq1FFw==}
     engines: {node: '>= 0.4'}
+
+  es-module-lexer@1.5.4:
+    resolution: {integrity: sha512-MVNK56NiMrOwitFB7cqDwq0CQutbw+0BvLshJSse0MUNU+y1FC3bUS/AQg7oUng+/wKrrki7JfmwtVHkVfPLlw==}
 
   es-object-atoms@1.0.0:
     resolution: {integrity: sha512-MZ4iQ6JwHOBQjahnjwaC1ZtIBH+2ohjamzAO3oaHcXYup7qxjF2fixyH+Q71voWHeOkI2q/TnJao/KfXYIZWbw==}
@@ -3974,6 +3980,12 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
+
+  vite-plugin-commonjs@0.10.3:
+    resolution: {integrity: sha512-trtH4dfAqrbqwiUhSKcqrfjnlXnqLHdIbYuUy943y34JnDjIX8qlpExP0nFN+kE2s6/BS6r9d1cAHS0KtiF4yQ==}
+
+  vite-plugin-dynamic-import@1.6.0:
+    resolution: {integrity: sha512-TM0sz70wfzTIo9YCxVFwS8OA9lNREsh+0vMHGSkWDTZ7bgd1Yjs5RV8EgB634l/91IsXJReg0xtmuQqP0mf+rg==}
 
   vite-plugin-node-polyfills@0.22.0:
     resolution: {integrity: sha512-F+G3LjiGbG8QpbH9bZ//GSBr9i1InSTkaulfUHFa9jkLqVGORFBoqc2A/Yu5Mmh1kNAbiAeKeK+6aaQUf3x0JA==}
@@ -6783,6 +6795,8 @@ snapshots:
       iterator.prototype: 1.1.2
       safe-array-concat: 1.1.2
 
+  es-module-lexer@1.5.4: {}
+
   es-object-atoms@1.0.0:
     dependencies:
       es-errors: 1.3.0
@@ -8995,6 +9009,19 @@ snapshots:
       - bufferutil
       - utf-8-validate
       - zod
+
+  vite-plugin-commonjs@0.10.3:
+    dependencies:
+      acorn: 8.12.1
+      magic-string: 0.30.11
+      vite-plugin-dynamic-import: 1.6.0
+
+  vite-plugin-dynamic-import@1.6.0:
+    dependencies:
+      acorn: 8.12.1
+      es-module-lexer: 1.5.4
+      fast-glob: 3.3.2
+      magic-string: 0.30.11
 
   vite-plugin-node-polyfills@0.22.0(rollup@4.20.0)(vite@5.4.8(@types/node@22.3.0)(sass@1.79.4)):
     dependencies:
