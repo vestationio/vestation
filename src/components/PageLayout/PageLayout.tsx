@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Outlet, NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { NavLink, Outlet } from "react-router-dom";
 import { useWallet, useWalletModal } from "@vechain/dapp-kit-react";
 import Background from "~/components/Background";
 import css from "./PageLayout.module.scss";
@@ -39,6 +39,9 @@ export default function PageLayout() {
         </NavLink>
         <NavLink to="/reward" className={css.nav__link}>
           Reward
+        </NavLink>
+        <NavLink to="/delegate" className={css.nav__link}>
+          Delegate
         </NavLink>
 
         <button className={css.nav__wallet} onClick={open}>

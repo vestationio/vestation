@@ -14,9 +14,10 @@ import LandingPage from "./pages/LandingPage";
 import Dashboard from "./pages/Dashboard";
 import MyPositions from "./pages/MyPositions";
 import Reward from "./pages/Reward";
+import Delegate from "./pages/Delegate";
 
-import { DAppKitProvider } from "@vechain/dapp-kit-react";
 import type { WalletConnectOptions } from "@vechain/dapp-kit-react";
+import { DAppKitProvider } from "@vechain/dapp-kit-react";
 
 const walletConnectOptions: WalletConnectOptions = {
   // Create your project here: https://cloud.walletconnect.com/sign-up
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: "/reward",
         element: <Reward />
+      },
+      {
+        path: "/delegate",
+        element: <Delegate />
       }
     ]
   },

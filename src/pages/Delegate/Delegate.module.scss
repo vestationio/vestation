@@ -1,0 +1,35 @@
+.twoColumnGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: rhythm(2.5);
+
+  @include responsive("mobile") {
+    grid-template-columns: 1fr;
+  }
+}
+
+.number {
+  font-size: 20px;
+  line-height: 32px;
+  font-family: "DigitalNumbers", monospace;
+  text-shadow: 1px 1px 5px #ffffff99;
+  color: #fff;
+
+  &.large {
+    font-size: 28px;
+    line-height: 40px;
+  }
+
+  &.small {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  > span {
+    font-family: "Satoshi" sans-serif;
+    font-weight: 500;
+    margin-left: rhythm(2);
+    line-height: 1;
+    vertical-align: -2px;
+  }
+}
