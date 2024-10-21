@@ -5,7 +5,6 @@ import {
   Button,
   CheckIcon,
   Container,
-  Divider,
   Flex,
   Modal,
   Stack,
@@ -23,7 +22,7 @@ import css from "./Delegate.module.scss";
 
 import { IconAlertHexagon } from "@tabler/icons-react";
 
-function InfoEntry() {
+function InfoEntry({ heading, content }: { heading: string; content: string }) {
   return (
     <Flex gap="md" align="flex-start">
       <Flex style={{ border: "1px solid rgba(255, 255, 255, .25)", padding: 8, borderRadius: 6 }}>
@@ -31,44 +30,43 @@ function InfoEntry() {
       </Flex>
       <Box>
         <Title order={5} c="white">
-          Heading
+          {heading}
         </Title>
         <Text size="md" lh={1.3} mt="2">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis amet rerum aperiam iure
-          voluptatem odit cum fuga veniam dignissimos animi!
+          {content}
         </Text>
       </Box>
     </Flex>
   );
 }
 
-function BalanceEntry() {
-  return (
-    <Flex gap="sm" align="center">
-      <Flex
-        style={{ border: "1px solid rgba(255, 255, 255, .25)", padding: 8, borderRadius: "50%" }}
-      >
-        <CheckIcon size={16} />
-      </Flex>
-      <Box>
-        <Title order={6} c="white">
-          Delegate Votes Changed
-        </Title>
-        <Text size="sm" lh={1.3} mt="2">
-          by 0x1234...abcd
-        </Text>
-      </Box>
-      <Box ml="auto">
-        <Title order={6} c="white">
-          -1.00 VOT3
-        </Title>
-        <Text size="sm" lh={1.3} mt="2" ta="right">
-          3 days ago
-        </Text>
-      </Box>
-    </Flex>
-  );
-}
+// function BalanceEntry() {
+//   return (
+//     <Flex gap="sm" align="center">
+//       <Flex
+//         style={{ border: "1px solid rgba(255, 255, 255, .25)", padding: 8, borderRadius: "50%" }}
+//       >
+//         <CheckIcon size={16} />
+//       </Flex>
+//       <Box>
+//         <Title order={6} c="white">
+//           Delegate Votes Changed
+//         </Title>
+//         <Text size="sm" lh={1.3} mt="2">
+//           by 0x1234...abcd
+//         </Text>
+//       </Box>
+//       <Box ml="auto">
+//         <Title order={6} c="white">
+//           -1.00 VOT3
+//         </Title>
+//         <Text size="sm" lh={1.3} mt="2" ta="right">
+//           3 days ago
+//         </Text>
+//       </Box>
+//     </Flex>
+//   );
+// }
 
 export default function Delegate() {
   const [opened, { open, close }] = useDisclosure(false);
@@ -233,12 +231,43 @@ export default function Delegate() {
               <Title order={6} mb="xs">
                 Current Annual Yield
               </Title>
-              <strong className={css.number}>12.42%</strong>
+              <strong className={css.number}>
+                12.42 <i>%</i>
+              </strong>
             </Card.Pane>
           </div>
         </Card>
 
         <Card>
+          <Stack gap="sm">
+            <Flex align="center" justify="space-between">
+              <Title order={6} c="white">
+                Assets under Management
+              </Title>
+              <Text size="sm">1,000,000 VOT3</Text>
+            </Flex>
+            <Flex align="center" justify="space-between">
+              <Title order={6} c="white">
+                Accounts under Management
+              </Title>
+              <Text size="sm">3,757</Text>
+            </Flex>
+            <Flex align="center" justify="space-between">
+              <Title order={6} c="white">
+                Platform Fees
+              </Title>
+              <Text size="sm">10% of Rewards</Text>
+            </Flex>
+            <Flex align="center" justify="space-between">
+              <Title order={6} c="white">
+                Last Updated
+              </Title>
+              <Text size="sm">less than a minute ago</Text>
+            </Flex>
+          </Stack>
+        </Card>
+
+        {/* <Card>
           <BalanceEntry />
           <Divider my="sm" />
           <BalanceEntry />
@@ -246,21 +275,29 @@ export default function Delegate() {
           <BalanceEntry />
           <Divider mt="sm" mb="md" />
           <Flex justify="space-between">
-            <Button size="xs" variant="outline" opacity={0.6}>
-              Preview
-            </Button>
-            <Button size="xs" variant="outline" opacity={0.6}>
-              Next
-            </Button>
+          <Button size="xs" variant="outline" opacity={0.6}>
+          Preview
+          </Button>
+          <Button size="xs" variant="outline" opacity={0.6}>
+          Next
+          </Button>
           </Flex>
-        </Card>
+          </Card> */}
 
         <Card>
           <Stack gap="lg">
-            <InfoEntry />
-            <InfoEntry />
-            <InfoEntry />
-            <InfoEntry />
+            <InfoEntry
+              heading="Effortless Voting Rewards:"
+              content="Maximize voting rewards through strategic, preference-based voting and pooled staking."
+            />
+            <InfoEntry
+              heading="Enhanced Rewards with NFTs:"
+              content="Access higher reward rates with exclusive NFT boosts like the GM NFT."
+            />
+            <InfoEntry
+              heading="Hands-Free Experience:"
+              content="Set preferences once and let VeStation Delegate handle the weekly voting and reward management for you."
+            />
           </Stack>
         </Card>
       </Stack>

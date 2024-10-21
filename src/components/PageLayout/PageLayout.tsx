@@ -31,17 +31,11 @@ export default function PageLayout() {
           <IconLogo />
         </NavLink>
 
-        <NavLink to="/dashboard" className={css.nav__link}>
-          Dashboard
-        </NavLink>
-        <NavLink to="/my-positions" className={css.nav__link}>
-          My Positions
+        <NavLink to="/delegate" className={css.nav__link}>
+          Delegate
         </NavLink>
         <NavLink to="/reward" className={css.nav__link}>
           Reward
-        </NavLink>
-        <NavLink to="/delegate" className={css.nav__link}>
-          Delegate
         </NavLink>
 
         <button className={css.nav__wallet} onClick={open}>
