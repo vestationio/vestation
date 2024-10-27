@@ -1,6 +1,4 @@
-import { useState } from "react";
 import {
-  Alert,
   Box,
   Button,
   CheckIcon,
@@ -12,15 +10,11 @@ import {
   Text,
   Title,
   Input,
-  Select,
-  Switch,
-  Tooltip
+  Select
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import Card from "~/components/Card";
 import css from "./Delegate.module.scss";
-
-import { IconAlertHexagon } from "@tabler/icons-react";
 
 function InfoEntry({ heading, content }: { heading: string; content: string }) {
   return (
@@ -40,38 +34,8 @@ function InfoEntry({ heading, content }: { heading: string; content: string }) {
   );
 }
 
-// function BalanceEntry() {
-//   return (
-//     <Flex gap="sm" align="center">
-//       <Flex
-//         style={{ border: "1px solid rgba(255, 255, 255, .25)", padding: 8, borderRadius: "50%" }}
-//       >
-//         <CheckIcon size={16} />
-//       </Flex>
-//       <Box>
-//         <Title order={6} c="white">
-//           Delegate Votes Changed
-//         </Title>
-//         <Text size="sm" lh={1.3} mt="2">
-//           by 0x1234...abcd
-//         </Text>
-//       </Box>
-//       <Box ml="auto">
-//         <Title order={6} c="white">
-//           -1.00 VOT3
-//         </Title>
-//         <Text size="sm" lh={1.3} mt="2" ta="right">
-//           3 days ago
-//         </Text>
-//       </Box>
-//     </Flex>
-//   );
-// }
-
 export default function Delegate() {
   const [opened, { open, close }] = useDisclosure(false);
-  const [firstChecked, setFirstChecked] = useState(false);
-  const [secondChecked, setSecondChecked] = useState(true);
 
   return (
     <Container size="30rem" pb="5rem">
@@ -102,25 +66,9 @@ export default function Delegate() {
             <Text size="sm">1</Text>
           </Flex>
 
-          <Button fullWidth size="md" mt="md" mb="xs" radius="md" onClick={open}>
-            Stake
+          <Button fullWidth size="md" my="md" radius="md" onClick={open}>
+            Deposit
           </Button>
-
-          <Tooltip
-            label="veDelegate covers all gas fees for the weekly automation. A minimum of 50.00 VOT3 ensures we can pay for gas from your rewards.
-"
-          >
-            <Alert
-              variant="light"
-              color="red"
-              icon={<IconAlertHexagon />}
-              p="sm"
-              mb="md"
-              radius="md"
-            >
-              A minimum stake of 50.00 VOT3 is required.
-            </Alert>
-          </Tooltip>
 
           <Modal
             opened={opened}
@@ -155,16 +103,6 @@ export default function Delegate() {
                     description="You have 1.00 B3TR + VOT3"
                     radius="lg"
                   />
-                  <Switch
-                    checked={firstChecked}
-                    label="Auto-Deposit B3TR in the feature"
-                    onChange={(e) => setFirstChecked(e.currentTarget.checked)}
-                  />
-                  <Switch
-                    checked={secondChecked}
-                    label="Proposal Delegation"
-                    onChange={(e) => setSecondChecked(e.currentTarget.checked)}
-                  />
                   <Button size="md" radius="md">
                     Deposit
                   </Button>
@@ -182,37 +120,12 @@ export default function Delegate() {
                     description="You have 1.00 B3TR + VOT3"
                     radius="lg"
                   />
-                  <Switch
-                    checked={firstChecked}
-                    label="Auto-Deposit B3TR in the feature"
-                    onChange={(e) => setFirstChecked(e.currentTarget.checked)}
-                  />
-                  <Switch
-                    checked={secondChecked}
-                    label="Proposal Delegation"
-                    onChange={(e) => setSecondChecked(e.currentTarget.checked)}
-                  />
                   <Button size="md" radius="md">
                     Withdraw
                   </Button>
                 </Stack>
               </Tabs.Panel>
             </Tabs>
-            <Tooltip
-              label="veDelegate covers all gas fees for the weekly automation. A minimum of 50.00 VOT3 ensures we can pay for gas from your rewards.
-"
-            >
-              <Alert
-                variant="light"
-                color="red"
-                icon={<IconAlertHexagon />}
-                p="sm"
-                mb="md"
-                radius="md"
-              >
-                A minimum stake of 50.00 VOT3 is required.
-              </Alert>
-            </Tooltip>
 
             <Text size="xs">
               Your new deposit will earn rewards in the next voting round, starting on 2024-09-30.
@@ -266,23 +179,6 @@ export default function Delegate() {
             </Flex>
           </Stack>
         </Card>
-
-        {/* <Card>
-          <BalanceEntry />
-          <Divider my="sm" />
-          <BalanceEntry />
-          <Divider my="sm" />
-          <BalanceEntry />
-          <Divider mt="sm" mb="md" />
-          <Flex justify="space-between">
-          <Button size="xs" variant="outline" opacity={0.6}>
-          Preview
-          </Button>
-          <Button size="xs" variant="outline" opacity={0.6}>
-          Next
-          </Button>
-          </Flex>
-          </Card> */}
 
         <Card>
           <Stack gap="lg">
