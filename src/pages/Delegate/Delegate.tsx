@@ -13,8 +13,20 @@ import {
   Select
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
+import { useAtom } from "jotai";
+import { find } from "lodash";
+import BigNumber from "bignumber.js";
+import { useConnex, useWallet } from "@vechain/dapp-kit-react";
+import { queryClient } from "~/query";
+import { atomTransactionStatus } from "~/store";
+import { DELEGATE_ADDRESS } from "~/constants/addresses";
+import useDelegateData from "~/hooks/useDelegateData";
+import VeDelegate from "~/abis/VeDelegate.json";
+import ABI_ERC20 from "~/abis/erc20.json";
 import Card from "~/components/Card";
+import poll from "~/utils/pool";
 import css from "./Delegate.module.scss";
+import { useState } from "react";
 
 function InfoEntry({ heading, content }: { heading: string; content: string }) {
   return (
@@ -36,6 +48,130 @@ function InfoEntry({ heading, content }: { heading: string; content: string }) {
 
 export default function Delegate() {
   const [opened, { open, close }] = useDisclosure(false);
+  const connex = useConnex();
+  const { account } = useWallet();
+  const { data } = useDelegateData();
+  const [, setTransactionStatus] = useAtom(atomTransactionStatus);
+
+  const [depositAmount, setDepositAmount] = useState("");
+  const [withdrawAmount, setWithdrawAmount] = useState("");
+  const [depositType, setDepositType] = useState("B3TR");
+
+  const handleDeposit = async () => {
+    if (!connex) return;
+
+    const amount = BigNumber(depositAmount).times(1e18).toString();
+
+    const approveB3trMethod = connex.thor
+      .account("0x5ef79995FE8a89e0812330E4378eB2660ceDe699")
+      .method(find(ABI_ERC20, { name: "approve" }));
+    const approveB3trClause = approveB3trMethod.asClause(DELEGATE_ADDRESS, amount);
+
+    const approveVot3Method = connex.thor
+      .account("0x76ca782b59c74d088c7d2cce2f211bc00836c602")
+      .method(find(ABI_ERC20, { name: "approve" }));
+    const approveVot3Clause = approveVot3Method.asClause(DELEGATE_ADDRESS, amount);
+
+    const depositB3TR_abi = find(VeDelegate.abi, { name: "depositB3TR" });
+    const depositB3trMethod = connex.thor.account(DELEGATE_ADDRESS).method(depositB3TR_abi);
+    const depositB3trClause = depositB3trMethod.asClause(amount);
+
+    const depositVOT3_abi = find(VeDelegate.abi, { name: "depositVOT3" });
+    const depositVot3Method = connex.thor.account(DELEGATE_ADDRESS).method(depositVOT3_abi);
+    const depositVot3Clause = depositVot3Method.asClause(amount);
+
+    let clauses;
+    if (depositType === "B3TR") {
+      clauses = [{ ...approveB3trClause }, { ...depositB3trClause }];
+    } else if (depositType === "VOT3") {
+      clauses = [{ ...approveVot3Clause }, { ...depositVot3Clause }];
+    } else {
+      clauses = [
+        { ...approveB3trClause },
+        { ...approveVot3Clause },
+        { ...depositB3trClause },
+        { ...depositVot3Clause }
+      ];
+    }
+
+    setTransactionStatus({
+      isPending: true,
+      message: `Deposit ${depositAmount} ${depositType}`
+    });
+
+    connex.vendor
+      .sign("tx", clauses)
+      .comment(`Deposit ${depositAmount} ${depositType}`)
+      .request()
+      .then((tx: any) => {
+        return poll(() => connex.thor.transaction(tx.txid).getReceipt());
+      })
+      .then((result: any) => {
+        const isSuccess = result.reverted === false;
+        setTransactionStatus({
+          isPending: false,
+          isSuccessful: isSuccess,
+          isFailed: !isSuccess,
+          transactionHash: result.meta.txID,
+          message: undefined
+        });
+        if (isSuccess) {
+          setDepositAmount("");
+          queryClient.refetchQueries({
+            queryKey: ["delegate-data", account]
+          });
+        }
+      })
+      .catch((err: any) => {
+        console.log("ERROR");
+        console.log(err);
+        setTransactionStatus(undefined);
+      });
+  };
+
+  const handleWithdraw = async () => {
+    if (!connex) return;
+
+    const amount = BigNumber(withdrawAmount).times(1e18).toString();
+
+    const withdraw_abi = find(VeDelegate.abi, { name: "withdraw" });
+    const withdrawMethod = connex.thor.account(DELEGATE_ADDRESS).method(withdraw_abi);
+    const withdrawClause = withdrawMethod.asClause(amount);
+
+    setTransactionStatus({
+      isPending: true,
+      message: `Withdrawing ${withdrawAmount} VOT3`
+    });
+
+    connex.vendor
+      .sign("tx", [{ ...withdrawClause }])
+      .comment(`Withdraw ${withdrawAmount} VOT3`)
+      .request()
+      .then((tx: any) => {
+        return poll(() => connex.thor.transaction(tx.txid).getReceipt());
+      })
+      .then((result: any) => {
+        const isSuccess = result.reverted === false;
+        setTransactionStatus({
+          isPending: false,
+          isSuccessful: isSuccess,
+          isFailed: !isSuccess,
+          transactionHash: result.meta.txID,
+          message: undefined
+        });
+        if (isSuccess) {
+          setWithdrawAmount("");
+          queryClient.refetchQueries({
+            queryKey: ["delegate-data", account]
+          });
+        }
+      })
+      .catch((err: any) => {
+        console.log("ERROR");
+        console.log(err);
+        setTransactionStatus(undefined);
+      });
+  };
 
   return (
     <Container size="30rem" pb="5rem">
@@ -51,23 +187,13 @@ export default function Delegate() {
 
           <Flex>
             <Title mr="auto" order={6}>
-              Your B3TR
-            </Title>
-            <Text size="sm">1</Text>
-          </Flex>
-          <Flex justify="space-between" mt="4">
-            <Title order={6}>Your VOT3</Title>
-            <Text size="sm">3</Text>
-          </Flex>
-          <Flex>
-            <Title mr="auto" order={6}>
               Your Delegated VOT3
             </Title>
-            <Text size="sm">1</Text>
+            <Text size="sm">{data?.delegateBalance.toFormat(2)}</Text>
           </Flex>
 
           <Button fullWidth size="md" my="md" radius="md" onClick={open}>
-            Deposit
+            Manage Deposit
           </Button>
 
           <Modal
@@ -94,16 +220,21 @@ export default function Delegate() {
               <Tabs.Panel value="deposit">
                 <Stack pt="sm" pb="xs">
                   <Input.Wrapper label="Amount">
-                    <Input placeholder="0" radius="lg" />
+                    <Input
+                      placeholder="0"
+                      radius="lg"
+                      onChange={(e) => setDepositAmount(e.target.value)}
+                    />
                   </Input.Wrapper>
                   <Select
                     label="Token"
                     data={["B3TR", "VOT3", "B3TR + VOT3"]}
                     defaultValue="B3TR"
-                    description="You have 1.00 B3TR + VOT3"
+                    description={`You have ${data?.delegateBalance.toFormat(2)} Delegated VOT3`}
                     radius="lg"
+                    onChange={(value) => setDepositType(value!)}
                   />
-                  <Button size="md" radius="md">
+                  <Button size="md" radius="md" onClick={handleDeposit}>
                     Deposit
                   </Button>
                 </Stack>
@@ -111,16 +242,21 @@ export default function Delegate() {
               <Tabs.Panel value="withdraw">
                 <Stack pt="sm" pb="xs">
                   <Input.Wrapper label="Amount">
-                    <Input placeholder="0" radius="lg" />
+                    <Input
+                      placeholder="0"
+                      radius="lg"
+                      onChange={(e) => setWithdrawAmount(e.target.value)}
+                    />
                   </Input.Wrapper>
                   <Select
                     label="Token"
-                    data={["B3TR", "VOT3", "B3TR + VOT3"]}
-                    defaultValue="B3TR"
-                    description="You have 1.00 B3TR + VOT3"
+                    data={["VOT3"]}
+                    defaultValue="VOT3"
+                    description={`You have ${data?.delegateBalance.toFormat(2)} Delegated VOT3`}
                     radius="lg"
+                    disabled
                   />
-                  <Button size="md" radius="md">
+                  <Button size="md" radius="md" onClick={handleWithdraw}>
                     Withdraw
                   </Button>
                 </Stack>
@@ -138,14 +274,14 @@ export default function Delegate() {
               <Title order={6} mb="xs">
                 Total Earned (B3TR)
               </Title>
-              <strong className={css.number}>100.00</strong>
+              <strong className={css.number}>{data?.reward.toFormat(2)}</strong>
             </Card.Pane>
             <Card.Pane>
               <Title order={6} mb="xs">
                 Current Annual Yield
               </Title>
               <strong className={css.number}>
-                12.42 <i>%</i>
+                - <i>%</i>
               </strong>
             </Card.Pane>
           </div>
@@ -157,19 +293,19 @@ export default function Delegate() {
               <Title order={6} c="white">
                 Assets under Management
               </Title>
-              <Text size="sm">1,000,000 VOT3</Text>
+              <Text size="sm">- VOT3</Text>
             </Flex>
             <Flex align="center" justify="space-between">
               <Title order={6} c="white">
                 Accounts under Management
               </Title>
-              <Text size="sm">3,757</Text>
+              <Text size="sm">-</Text>
             </Flex>
             <Flex align="center" justify="space-between">
               <Title order={6} c="white">
                 Platform Fees
               </Title>
-              <Text size="sm">10% of Rewards</Text>
+              <Text size="sm">-% of Rewards</Text>
             </Flex>
             <Flex align="center" justify="space-between">
               <Title order={6} c="white">

@@ -1,15 +1,20 @@
 import { useEffect, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { useWallet, useWalletModal } from "@vechain/dapp-kit-react";
+import { Title, Text, Modal, Anchor, Loader, Flex } from "@mantine/core";
+import { useAtom } from "jotai";
+import { atomTransactionStatus } from "~/store";
 import Background from "~/components/Background";
 import css from "./PageLayout.module.scss";
 
 import IconLogo from "~/assets/logo.svg?react";
+import { IconRosetteDiscountCheck, IconExclamationCircle } from "@tabler/icons-react";
 
 export default function PageLayout() {
   const { account } = useWallet();
   const { open, onConnectionStatusChange } = useWalletModal();
   const [buttonText, setButtonText] = useState("Connect Wallet");
+  const [transactionStatus, setTransactionStatus] = useAtom(atomTransactionStatus);
 
   useEffect(() => {
     const handleConnected = (address: string | null) => {
@@ -46,6 +51,58 @@ export default function PageLayout() {
       <div className={css.root__content}>
         <Outlet />
       </div>
+
+      <Modal
+        opened={!!transactionStatus}
+        onClose={() => setTransactionStatus(undefined)}
+        closeOnEscape={false}
+        closeOnClickOutside={false}
+        radius="lg"
+        size="sm"
+        centered
+      >
+        <Flex gap="sm" justify="center" align="center" direction="column" pb="sm">
+          {transactionStatus?.isPending && (
+            <>
+              <Loader />
+              <Title order={5} mt="md" c="white">
+                Waiting for confirmation....
+              </Title>
+            </>
+          )}
+          {transactionStatus?.isSuccessful && (
+            <>
+              <IconRosetteDiscountCheck size="3rem" color="green" />
+              <Title order={4} c="white">
+                Transaction Successful
+              </Title>
+            </>
+          )}
+          {transactionStatus?.isFailed && (
+            <>
+              <IconExclamationCircle size="3rem" color="red" />
+              <Title order={4} c="white">
+                Transaction Failed
+              </Title>
+            </>
+          )}
+          {!!transactionStatus?.message && (
+            <Text c={transactionStatus.isFailed ? "red.2" : "white"} size="sm">
+              {transactionStatus.message}
+            </Text>
+          )}
+          {!!transactionStatus?.transactionHash && !transactionStatus?.isPending && (
+            <Anchor
+              variant="outline"
+              href={`https://explore.vechain.org/transactions/${transactionStatus.transactionHash}#info`}
+              target="_blank"
+              underline="never"
+            >
+              View on explorer
+            </Anchor>
+          )}
+        </Flex>
+      </Modal>
 
       <Background />
     </div>
