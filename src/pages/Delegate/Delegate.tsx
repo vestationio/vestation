@@ -243,6 +243,51 @@ export default function Delegate() {
       });
   };
 
+  const handleClaimAndRedeposit = (roundId: number, reward: string) => {
+    if (!connex) return;
+
+    const claim_abi = find(VeDelegate.abi, { name: "claimReward" });
+    const claimMethod = connex.thor.account(DELEGATE_ADDRESS).method(claim_abi);
+    const claimClause = claimMethod.asClause(roundId);
+
+    const depositVOT3_abi = find(VeDelegate.abi, { name: "depositVOT3" });
+    const depositVot3Method = connex.thor.account(DELEGATE_ADDRESS).method(depositVOT3_abi);
+    const depositVot3Clause = depositVot3Method.asClause(reward);
+
+    setTransactionStatus({
+      isPending: true,
+      message: `Claiming my ${roundId} rewards.`
+    });
+
+    connex.vendor
+      .sign("tx", [{ ...claimClause }, { ...depositVot3Clause }])
+      .comment(`Claiming my ${roundId} rewards.`)
+      .request()
+      .then((tx: any) => {
+        return poll(() => connex.thor.transaction(tx.txid).getReceipt());
+      })
+      .then((result: any) => {
+        const isSuccess = result.reverted === false;
+        setTransactionStatus({
+          isPending: false,
+          isSuccessful: isSuccess,
+          isFailed: !isSuccess,
+          transactionHash: result.meta.txID,
+          message: undefined
+        });
+        if (isSuccess) {
+          queryClient.refetchQueries({
+            queryKey: ["delegate-data", account]
+          });
+        }
+      })
+      .catch((err: any) => {
+        console.log("ERROR");
+        console.log(err);
+        setTransactionStatus(undefined);
+      });
+  };
+
   return (
     <Container size="30rem" pb="5rem">
       <Stack gap="lg">
@@ -362,13 +407,23 @@ export default function Delegate() {
             Claim Rewards (B3TR)
           </Title>
 
-          {!!myRewardList.length ? (
+          {!!myRewardList?.length ? (
             myRewardList.map((i: any) => (
-              <Flex key={i.roundId} align="center">
+              <Flex key={i.roundId} align="center" mt="8">
                 <Title mr="auto" order={6}>
                   Round {i.roundId}
                 </Title>
                 <Text size="sm">{i.reward.toFormat(2)}</Text>
+                <Button
+                  ml="xs"
+                  size="compact-xs"
+                  onClick={() =>
+                    handleClaimAndRedeposit(i.roundId, BigNumber(i.reward).times(1e18).toString())
+                  }
+                  disabled={!!i.reward}
+                >
+                  Claim & Re-deposit
+                </Button>
                 <Button
                   ml="xs"
                   size="compact-xs"
