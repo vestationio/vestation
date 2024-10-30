@@ -27,21 +27,22 @@ export default function useDelegateData() {
         })
       })
         .then((res: any) => res.json())
-        .then(({ data }) => data.rounds[0].id);
+        .then(({ data }) => +data.rounds[0].id - 1);
 
       return Promise.all([
         contract.method(find(ABI_ERC20, { name: "balanceOf" })).call(account),
-        contract.method(find(VeDelegate.abi, { name: "checkReward" })).call(roundId),
+        contract.method(find(ABI_ERC20, { name: "totalSupply" })).call(),
         contract.method(find(VeDelegate.abi, { name: "getTotalVotes" })).call(roundId),
-        contract.method(find(VeDelegate.abi, { name: "getUserVotes" })).call(account, roundId)
+        contract.method(find(VeDelegate.abi, { name: "getUserVotes" })).call(account, roundId),
+        () => roundId
       ]);
     },
     select: (data: any) => {
       const delegateBalance = BigNumber(data[0].decoded["0"]).div(1e18);
-      const reward = BigNumber(data[1].decoded["0"]);
+      const totalBalance = BigNumber(data[1].decoded["0"]).div(1e18);
       const totalVotes = BigNumber(data[2].decoded["0"]);
       const userVotes = BigNumber(data[3].decoded["0"]);
-      return { delegateBalance, reward, totalVotes, userVotes };
+      return { delegateBalance, totalBalance, totalVotes, userVotes, roundId: data[4]() };
     }
   });
 }

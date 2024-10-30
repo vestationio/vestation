@@ -1,3 +1,4 @@
+import { useMemo, useState } from "react";
 import {
   Box,
   Button,
@@ -21,12 +22,19 @@ import { queryClient } from "~/query";
 import { atomTransactionStatus } from "~/store";
 import { DELEGATE_ADDRESS } from "~/constants/addresses";
 import useDelegateData from "~/hooks/useDelegateData";
+import useRewardList from "~/hooks/useRewardList";
 import VeDelegate from "~/abis/VeDelegate.json";
 import ABI_ERC20 from "~/abis/erc20.json";
 import Card from "~/components/Card";
 import poll from "~/utils/pool";
 import css from "./Delegate.module.scss";
-import { useState } from "react";
+
+function formatDate(date: Date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
 
 function InfoEntry({ heading, content }: { heading: string; content: string }) {
   return (
@@ -50,12 +58,33 @@ export default function Delegate() {
   const [opened, { open, close }] = useDisclosure(false);
   const connex = useConnex();
   const { account } = useWallet();
-  const { data } = useDelegateData();
+  const { data: delegateData } = useDelegateData();
+  const { data: myRewardList } = useRewardList(delegateData?.roundId);
   const [, setTransactionStatus] = useAtom(atomTransactionStatus);
 
   const [depositAmount, setDepositAmount] = useState("");
   const [withdrawAmount, setWithdrawAmount] = useState("");
   const [depositType, setDepositType] = useState("B3TR");
+
+  const { thisMonday, nextMonday, nextSunday } = useMemo(() => {
+    let now = new Date();
+
+    let thisMonday = new Date(now);
+    thisMonday.setDate(now.getDate() - (now.getDay() || 7) + 1);
+    thisMonday.setHours(0, 0, 0, 0);
+
+    let nextMonday = new Date(thisMonday);
+    nextMonday.setDate(thisMonday.getDate() + 7);
+
+    let nextSunday = new Date(thisMonday);
+    nextSunday.setDate(thisMonday.getDate() + 14);
+
+    return {
+      thisMonday: formatDate(thisMonday),
+      nextMonday: formatDate(nextMonday),
+      nextSunday: formatDate(nextSunday)
+    };
+  }, []);
 
   const handleDeposit = async () => {
     if (!connex) return;
@@ -173,6 +202,47 @@ export default function Delegate() {
       });
   };
 
+  const handleClaim = (roundId: number) => {
+    if (!connex) return;
+
+    const claim_abi = find(VeDelegate.abi, { name: "claimReward" });
+    const claimMethod = connex.thor.account(DELEGATE_ADDRESS).method(claim_abi);
+    const claimClause = claimMethod.asClause(roundId);
+
+    setTransactionStatus({
+      isPending: true,
+      message: `Claiming my ${roundId} rewards.`
+    });
+
+    connex.vendor
+      .sign("tx", [{ ...claimClause }])
+      .comment(`Claiming my ${roundId} rewards.`)
+      .request()
+      .then((tx: any) => {
+        return poll(() => connex.thor.transaction(tx.txid).getReceipt());
+      })
+      .then((result: any) => {
+        const isSuccess = result.reverted === false;
+        setTransactionStatus({
+          isPending: false,
+          isSuccessful: isSuccess,
+          isFailed: !isSuccess,
+          transactionHash: result.meta.txID,
+          message: undefined
+        });
+        if (isSuccess) {
+          queryClient.refetchQueries({
+            queryKey: ["delegate-data", account]
+          });
+        }
+      })
+      .catch((err: any) => {
+        console.log("ERROR");
+        console.log(err);
+        setTransactionStatus(undefined);
+      });
+  };
+
   return (
     <Container size="30rem" pb="5rem">
       <Stack gap="lg">
@@ -189,7 +259,7 @@ export default function Delegate() {
             <Title mr="auto" order={6}>
               Your Delegated VOT3
             </Title>
-            <Text size="sm">{data?.delegateBalance.toFormat(2)}</Text>
+            <Text size="sm">{delegateData?.delegateBalance.toFormat(2)}</Text>
           </Flex>
 
           <Button fullWidth size="md" my="md" radius="md" onClick={open}>
@@ -230,7 +300,7 @@ export default function Delegate() {
                     label="Token"
                     data={["B3TR", "VOT3", "B3TR + VOT3"]}
                     defaultValue="B3TR"
-                    description={`You have ${data?.delegateBalance.toFormat(2)} Delegated VOT3`}
+                    description={`You have ${delegateData?.delegateBalance.toFormat(2)} Delegated VOT3`}
                     radius="lg"
                     onChange={(value) => setDepositType(value!)}
                   />
@@ -252,7 +322,7 @@ export default function Delegate() {
                     label="Token"
                     data={["VOT3"]}
                     defaultValue="VOT3"
-                    description={`You have ${data?.delegateBalance.toFormat(2)} Delegated VOT3`}
+                    description={`You have ${delegateData?.delegateBalance.toFormat(2)} Delegated VOT3`}
                     radius="lg"
                     disabled
                   />
@@ -264,27 +334,54 @@ export default function Delegate() {
             </Tabs>
 
             <Text size="xs">
-              Your new deposit will earn rewards in the next voting round, starting on 2024-09-30.
-              Rewards are claimable when the next voting round ends on 2024-10-07.
+              Your new deposit will earn rewards in the next voting round, starting on {nextMonday}.
+              Rewards are claimable when the next voting round ends on {nextSunday}.
             </Text>
           </Modal>
 
           <div className={css.twoColumnGrid}>
             <Card.Pane>
               <Title order={6} mb="xs">
-                Total Earned (B3TR)
+                VeStation GM NFT
               </Title>
-              <strong className={css.number}>{data?.reward.toFormat(2)}</strong>
+              <strong className={css.number}>Level 2</strong>
             </Card.Pane>
             <Card.Pane>
               <Title order={6} mb="xs">
                 Current Annual Yield
               </Title>
               <strong className={css.number}>
-                - <i>%</i>
+                128 <i>%</i>
               </strong>
             </Card.Pane>
           </div>
+        </Card>
+
+        <Card>
+          <Title order={5} mb="sm" c="white">
+            Claim Rewards (B3TR)
+          </Title>
+
+          {!!myRewardList.length ? (
+            myRewardList.map((i: any) => (
+              <Flex key={i.roundId} align="center">
+                <Title mr="auto" order={6}>
+                  Round {i.roundId}
+                </Title>
+                <Text size="sm">{i.reward.toFormat(2)}</Text>
+                <Button
+                  ml="xs"
+                  size="compact-xs"
+                  onClick={() => handleClaim(i.roundId)}
+                  disabled={!!i.reward}
+                >
+                  Claim
+                </Button>
+              </Flex>
+            ))
+          ) : (
+            <Text size="sm">No rewards to claim</Text>
+          )}
         </Card>
 
         <Card>
@@ -293,25 +390,19 @@ export default function Delegate() {
               <Title order={6} c="white">
                 Assets under Management
               </Title>
-              <Text size="sm">- VOT3</Text>
-            </Flex>
-            <Flex align="center" justify="space-between">
-              <Title order={6} c="white">
-                Accounts under Management
-              </Title>
-              <Text size="sm">-</Text>
+              <Text size="sm">{delegateData?.totalBalance.toFormat(2)} VOT3</Text>
             </Flex>
             <Flex align="center" justify="space-between">
               <Title order={6} c="white">
                 Platform Fees
               </Title>
-              <Text size="sm">-% of Rewards</Text>
+              <Text size="sm">10% of Rewards</Text>
             </Flex>
             <Flex align="center" justify="space-between">
               <Title order={6} c="white">
                 Last Updated
               </Title>
-              <Text size="sm">less than a minute ago</Text>
+              <Text size="sm">{thisMonday}</Text>
             </Flex>
           </Stack>
         </Card>
