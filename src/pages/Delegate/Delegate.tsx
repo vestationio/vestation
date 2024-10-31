@@ -469,12 +469,12 @@ export default function Delegate() {
               content="Maximize voting rewards through strategic, preference-based voting and pooled staking."
             />
             <InfoEntry
-              heading="Enhanced Rewards with NFTs:"
-              content="Access higher reward rates with exclusive NFT boosts like the GM NFT."
+              heading="Enhanced Rewards with GM NFT:"
+              content="Access higher reward rates with higher level GM NFT boost."
             />
             <InfoEntry
               heading="Hands-Free Experience:"
-              content="Set preferences once and let VeStation Delegate handle the weekly voting and reward management for you."
+              content="Just delegate and let VeStation 3arn manage weekly voting and reward distribution on your behalf."
             />
           </Stack>
         </Card>
