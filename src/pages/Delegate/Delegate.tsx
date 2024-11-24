@@ -309,7 +309,7 @@ export default function Delegate() {
             <Text size="sm">{delegateData?.delegateBalance.toFormat(2)}</Text>
           </Flex>
 
-          <Button fullWidth size="md" my="md" radius="md" onClick={open}>
+          <Button fullWidth size="md" my="md" radius="md" onClick={open} disabled={!account}>
             Manage Deposit
           </Button>
 
