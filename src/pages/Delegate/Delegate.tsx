@@ -89,7 +89,7 @@ export default function Delegate() {
   const handleDeposit = async () => {
     if (!connex) return;
 
-    const amount = BigNumber(depositAmount).times(1e18).toString();
+    const amount = BigNumber(depositAmount).times(1e18).toString(10);
 
     const approveB3trMethod = connex.thor
       .account("0x5ef79995FE8a89e0812330E4378eB2660ceDe699")
@@ -161,7 +161,7 @@ export default function Delegate() {
   const handleWithdraw = async () => {
     if (!connex) return;
 
-    const amount = BigNumber(withdrawAmount).times(1e18).toString();
+    const amount = BigNumber(withdrawAmount).times(1e18).toString(10);
 
     const withdraw_abi = find(VeDelegate.abi, { name: "withdraw" });
     const withdrawMethod = connex.thor.account(DELEGATE_ADDRESS).method(withdraw_abi);
@@ -418,7 +418,7 @@ export default function Delegate() {
                   ml="xs"
                   size="compact-xs"
                   onClick={() =>
-                    handleClaimAndRedeposit(i.roundId, BigNumber(i.reward).times(1e18).toString())
+                    handleClaimAndRedeposit(i.roundId, BigNumber(i.reward).times(1e18).toString(10))
                   }
                   disabled={!!i.reward}
                 >
