@@ -23,6 +23,7 @@ import { atomTransactionStatus } from "~/store";
 import { DELEGATE_ADDRESS } from "~/constants/addresses";
 import useDelegateData from "~/hooks/useDelegateData";
 import useRewardList from "~/hooks/useRewardList";
+import useMyBalance from "~/hooks/useMyBalance";
 import VeDelegate from "~/abis/VeDelegate.json";
 import ABI_ERC20 from "~/abis/erc20.json";
 import Card from "~/components/Card";
@@ -60,6 +61,7 @@ export default function Delegate() {
   const { account } = useWallet();
   const { data: delegateData } = useDelegateData();
   const { data: myRewardList } = useRewardList(delegateData?.roundId);
+  const { data: myBalance } = useMyBalance();
   const [, setTransactionStatus] = useAtom(atomTransactionStatus);
 
   const [depositAmount, setDepositAmount] = useState("");
@@ -334,7 +336,25 @@ export default function Delegate() {
               </Tabs.List>
               <Tabs.Panel value="deposit">
                 <Stack pt="sm" pb="xs">
-                  <Input.Wrapper label="Amount">
+                  <Input.Wrapper
+                    label="Amount"
+                    description={
+                      <Stack gap={0}>
+                        <Text
+                          size="xs"
+                          style={{ display: "flex", justifyContent: "space-between" }}
+                        >
+                          B3TR Balance: <span>{myBalance?.b3trBalance.toFormat(4)} B3TR</span>
+                        </Text>
+                        <Text
+                          size="xs"
+                          style={{ display: "flex", justifyContent: "space-between" }}
+                        >
+                          VOT3 Balance: <span>{myBalance?.vot3Balance.toFormat(4)} VOT3</span>
+                        </Text>
+                      </Stack>
+                    }
+                  >
                     <Input
                       placeholder="0"
                       radius="lg"
