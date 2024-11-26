@@ -434,21 +434,20 @@ export default function Delegate() {
                   Round {i.roundId}
                 </Title>
                 <Text size="sm">{i.reward.toFormat(2)}</Text>
-                <Button
-                  ml="xs"
-                  size="compact-xs"
-                  onClick={() =>
-                    handleClaimAndRedeposit(i.roundId, BigNumber(i.reward).times(1e18).toString(10))
-                  }
-                  disabled={!!i.reward}
+                {/* <Button
+                ml="xs"
+                size="compact-xs"
+                onClick={() =>
+                handleClaimAndRedeposit(i.roundId, BigNumber(i.reward).times(1e18).toString(10))
+                }
                 >
-                  Claim & Re-deposit
-                </Button>
+                 Claim & Re-deposit
+                 </Button> */}
                 <Button
                   ml="xs"
                   size="compact-xs"
                   onClick={() => handleClaim(i.roundId)}
-                  disabled={!!i.reward}
+                  disabled={i.isClaimed}
                 >
                   Claim
                 </Button>
