@@ -403,7 +403,7 @@ export default function Delegate() {
               Rewards are claimable when the next voting round ends on {nextSunday}.
             </Text>
             <Text size="xs" mt="4" fs="italic">
-              A 10% transaction fee will be added.
+              A 10% management fee will be added.
             </Text>
           </Modal>
 
@@ -412,14 +412,14 @@ export default function Delegate() {
               <Title order={6} mb="xs">
                 VeStation GM NFT
               </Title>
-              <strong className={css.number}>Level 2</strong>
+              <strong className={css.number}>Level 0</strong>
             </Card.Pane>
             <Card.Pane>
               <Title order={6} mb="xs">
                 Current Annual Yield
               </Title>
               <strong className={css.number}>
-                128 <i>%</i>
+                167 <i>%</i>
               </strong>
             </Card.Pane>
           </div>
