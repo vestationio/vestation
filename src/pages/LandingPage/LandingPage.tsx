@@ -1,13 +1,13 @@
-// import { clsx } from "clsx";
+import { clsx } from "clsx";
 import { Link } from "react-router-dom";
 import Background from "~/components/Background";
 import css from "./LandingPage.module.scss";
 
 import IconLogo from "~/assets/logo.svg?react";
 import IconTwitter from "~/assets/twitter.svg?react";
-import IconDiscord from "~/assets/discord.svg?react";
+import Medium from "~/assets/medium-brands-solid.svg?react";
 import IconTelegram from "~/assets/telegram.svg?react";
-import IconGithub from "~/assets/github.svg?react";
+import IconLinktree from "~/assets/linktree-logo-icon.svg?react";
 
 export default function LandingPage() {
   return (
@@ -15,18 +15,17 @@ export default function LandingPage() {
       <Background />
 
       <nav className={css.nav}>
-        <IconLogo className={css.nav__logo} />
+        <Link to="/">
+          <IconLogo className={css.nav__logo} />
+        </Link>
         <div className={css.nav__links}>
-          <Link to="/" className={css.nav__link}>
-            Charts
-          </Link>
-          <Link to="/" className={css.nav__link}>
+          <div className={clsx(css.nav__link, css.coming)}>
+            <span>Charts</span>
+          </div>
+          <Link to="https://medium.com/@vestationve" className={css.nav__link}>
             Blogs
           </Link>
-          <Link to="/" className={css.nav__link}>
-            Helps
-          </Link>
-          <Link to="/" className={css.nav__link}>
+          <Link to="https://t.me/VeStation" className={css.nav__link}>
             Chat
           </Link>
         </div>
@@ -37,33 +36,32 @@ export default function LandingPage() {
 
       <div className={css.hero}>
         <div className={css.hero__container}>
-          <h1 className={css.hero__heading}>Audited, One-Click Token Swap on VeChain</h1>
+          <h1 className={css.hero__heading}>Seamless, secure, and sustainable VeFi ecosystem</h1>
           <p className={css.hero__subheading}>
-            Fast VeChain native Dex with multi-task transaction, fee delation, automatic VTHO
-            generation features enabled.
+            The pioneering DeFi platform integrating VeBetterDAO for sustainability on VeChain.
           </p>
           <div className={css.hero__bar}>
             <div className={css.hero__bGroup}>
               <Link to="/delegate" className={css.hero__button}>
                 Launch App
               </Link>
-              <Link to="/" className={css.hero__button}>
-                Charts
-              </Link>
+              <div className={clsx(css.hero__button, css.coming)}>
+                <span>Charts</span>
+              </div>
             </div>
 
             <div className={css.iconLinks}>
-              <a href="" className={css.link}>
+              <a href="https://x.com/VeStation_" className={css.link}>
                 <IconTwitter />
               </a>
-              <a href="" className={css.link}>
-                <IconDiscord />
+              <a href="https://medium.com/@vestationve" className={css.link}>
+                <Medium />
               </a>
-              <a href="" className={css.link}>
+              <a href="https://t.me/VeStation" className={css.link}>
                 <IconTelegram />
               </a>
-              <a href="" className={css.link}>
-                <IconGithub />
+              <a href="https://linktr.ee/VeStation" className={css.link}>
+                <IconLinktree />
               </a>
             </div>
           </div>

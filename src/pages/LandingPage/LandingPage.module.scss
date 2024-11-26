@@ -192,5 +192,20 @@
   > svg {
     width: 28px;
     height: 28px;
+    fill: #fff;
+  }
+
+  path {
+    fill: #fff;
+  }
+}
+
+.coming:hover {
+  > span {
+    display: none;
+  }
+
+  &::after {
+    content: "Coming soon...";
   }
 }
