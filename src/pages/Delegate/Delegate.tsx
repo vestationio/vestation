@@ -402,9 +402,6 @@ export default function Delegate() {
               Your new deposit will earn rewards in the next voting round, starting on {nextMonday}.
               Rewards are claimable when the next voting round ends on {nextSunday}.
             </Text>
-            <Text size="xs" mt="4" fs="italic">
-              A 10% management fee will be added.
-            </Text>
           </Modal>
 
           <div className={css.twoColumnGrid}>
