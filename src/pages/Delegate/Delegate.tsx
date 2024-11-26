@@ -195,6 +195,9 @@ export default function Delegate() {
           queryClient.refetchQueries({
             queryKey: ["delegate-data", account]
           });
+          queryClient.refetchQueries({
+            queryKey: ["my-balance", account]
+          });
         }
       })
       .catch((err: any) => {
@@ -235,6 +238,9 @@ export default function Delegate() {
         if (isSuccess) {
           queryClient.refetchQueries({
             queryKey: ["delegate-data", account]
+          });
+          queryClient.refetchQueries({
+            queryKey: ["reward-list", account]
           });
         }
       })
@@ -280,6 +286,9 @@ export default function Delegate() {
         if (isSuccess) {
           queryClient.refetchQueries({
             queryKey: ["delegate-data", account]
+          });
+          queryClient.refetchQueries({
+            queryKey: ["reward-list", account]
           });
         }
       })
