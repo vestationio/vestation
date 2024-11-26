@@ -252,9 +252,9 @@ export default function Delegate() {
     const claimMethod = connex.thor.account(DELEGATE_ADDRESS).method(claim_abi);
     const claimClause = claimMethod.asClause(roundId);
 
-    const depositVOT3_abi = find(VeDelegate.abi, { name: "depositVOT3" });
-    const depositVot3Method = connex.thor.account(DELEGATE_ADDRESS).method(depositVOT3_abi);
-    const depositVot3Clause = depositVot3Method.asClause(reward);
+    const depositB3TR_abi = find(VeDelegate.abi, { name: "depositB3TR" });
+    const depositB3trMethod = connex.thor.account(DELEGATE_ADDRESS).method(depositB3TR_abi);
+    const depositB3trClause = depositB3trMethod.asClause(reward);
 
     setTransactionStatus({
       isPending: true,
@@ -262,7 +262,7 @@ export default function Delegate() {
     });
 
     connex.vendor
-      .sign("tx", [{ ...claimClause }, { ...depositVot3Clause }])
+      .sign("tx", [{ ...claimClause }, { ...depositB3trClause }])
       .comment(`Claiming my ${roundId} rewards.`)
       .request()
       .then((tx: any) => {
@@ -434,15 +434,16 @@ export default function Delegate() {
                   Round {i.roundId}
                 </Title>
                 <Text size="sm">{i.reward.toFormat(2)}</Text>
-                {/* <Button
-                ml="xs"
-                size="compact-xs"
-                onClick={() =>
-                handleClaimAndRedeposit(i.roundId, BigNumber(i.reward).times(1e18).toString(10))
-                }
+                <Button
+                  ml="xs"
+                  size="compact-xs"
+                  onClick={() =>
+                    handleClaimAndRedeposit(i.roundId, BigNumber(i.reward).times(1e18).toString(10))
+                  }
+                  disabled={i.isClaimed}
                 >
-                 Claim & Re-deposit
-                 </Button> */}
+                  Claim & Re-deposit
+                </Button>
                 <Button
                   ml="xs"
                   size="compact-xs"
