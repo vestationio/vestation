@@ -39,9 +39,6 @@ export default function PageLayout() {
         <NavLink to="/delegate" className={css.nav__link}>
           Delegate
         </NavLink>
-        <NavLink to="/reward" className={css.nav__link}>
-          Reward
-        </NavLink>
 
         <button className={css.nav__wallet} onClick={open}>
           {buttonText}
