@@ -148,9 +148,7 @@ export default function Delegate() {
         });
         if (isSuccess) {
           setDepositAmount("");
-          queryClient.refetchQueries({
-            queryKey: ["delegate-data", account]
-          });
+          queryClient.clear();
         }
       })
       .catch((err: any) => {
@@ -192,12 +190,7 @@ export default function Delegate() {
         });
         if (isSuccess) {
           setWithdrawAmount("");
-          queryClient.refetchQueries({
-            queryKey: ["delegate-data", account]
-          });
-          queryClient.refetchQueries({
-            queryKey: ["my-balance", account]
-          });
+          queryClient.clear();
         }
       })
       .catch((err: any) => {
@@ -216,12 +209,12 @@ export default function Delegate() {
 
     setTransactionStatus({
       isPending: true,
-      message: `Claiming my ${roundId} rewards.`
+      message: `Claiming my round ${roundId} rewards.`
     });
 
     connex.vendor
       .sign("tx", [{ ...claimClause }])
-      .comment(`Claiming my ${roundId} rewards.`)
+      .comment(`Claiming my round ${roundId} rewards.`)
       .request()
       .then((tx: any) => {
         return poll(() => connex.thor.transaction(tx.txid).getReceipt());
@@ -236,12 +229,7 @@ export default function Delegate() {
           message: undefined
         });
         if (isSuccess) {
-          queryClient.refetchQueries({
-            queryKey: ["delegate-data", account]
-          });
-          queryClient.refetchQueries({
-            queryKey: ["reward-list", account]
-          });
+          queryClient.clear();
         }
       })
       .catch((err: any) => {
@@ -258,18 +246,23 @@ export default function Delegate() {
     const claimMethod = connex.thor.account(DELEGATE_ADDRESS).method(claim_abi);
     const claimClause = claimMethod.asClause(roundId);
 
+    const approveB3trMethod = connex.thor
+      .account("0x5ef79995FE8a89e0812330E4378eB2660ceDe699")
+      .method(find(ABI_ERC20, { name: "approve" }));
+    const approveB3trClause = approveB3trMethod.asClause(DELEGATE_ADDRESS, reward);
+
     const depositB3TR_abi = find(VeDelegate.abi, { name: "depositB3TR" });
     const depositB3trMethod = connex.thor.account(DELEGATE_ADDRESS).method(depositB3TR_abi);
     const depositB3trClause = depositB3trMethod.asClause(reward);
 
     setTransactionStatus({
       isPending: true,
-      message: `Claiming my ${roundId} rewards.`
+      message: `Claiming my round ${roundId} rewards.`
     });
 
     connex.vendor
-      .sign("tx", [{ ...claimClause }, { ...depositB3trClause }])
-      .comment(`Claiming my ${roundId} rewards.`)
+      .sign("tx", [claimClause, approveB3trClause, depositB3trClause])
+      .comment(`Claiming my round ${roundId} rewards.`)
       .request()
       .then((tx: any) => {
         return poll(() => connex.thor.transaction(tx.txid).getReceipt());
@@ -284,12 +277,7 @@ export default function Delegate() {
           message: undefined
         });
         if (isSuccess) {
-          queryClient.refetchQueries({
-            queryKey: ["delegate-data", account]
-          });
-          queryClient.refetchQueries({
-            queryKey: ["reward-list", account]
-          });
+          queryClient.clear();
         }
       })
       .catch((err: any) => {
@@ -350,12 +338,14 @@ export default function Delegate() {
                     description={
                       <Stack gap={0}>
                         <Text
+                          component="span"
                           size="xs"
                           style={{ display: "flex", justifyContent: "space-between" }}
                         >
                           B3TR Balance: <span>{myBalance?.b3trBalance.toFormat(4)} B3TR</span>
                         </Text>
                         <Text
+                          component="span"
                           size="xs"
                           style={{ display: "flex", justifyContent: "space-between" }}
                         >
@@ -433,7 +423,7 @@ export default function Delegate() {
 
         <Card>
           <Title order={5} mb="sm" c="white">
-            Claim Rewards (B3TR)
+            Claim Rewards
           </Title>
 
           {!!myRewardList?.length ? (
@@ -442,7 +432,7 @@ export default function Delegate() {
                 <Title mr="auto" order={6}>
                   Round {i.roundId}
                 </Title>
-                <Text size="sm">{i.reward.toFormat(2)}</Text>
+                <Text size="sm">{i.reward.toFormat(2)} B3TR</Text>
                 <Button
                   ml="xs"
                   size="compact-xs"
