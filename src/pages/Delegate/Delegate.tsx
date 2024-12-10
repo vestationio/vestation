@@ -406,16 +406,16 @@ export default function Delegate() {
           <div className={css.twoColumnGrid}>
             <Card.Pane>
               <Title order={6} mb="xs">
-                VeStation GM NFT
+                GM NFT
               </Title>
-              <strong className={css.number}>Level 0</strong>
+              <strong className={css.number}>Level 2</strong>
             </Card.Pane>
             <Card.Pane>
               <Title order={6} mb="xs">
                 Current Annual Yield
               </Title>
               <strong className={css.number}>
-                167 <i>%</i>
+                120 <i>%</i>
               </strong>
             </Card.Pane>
           </div>
