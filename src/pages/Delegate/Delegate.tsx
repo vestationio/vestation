@@ -406,7 +406,7 @@ export default function Delegate() {
           <div className={css.twoColumnGrid}>
             <Card.Pane>
               <Title order={6} mb="xs">
-                GM NFT
+                GM NFT (Now 120%)
               </Title>
               <strong className={css.number}>Level 2</strong>
             </Card.Pane>
@@ -415,7 +415,7 @@ export default function Delegate() {
                 Current Annual Yield
               </Title>
               <strong className={css.number}>
-                120 <i>%</i>
+                189 <i>%</i>
               </strong>
             </Card.Pane>
           </div>
