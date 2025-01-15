@@ -167,38 +167,14 @@ export default function Delegate() {
     const withdrawMethod = connex.thor.account(DELEGATE_ADDRESS).method(withdraw_abi);
     const withdrawClause = withdrawMethod.asClause(amount);
 
-    const approveVot3Method = connex.thor
-      .account("0x76ca782b59c74d088c7d2cce2f211bc00836c602")
-      .method(find(ABI_ERC20, { name: "approve" }));
-    const approveVot3Clause = approveVot3Method.asClause(DELEGATE_ADDRESS, amount);
-
-    const convert_abi = {
-      inputs: [
-        {
-          internalType: "uint256",
-          name: "amount",
-          type: "uint256"
-        }
-      ],
-      name: "convertToB3TR",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function"
-    };
-    console.log("convert_abi", convert_abi);
-    const convertMethod = connex.thor
-      .account("0x76Ca782B59C74d088C7D2Cce2f211BC00836c602")
-      .method(convert_abi);
-    const convertClause = convertMethod.asClause(amount);
-
     setTransactionStatus({
       isPending: true,
-      message: `Withdrawing ${withdrawAmount} B3TR`
+      message: `Withdrawing ${withdrawAmount} VOT3`
     });
 
     connex.vendor
-      .sign("tx", [withdrawClause, approveVot3Clause, convertClause])
-      .comment(`Withdraw ${withdrawAmount} B3TR`)
+      .sign("tx", [{ ...withdrawClause }])
+      .comment(`Withdraw ${withdrawAmount} VOT3`)
       .request()
       .then((tx: any) => {
         return poll(() => connex.thor.transaction(tx.txid).getReceipt());
@@ -388,7 +364,7 @@ export default function Delegate() {
                     label="Token"
                     data={["B3TR", "VOT3", "B3TR + VOT3"]}
                     defaultValue="B3TR"
-                    description={`You have ${delegateData?.delegateBalance.toFormat(2)} Delegated B3TR`}
+                    description={`You have ${delegateData?.delegateBalance.toFormat(2)} Delegated VOT3`}
                     radius="lg"
                     onChange={(value) => setDepositType(value!)}
                   />
@@ -408,9 +384,9 @@ export default function Delegate() {
                   </Input.Wrapper>
                   <Select
                     label="Token"
-                    data={["B3TR"]}
-                    defaultValue="B3TR"
-                    description={`You have ${delegateData?.delegateBalance.toFormat(2)} Delegated B3TR`}
+                    data={["VOT3"]}
+                    defaultValue="VOT3"
+                    description={`You have ${delegateData?.delegateBalance.toFormat(2)} Delegated VOT3`}
                     radius="lg"
                     disabled
                   />
