@@ -163,18 +163,30 @@ export default function Delegate() {
 
     const amount = BigNumber(withdrawAmount).times(1e18).toString(10);
 
-    const withdraw_abi = find(VeDelegate.abi, { name: "withdraw" });
+    const withdraw_abi = {
+      inputs: [
+        {
+          internalType: "uint256",
+          name: "amount",
+          type: "uint256"
+        }
+      ],
+      name: "withdrawInB3TR",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function"
+    };
     const withdrawMethod = connex.thor.account(DELEGATE_ADDRESS).method(withdraw_abi);
     const withdrawClause = withdrawMethod.asClause(amount);
 
     setTransactionStatus({
       isPending: true,
-      message: `Withdrawing ${withdrawAmount} VOT3`
+      message: `Withdrawing ${withdrawAmount} B3TR`
     });
 
     connex.vendor
-      .sign("tx", [{ ...withdrawClause }])
-      .comment(`Withdraw ${withdrawAmount} VOT3`)
+      .sign("tx", [withdrawClause])
+      .comment(`Withdraw ${withdrawAmount} B3TR`)
       .request()
       .then((tx: any) => {
         return poll(() => connex.thor.transaction(tx.txid).getReceipt());
@@ -336,7 +348,7 @@ export default function Delegate() {
                   <Input.Wrapper
                     label="Amount"
                     description={
-                      <Stack gap={0}>
+                      <>
                         <Text
                           component="span"
                           size="xs"
@@ -351,12 +363,13 @@ export default function Delegate() {
                         >
                           VOT3 Balance: <span>{myBalance?.vot3Balance.toFormat(4)} VOT3</span>
                         </Text>
-                      </Stack>
+                      </>
                     }
                   >
                     <Input
                       placeholder="0"
                       radius="lg"
+                      value={depositAmount}
                       onChange={(e) => setDepositAmount(e.target.value)}
                     />
                   </Input.Wrapper>
@@ -364,7 +377,7 @@ export default function Delegate() {
                     label="Token"
                     data={["B3TR", "VOT3", "B3TR + VOT3"]}
                     defaultValue="B3TR"
-                    description={`You have ${delegateData?.delegateBalance.toFormat(2)} Delegated VOT3`}
+                    description={`You have ${delegateData?.delegateBalance.toFormat(2)} Delegated B3TR`}
                     radius="lg"
                     onChange={(value) => setDepositType(value!)}
                   />
@@ -379,14 +392,15 @@ export default function Delegate() {
                     <Input
                       placeholder="0"
                       radius="lg"
+                      value={withdrawAmount}
                       onChange={(e) => setWithdrawAmount(e.target.value)}
                     />
                   </Input.Wrapper>
                   <Select
                     label="Token"
-                    data={["VOT3"]}
-                    defaultValue="VOT3"
-                    description={`You have ${delegateData?.delegateBalance.toFormat(2)} Delegated VOT3`}
+                    data={["B3TR"]}
+                    defaultValue="B3TR"
+                    description={`You have ${delegateData?.delegateBalance.toFormat(2)} Delegated B3TR`}
                     radius="lg"
                     disabled
                   />
