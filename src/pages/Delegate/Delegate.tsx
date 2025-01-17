@@ -67,6 +67,7 @@ export default function Delegate() {
   const [depositAmount, setDepositAmount] = useState("");
   const [withdrawAmount, setWithdrawAmount] = useState("");
   const [depositType, setDepositType] = useState("B3TR");
+  const [withdrawType, setWithdrawType] = useState("B3TR");
 
   const { thisMonday, nextMonday, nextSunday } = useMemo(() => {
     let now = new Date();
@@ -163,30 +164,33 @@ export default function Delegate() {
 
     const amount = BigNumber(withdrawAmount).times(1e18).toString(10);
 
-    const withdraw_abi = {
-      inputs: [
-        {
-          internalType: "uint256",
-          name: "amount",
-          type: "uint256"
-        }
-      ],
-      name: "withdrawInB3TR",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function"
-    };
+    const withdraw_abi =
+      withdrawType === "VOT3"
+        ? find(VeDelegate.abi, { name: "withdraw" })
+        : {
+            inputs: [
+              {
+                internalType: "uint256",
+                name: "amount",
+                type: "uint256"
+              }
+            ],
+            name: "withdrawInB3TR",
+            outputs: [],
+            stateMutability: "nonpayable",
+            type: "function"
+          };
     const withdrawMethod = connex.thor.account(DELEGATE_ADDRESS).method(withdraw_abi);
     const withdrawClause = withdrawMethod.asClause(amount);
 
     setTransactionStatus({
       isPending: true,
-      message: `Withdrawing ${withdrawAmount} B3TR`
+      message: `Withdrawing ${withdrawAmount} ${withdrawType}`
     });
 
     connex.vendor
       .sign("tx", [withdrawClause])
-      .comment(`Withdraw ${withdrawAmount} B3TR`)
+      .comment(`Withdraw ${withdrawAmount} ${withdrawType}`)
       .request()
       .then((tx: any) => {
         return poll(() => connex.thor.transaction(tx.txid).getReceipt());
@@ -376,10 +380,10 @@ export default function Delegate() {
                   <Select
                     label="Token"
                     data={["B3TR", "VOT3", "B3TR + VOT3"]}
-                    defaultValue="B3TR"
+                    value={depositType}
+                    onChange={(value) => setDepositType(value!)}
                     description={`You have ${delegateData?.delegateBalance.toFormat(2)} Delegated B3TR`}
                     radius="lg"
-                    onChange={(value) => setDepositType(value!)}
                   />
                   <Button size="md" radius="md" onClick={handleDeposit}>
                     Deposit
@@ -398,11 +402,11 @@ export default function Delegate() {
                   </Input.Wrapper>
                   <Select
                     label="Token"
-                    data={["B3TR"]}
-                    defaultValue="B3TR"
+                    data={["VOT3", "B3TR"]}
+                    value={withdrawType}
+                    onChange={(value) => setWithdrawType(value!)}
                     description={`You have ${delegateData?.delegateBalance.toFormat(2)} Delegated B3TR`}
                     radius="lg"
-                    disabled
                   />
                   <Button size="md" radius="md" onClick={handleWithdraw}>
                     Withdraw
