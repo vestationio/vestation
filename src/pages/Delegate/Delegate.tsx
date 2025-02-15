@@ -67,7 +67,7 @@ export default function Delegate() {
   const [depositAmount, setDepositAmount] = useState("");
   const [withdrawAmount, setWithdrawAmount] = useState("");
   const [depositType, setDepositType] = useState("B3TR");
-  const [withdrawType, setWithdrawType] = useState("B3TR");
+  const [withdrawType, setWithdrawType] = useState("VOT3");
 
   const { thisMonday, nextMonday, nextSunday } = useMemo(() => {
     let now = new Date();
@@ -402,11 +402,12 @@ export default function Delegate() {
                   </Input.Wrapper>
                   <Select
                     label="Token"
-                    data={["VOT3", "B3TR"]}
+                    data={["VOT3"]}
                     value={withdrawType}
                     onChange={(value) => setWithdrawType(value!)}
-                    description={`You have ${delegateData?.delegateBalance.toFormat(2)} Delegated B3TR`}
+                    description={`You have ${delegateData?.delegateBalance.toFormat(2)} Delegated VOT3`}
                     radius="lg"
+                    disabled
                   />
                   <Button size="md" radius="md" onClick={handleWithdraw}>
                     Withdraw
