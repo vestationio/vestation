@@ -30,6 +30,8 @@ import Card from "~/components/Card";
 import poll from "~/utils/pool";
 import css from "./Delegate.module.scss";
 
+import IconB3tr from "~/assets/tokens/b3tr.svg?react";
+
 function formatDate(date: Date) {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -379,11 +381,12 @@ export default function Delegate() {
                   </Input.Wrapper>
                   <Select
                     label="Token"
-                    data={["B3TR", "VOT3", "B3TR + VOT3"]}
+                    data={["VOT3"]}
                     value={depositType}
                     onChange={(value) => setDepositType(value!)}
                     description={`You have ${delegateData?.delegateBalance.toFormat(2)} Delegated B3TR`}
                     radius="lg"
+                    disabled
                   />
                   <Button size="md" radius="md" onClick={handleDeposit}>
                     Deposit
@@ -441,40 +444,59 @@ export default function Delegate() {
         </Card>
 
         <Card>
-          <Title order={5} mb="sm" c="white">
-            Claim Rewards
-          </Title>
-
-          {!!myRewardList?.length ? (
-            myRewardList.map((i: any) => (
-              <Flex key={i.roundId} align="center" mt="8">
-                <Title mr="auto" order={6}>
-                  Round {i.roundId}
+          <Tabs mt="-12">
+            <Tabs.List justify="center" grow>
+              <Tabs.Tab value="default" fw="600" px="0" py="8">
+                <Title order={5} m="0" c="white">
+                  Claim Rewards
                 </Title>
-                <Text size="sm">{i.reward.toFormat(2)} B3TR</Text>
-                <Button
-                  ml="xs"
-                  size="compact-xs"
-                  onClick={() =>
-                    handleClaimAndRedeposit(i.roundId, BigNumber(i.reward).times(1e18).toString(10))
-                  }
-                  disabled={i.isClaimed}
-                >
-                  Claim & Re-deposit
-                </Button>
-                <Button
-                  ml="xs"
-                  size="compact-xs"
-                  onClick={() => handleClaim(i.roundId)}
-                  disabled={i.isClaimed}
-                >
-                  Claim
-                </Button>
-              </Flex>
-            ))
-          ) : (
-            <Text size="sm">No rewards to claim</Text>
-          )}
+              </Tabs.Tab>
+              <Tabs.Tab value="better" fw="600" px="0" py="8">
+                <Title order={5} m="0" c="white" display="flex">
+                  <IconB3tr width={20} style={{ marginRight: 8 }} />
+                  Better Rewards
+                </Title>
+              </Tabs.Tab>
+            </Tabs.List>
+            <Tabs.Panel value="default" pt="sm">
+              {!!myRewardList?.length ? (
+                myRewardList.map((i: any) => (
+                  <Flex key={i.roundId} align="center" mt="8">
+                    <Title mr="auto" order={6}>
+                      Round {i.roundId}
+                    </Title>
+                    <Text size="sm">{i.reward.toFormat(2)} B3TR</Text>
+                    <Button
+                      ml="xs"
+                      size="compact-xs"
+                      onClick={() =>
+                        handleClaimAndRedeposit(
+                          i.roundId,
+                          BigNumber(i.reward).times(1e18).toString(10)
+                        )
+                      }
+                      disabled={i.isClaimed}
+                    >
+                      Claim & Re-deposit
+                    </Button>
+                    <Button
+                      ml="xs"
+                      size="compact-xs"
+                      onClick={() => handleClaim(i.roundId)}
+                      disabled={i.isClaimed}
+                    >
+                      Claim
+                    </Button>
+                  </Flex>
+                ))
+              ) : (
+                <Text size="sm">No rewards to claim</Text>
+              )}
+            </Tabs.Panel>
+            <Tabs.Panel value="better" pt="sm">
+              <Text size="sm">Coming soon...</Text>
+            </Tabs.Panel>
+          </Tabs>
         </Card>
 
         <Card>
