@@ -410,7 +410,6 @@ export default function Delegate() {
                     onChange={(value) => setWithdrawType(value!)}
                     description={`You have ${delegateData?.delegateBalance.toFormat(2)} Delegated VOT3`}
                     radius="lg"
-                    disabled
                   />
                   <Button size="md" radius="md" onClick={handleWithdraw}>
                     Withdraw
