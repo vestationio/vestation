@@ -412,7 +412,7 @@ export default function Delegate() {
                     radius="lg"
                     disabled
                   />
-                  <Button size="md" radius="md" onClick={handleWithdraw}>
+                  <Button size="md" radius="md" disabled>
                     Withdraw
                   </Button>
                 </Stack>
