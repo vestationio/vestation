@@ -381,7 +381,7 @@ export default function Delegate() {
                   </Input.Wrapper>
                   <Select
                     label="Token"
-                    data={["VOT3"]}
+                    data={["VOT3", "B3TR"]}
                     value={depositType}
                     onChange={(value) => setDepositType(value!)}
                     description={`You have ${delegateData?.delegateBalance.toFormat(2)} Delegated B3TR`}
