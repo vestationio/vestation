@@ -383,10 +383,10 @@ export default function Delegate() {
                     label="Token"
                     data={["VOT3", "B3TR"]}
                     value={depositType}
+                    allowDeselect={false}
                     onChange={(value) => setDepositType(value!)}
                     description={`You have ${delegateData?.delegateBalance.toFormat(2)} Delegated B3TR`}
                     radius="lg"
-                    disabled
                   />
                   <Button size="md" radius="md" onClick={handleDeposit}>
                     Deposit
@@ -412,7 +412,7 @@ export default function Delegate() {
                     radius="lg"
                     disabled
                   />
-                  <Button size="md" radius="md" disabled>
+                  <Button size="md" radius="md" onClick={handleWithdraw}>
                     Withdraw
                   </Button>
                 </Stack>
