@@ -4,7 +4,7 @@ import { find } from "lodash";
 import BigNumber from "bignumber.js";
 import { DELEGATE_ADDRESS } from "~/constants/addresses";
 import ABI_ERC20 from "~/abis/erc20.json";
-import VeDelegate from "~/abis/VeDelegate.json";
+import VeDelegate from "~/abis/VeDelegateV2.json";
 
 export default function useDelegateData() {
   const connex = useConnex();
@@ -34,6 +34,8 @@ export default function useDelegateData() {
         contract.method(find(ABI_ERC20, { name: "totalSupply" })).call(),
         contract.method(find(VeDelegate.abi, { name: "getTotalVotes" })).call(roundId),
         contract.method(find(VeDelegate.abi, { name: "getUserVotes" })).call(account, roundId),
+        contract.method(find(VeDelegate.abi, { name: "balanceOf" })).call(account),
+        contract.method(find(VeDelegate.abi, { name: "B3TRBalances" })).call(account),
         () => roundId
       ]);
     },
@@ -42,7 +44,17 @@ export default function useDelegateData() {
       const totalBalance = BigNumber(data[1].decoded["0"]).div(1e18);
       const totalVotes = BigNumber(data[2].decoded["0"]);
       const userVotes = BigNumber(data[3].decoded["0"]);
-      return { delegateBalance, totalBalance, totalVotes, userVotes, roundId: data[4]() };
+      const b3trBalance = BigNumber(data[5].decoded["0"]).div(1e18);
+      const vot3Balance = BigNumber(data[4].decoded["0"]).minus(data[5].decoded["0"]).div(1e18);
+      return {
+        delegateBalance,
+        totalBalance,
+        totalVotes,
+        userVotes,
+        b3trBalance,
+        vot3Balance,
+        roundId: data[6]()
+      };
     }
   });
 }

@@ -10,8 +10,7 @@ import {
   Tabs,
   Text,
   Title,
-  Input,
-  Select
+  Input
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { useAtom } from "jotai";
@@ -58,7 +57,10 @@ function InfoEntry({ heading, content }: { heading: string; content: string }) {
 }
 
 export default function Delegate() {
-  const [opened, { open, close }] = useDisclosure(false);
+  const [depositOpened, { open: openDepositModal, close: closeDepositModal }] =
+    useDisclosure(false);
+  const [withdrawOpened, { open: openWithdrawModal, close: closeWithdrawModal }] =
+    useDisclosure(false);
   const connex = useConnex();
   const { account } = useWallet();
   const { data: delegateData } = useDelegateData();
@@ -68,8 +70,8 @@ export default function Delegate() {
 
   const [depositAmount, setDepositAmount] = useState("");
   const [withdrawAmount, setWithdrawAmount] = useState("");
-  const [depositType, setDepositType] = useState("B3TR");
-  const [withdrawType, setWithdrawType] = useState("VOT3");
+  const [depositType, setDepositType] = useState<string | null>("B3TR");
+  const [withdrawType, setWithdrawType] = useState<string | null>("VOT3");
 
   const { thisMonday, nextMonday, nextSunday } = useMemo(() => {
     let now = new Date();
@@ -169,19 +171,7 @@ export default function Delegate() {
     const withdraw_abi =
       withdrawType === "VOT3"
         ? find(VeDelegate.abi, { name: "withdraw" })
-        : {
-            inputs: [
-              {
-                internalType: "uint256",
-                name: "amount",
-                type: "uint256"
-              }
-            ],
-            name: "withdrawInB3TR",
-            outputs: [],
-            stateMutability: "nonpayable",
-            type: "function"
-          };
+        : find(VeDelegate.abi, { name: "withdrawInB3TR" });
     const withdrawMethod = connex.thor.account(DELEGATE_ADDRESS).method(withdraw_abi);
     const withdrawClause = withdrawMethod.asClause(amount);
 
@@ -317,20 +307,49 @@ export default function Delegate() {
             Your total deposited voting allocation
           </Title>
 
-          <Flex>
+          <Flex align="center">
             <Title mr="auto" order={6}>
-              Your Delegated VOT3
+              Your Delegated B3TR:
             </Title>
-            <Text size="sm">{delegateData?.delegateBalance.toFormat(2)}</Text>
+            <Text ta="right" size="sm">
+              {delegateData?.b3trBalance.toFormat(2)} B3TR
+            </Text>
+          </Flex>
+          <Flex align="center">
+            <Title mr="auto" order={6}>
+              Your Delegated VOT3:
+            </Title>
+            <Text ta="right" size="sm">
+              {delegateData?.vot3Balance.toFormat(2)} VOT3
+            </Text>
           </Flex>
 
-          <Button fullWidth size="md" my="md" radius="md" onClick={open} disabled={!account}>
-            Manage Deposit
-          </Button>
+          <Flex gap="md">
+            <Button
+              fullWidth
+              size="md"
+              my="md"
+              radius="md"
+              onClick={openDepositModal}
+              disabled={!account}
+            >
+              Deposit
+            </Button>
+            <Button
+              fullWidth
+              size="md"
+              my="md"
+              radius="md"
+              onClick={openWithdrawModal}
+              disabled={!account}
+            >
+              Withdraw
+            </Button>
+          </Flex>
 
           <Modal
-            opened={opened}
-            onClose={close}
+            opened={depositOpened}
+            onClose={closeDepositModal}
             centered
             closeOnEscape={false}
             closeOnClickOutside={false}
@@ -340,36 +359,39 @@ export default function Delegate() {
               header: { paddingTop: 0, paddingBottom: 0, minHeight: "3rem" }
             }}
           >
-            <Tabs defaultValue="deposit">
+            <Tabs
+              value={depositType}
+              onChange={(type) => {
+                setDepositAmount("");
+                setDepositType(type);
+              }}
+            >
               <Tabs.List justify="center" grow>
-                <Tabs.Tab value="deposit" fw="600">
-                  Deposit
+                <Tabs.Tab value="B3TR" fw="600">
+                  Deposit B3TR
                 </Tabs.Tab>
-                <Tabs.Tab value="withdraw" fw="600">
-                  Withdraw
+                <Tabs.Tab value="VOT3" fw="600">
+                  Deposit VOT3
                 </Tabs.Tab>
               </Tabs.List>
-              <Tabs.Panel value="deposit">
+              <Tabs.Panel value="B3TR">
                 <Stack pt="sm" pb="xs">
                   <Input.Wrapper
                     label="Amount"
                     description={
-                      <>
-                        <Text
-                          component="span"
-                          size="xs"
-                          style={{ display: "flex", justifyContent: "space-between" }}
-                        >
-                          B3TR Balance: <span>{myBalance?.b3trBalance.toFormat(4)} B3TR</span>
-                        </Text>
-                        <Text
-                          component="span"
-                          size="xs"
-                          style={{ display: "flex", justifyContent: "space-between" }}
-                        >
-                          VOT3 Balance: <span>{myBalance?.vot3Balance.toFormat(4)} VOT3</span>
-                        </Text>
-                      </>
+                      <Text
+                        component="span"
+                        size="xs"
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          cursor: "pointer",
+                          userSelect: "none"
+                        }}
+                        onClick={() => setDepositAmount(myBalance?.b3trBalance.toString() || "")}
+                      >
+                        My B3TR balance: <span>{myBalance?.b3trBalance.toFormat(2)} B3 TR</span>
+                      </Text>
                     }
                   >
                     <Input
@@ -379,40 +401,40 @@ export default function Delegate() {
                       onChange={(e) => setDepositAmount(e.target.value)}
                     />
                   </Input.Wrapper>
-                  <Select
-                    label="Token"
-                    data={["VOT3", "B3TR"]}
-                    value={depositType}
-                    allowDeselect={false}
-                    onChange={(value) => setDepositType(value!)}
-                    description={`You have ${delegateData?.delegateBalance.toFormat(2)} Delegated B3TR`}
-                    radius="lg"
-                  />
-                  <Button size="md" radius="md" onClick={handleDeposit}>
-                    Deposit
+                  <Button size="md" radius="md" onClick={handleDeposit} disabled={!depositAmount}>
+                    Deposit B3TR
                   </Button>
                 </Stack>
               </Tabs.Panel>
-              <Tabs.Panel value="withdraw">
+              <Tabs.Panel value="VOT3">
                 <Stack pt="sm" pb="xs">
-                  <Input.Wrapper label="Amount">
+                  <Input.Wrapper
+                    label="Amount"
+                    description={
+                      <Text
+                        component="span"
+                        size="xs"
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          cursor: "pointer",
+                          userSelect: "none"
+                        }}
+                        onClick={() => setDepositAmount(myBalance?.vot3Balance.toString() || "")}
+                      >
+                        My VOT3 balance: <span>{myBalance?.vot3Balance.toFormat(2)} VOT3</span>
+                      </Text>
+                    }
+                  >
                     <Input
                       placeholder="0"
                       radius="lg"
-                      value={withdrawAmount}
-                      onChange={(e) => setWithdrawAmount(e.target.value)}
+                      value={depositAmount}
+                      onChange={(e) => setDepositAmount(e.target.value)}
                     />
                   </Input.Wrapper>
-                  <Select
-                    label="Token"
-                    data={["VOT3"]}
-                    value={withdrawType}
-                    onChange={(value) => setWithdrawType(value!)}
-                    description={`You have ${delegateData?.delegateBalance.toFormat(2)} Delegated VOT3`}
-                    radius="lg"
-                  />
-                  <Button size="md" radius="md" onClick={handleWithdraw}>
-                    Withdraw
+                  <Button size="md" radius="md" onClick={handleDeposit} disabled={!depositAmount}>
+                    Deposit VOT3
                   </Button>
                 </Stack>
               </Tabs.Panel>
@@ -422,6 +444,104 @@ export default function Delegate() {
               Your new deposit will earn rewards in the next voting round, starting on {nextMonday}.
               Rewards are claimable when the next voting round ends on {nextSunday}.
             </Text>
+          </Modal>
+
+          <Modal
+            opened={withdrawOpened}
+            onClose={closeWithdrawModal}
+            centered
+            closeOnEscape={false}
+            closeOnClickOutside={false}
+            radius="md"
+            size="sm"
+            styles={{
+              header: { paddingTop: 0, paddingBottom: 0, minHeight: "3rem" }
+            }}
+          >
+            <Tabs
+              defaultValue={withdrawType}
+              onChange={(type) => {
+                setWithdrawAmount("");
+                setWithdrawType(type);
+              }}
+            >
+              <Tabs.List justify="center" grow>
+                <Tabs.Tab value="B3TR" fw="600">
+                  Withdraw B3TR
+                </Tabs.Tab>
+                <Tabs.Tab value="VOT3" fw="600">
+                  Withdraw VOT3
+                </Tabs.Tab>
+              </Tabs.List>
+              <Tabs.Panel value="B3TR">
+                <Stack pt="sm" pb="xs">
+                  <Input.Wrapper
+                    label="Amount"
+                    description={
+                      <Text
+                        component="span"
+                        size="xs"
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          cursor: "pointer",
+                          userSelect: "none"
+                        }}
+                        onClick={() =>
+                          setWithdrawAmount(delegateData?.b3trBalance.toString() || "")
+                        }
+                      >
+                        My delegated B3TR: <span>{delegateData?.b3trBalance.toFormat(2)} B3TR</span>
+                      </Text>
+                    }
+                  >
+                    <Input
+                      placeholder="0"
+                      radius="lg"
+                      value={withdrawAmount}
+                      onChange={(e) => setWithdrawAmount(e.target.value)}
+                    />
+                  </Input.Wrapper>
+                  <Button size="md" radius="md" onClick={handleWithdraw} disabled={!withdrawAmount}>
+                    Withdraw B3TR
+                  </Button>
+                </Stack>
+              </Tabs.Panel>
+              <Tabs.Panel value="VOT3">
+                <Stack pt="sm" pb="xs">
+                  <Input.Wrapper
+                    label="Amount"
+                    description={
+                      <Text
+                        component="span"
+                        size="xs"
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          cursor: "pointer",
+                          userSelect: "none"
+                        }}
+                        onClick={() =>
+                          setWithdrawAmount(delegateData?.vot3Balance.toString() || "")
+                        }
+                      >
+                        My delegated VOT3: <span>{delegateData?.vot3Balance.toFormat(2)} VOT3</span>
+                      </Text>
+                    }
+                  >
+                    <Input
+                      placeholder="0"
+                      radius="lg"
+                      value={withdrawAmount}
+                      onChange={(e) => setWithdrawAmount(e.target.value)}
+                    />
+                  </Input.Wrapper>
+                  <Button size="md" radius="md" onClick={handleWithdraw} disabled={!withdrawAmount}>
+                    Withdraw VOT3
+                  </Button>
+                </Stack>
+              </Tabs.Panel>
+            </Tabs>
           </Modal>
 
           <div className={css.twoColumnGrid}>
@@ -504,7 +624,7 @@ export default function Delegate() {
               <Title order={6} c="white">
                 Assets under Management
               </Title>
-              <Text size="sm">{delegateData?.totalBalance.toFormat(2)} VOT3</Text>
+              <Text size="sm">{delegateData?.totalBalance.toFormat(2)} B3TR & VOT3</Text>
             </Flex>
             <Flex align="center" justify="space-between">
               <Title order={6} c="white">
