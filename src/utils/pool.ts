@@ -1,21 +1,32 @@
-export default function poll(fn: any) {
-  const endTime = Number(new Date()) + 1000 * 60 * 5;
-  const interval = 3000;
+type PollOptions = {
+  timeout?: number;
+  interval?: number;
+};
 
-  const checkCondition = (resolve: any, reject: any) => {
-    if (Number(new Date()) > endTime) {
-      return reject(new Error("Timed out"));
-    }
+export default async function poll<T>(fn: () => Promise<T>, options: PollOptions = {}): Promise<T> {
+  const timeout = options.timeout ?? 1000 * 60 * 5;
+  const interval = options.interval ?? 3000;
 
-    const result = fn();
-    result.then((res: any) => {
-      if (res) {
-        resolve(res);
-      } else {
-        setTimeout(checkCondition, interval, resolve, reject);
+  const endTime = Date.now() + timeout;
+
+  return new Promise<T>((resolve, reject) => {
+    const waitForConfirmation = async () => {
+      if (Date.now() > endTime) {
+        return reject(new Error("Timeout"));
       }
-    });
-  };
 
-  return new Promise(checkCondition);
+      try {
+        const result = await fn();
+        if (result) {
+          resolve(result);
+        } else {
+          setTimeout(waitForConfirmation, interval);
+        }
+      } catch (error) {
+        reject(error);
+      }
+    };
+
+    waitForConfirmation();
+  });
 }
