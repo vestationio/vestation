@@ -5,10 +5,10 @@ import BigNumber from "bignumber.js";
 import { DELEGATE_ADDRESS } from "~/constants/addresses";
 import VeDelegate from "~/abis/VeDelegate.json";
 
-export default function useRewardList(roundId: number) {
+export default function useRewardList(roundId: string) {
   const connex = useConnex();
   const { account } = useWallet();
-  const roundList = Array.from({ length: roundId - 20 + 1 }, (_, i) => roundId - i);
+  const roundList = Array.from({ length: +roundId - 20 + 1 }, (_, i) => +roundId - i);
 
   return useQuery({
     queryKey: ["reward-list", account],

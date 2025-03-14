@@ -72,7 +72,7 @@ export default function Delegate() {
   const [depositAmount, setDepositAmount] = useState("");
   const [withdrawAmount, setWithdrawAmount] = useState("");
   const [depositType, setDepositType] = useState<string | null>("B3TR");
-  const [withdrawType, setWithdrawType] = useState<string | null>("VOT3");
+  const [withdrawType, setWithdrawType] = useState<string | null>("B3TR");
 
   const _depositAmountError = useMemo(() => {
     if (isNaN(+depositAmount)) {

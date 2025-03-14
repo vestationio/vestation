@@ -17,26 +17,33 @@ export default function useDelegateData() {
     queryFn: async () => {
       const contract = connex.thor.account(DELEGATE_ADDRESS);
 
-      const roundId = await fetch(`https://graph.vet/subgraphs/name/vebetter/dao`, {
+      const roundData = await fetch(`https://graph.vet/subgraphs/name/vebetter/dao`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          query: `{rounds(orderBy: voteStart, orderDirection: desc, first: 1) { id }}`
+          query: `{rounds(orderBy: voteStart, orderDirection: desc, first: 2) { id }}`
         })
       })
         .then((res: any) => res.json())
-        .then(({ data }) => +data.rounds[0].id - 1);
+        .then(({ data }) => ({
+          currentRoundId: data.rounds[0].id,
+          lastEndedRoundId: data.rounds[1].id
+        }));
 
       return Promise.all([
         contract.method(find(ABI_ERC20, { name: "balanceOf" })).call(account),
         contract.method(find(ABI_ERC20, { name: "totalSupply" })).call(),
-        contract.method(find(VeDelegate.abi, { name: "getTotalVotes" })).call(roundId),
-        contract.method(find(VeDelegate.abi, { name: "getUserVotes" })).call(account, roundId),
+        contract
+          .method(find(VeDelegate.abi, { name: "getTotalVotes" }))
+          .call(roundData.lastEndedRoundId),
+        contract
+          .method(find(VeDelegate.abi, { name: "getUserVotes" }))
+          .call(account, roundData.lastEndedRoundId),
         contract.method(find(VeDelegate.abi, { name: "balanceOf" })).call(account),
         contract.method(find(VeDelegate.abi, { name: "B3TRBalances" })).call(account),
-        () => roundId
+        () => roundData
       ]);
     },
     select: (data: any) => {
@@ -46,6 +53,7 @@ export default function useDelegateData() {
       const userVotes = BigNumber(data[3].decoded["0"]);
       const b3trBalance = BigNumber(data[5].decoded["0"]).div(1e18);
       const vot3Balance = BigNumber(data[4].decoded["0"]).minus(data[5].decoded["0"]).div(1e18);
+      const roundData = data[6]();
       return {
         delegateBalance,
         totalBalance,
@@ -53,7 +61,7 @@ export default function useDelegateData() {
         userVotes,
         b3trBalance,
         vot3Balance,
-        roundId: data[6]()
+        roundId: roundData.lastEndedRoundId
       };
     }
   });
