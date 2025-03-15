@@ -22,10 +22,10 @@ export default function LandingPage() {
           <div className={clsx(css.nav__link, css.coming)}>
             <span>Charts</span>
           </div>
-          <Link to="https://medium.com/@vestationve" className={css.nav__link}>
+          <Link to="https://medium.com/@vestationve" className={css.nav__link} target="_blank">
             Blogs
           </Link>
-          <Link to="https://t.me/VeStation" className={css.nav__link}>
+          <Link to="https://t.me/VeStation" className={css.nav__link} target="_blank">
             Chat
           </Link>
         </div>
@@ -51,16 +51,16 @@ export default function LandingPage() {
             </div>
 
             <div className={css.iconLinks}>
-              <a href="https://x.com/VeStation_" className={css.link}>
+              <a href="https://x.com/VeStation_" className={css.link} target="_blank">
                 <IconTwitter />
               </a>
-              <a href="https://medium.com/@vestationve" className={css.link}>
+              <a href="https://medium.com/@vestationve" className={css.link} target="_blank">
                 <Medium />
               </a>
-              <a href="https://t.me/VeStation" className={css.link}>
+              <a href="https://t.me/VeStation" className={css.link} target="_blank">
                 <IconTelegram />
               </a>
-              <a href="https://linktr.ee/VeStation" className={css.link}>
+              <a href="https://linktr.ee/VeStation" className={css.link} target="_blank">
                 <IconLinktree />
               </a>
             </div>
