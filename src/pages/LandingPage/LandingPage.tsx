@@ -22,6 +22,9 @@ export default function LandingPage() {
           <div className={clsx(css.nav__link, css.coming)}>
             <span>Charts</span>
           </div>
+          <Link to="https://docs.vestation.io/" className={css.nav__link} target="_blank">
+            Docs
+          </Link>
           <Link to="https://medium.com/@vestationve" className={css.nav__link} target="_blank">
             Blogs
           </Link>
