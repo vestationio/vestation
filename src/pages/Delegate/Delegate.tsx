@@ -624,7 +624,7 @@ export default function Delegate() {
                 Current Annual Yield
               </Title>
               <strong className={css.number}>
-                239 <i>%</i>
+                151 <i>%</i>
               </strong>
             </Card.Pane>
           </div>
