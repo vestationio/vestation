@@ -40,6 +40,14 @@ export default function PageLayout() {
           Delegate
         </NavLink>
 
+        <NavLink to="/leaderboard" className={css.nav__link}>
+          Leaderboard
+        </NavLink>
+
+        <NavLink to="/rewards" className={css.nav__link}>
+          Rewards
+        </NavLink>
+
         <button className={css.nav__wallet} onClick={open}>
           {buttonText}
         </button>

@@ -15,6 +15,7 @@ import LandingPage from "./pages/LandingPage";
 // import MyPositions from "./pages/MyPositions";
 import Reward from "./pages/Reward";
 import Delegate from "./pages/Delegate";
+import Leaderboard from "./pages/Leaderboard";
 
 import type { WalletConnectOptions } from "@vechain/dapp-kit-react";
 import { DAppKitProvider } from "@vechain/dapp-kit-react";
@@ -43,8 +44,12 @@ const router = createBrowserRouter([
         element: <Delegate />
       },
       {
-        path: "/reward",
+        path: "/rewards",
         element: <Reward />
+      },
+      {
+        path: "/leaderboard",
+        element: <Leaderboard />
       }
     ]
   },
