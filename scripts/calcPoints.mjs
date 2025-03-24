@@ -79,7 +79,12 @@ pastRecords.forEach((record) => {
   }
 
   if (ENABLE_DEBUG && account.toLowerCase() === DEBUG_ADDRESS) {
-    console.log(`${timestamp} actions:`, type, token, amount);
+    console.log(
+      `${moment.utc(timestamp * 1000).format("YYYY-MM-DD HH:mm")} actions:`,
+      type,
+      token,
+      amount
+    );
   }
 });
 
@@ -100,7 +105,7 @@ slots.forEach((slotEndTime, slotIndex) => {
   );
 
   slotRecords.forEach((record) => {
-    const { type, account, amount, token } = record;
+    const { type, account, amount, token, timestamp } = record;
 
     if (!userBalance[account]) {
       userBalance[account] = BigNumber(0);
@@ -114,19 +119,24 @@ slots.forEach((slotEndTime, slotIndex) => {
     }
 
     if (ENABLE_DEBUG && account.toLowerCase() === DEBUG_ADDRESS) {
-      console.log(`Slot ${String(slotIndex + 1).padStart(2, "0")} actions:`, type, token, amount);
+      console.log(
+        `${moment.utc(timestamp * 1000).format("YYYY-MM-DD HH:mm")} : Slot ${String(slotIndex + 1).padStart(2, "0")} actions:`,
+        type,
+        token,
+        amount
+      );
     }
   });
 
   Object.entries(userBalance).forEach(([account, balance]) => {
     let slotPoints = 0;
-    if (balance.gte(1000) && balance.lt(10000)) {
+    if (balance.gt(999) && balance.lt(9999)) {
       slotPoints = 1;
-    } else if (balance.gte(10000) && balance.lt(100000)) {
+    } else if (balance.gt(9999) && balance.lt(99999)) {
       slotPoints = 5;
-    } else if (balance.gte(100000) && balance.lt(1000000)) {
+    } else if (balance.gt(99999) && balance.lt(999999)) {
       slotPoints = 25;
-    } else if (balance.gte(1000000)) {
+    } else if (balance.gt(999999)) {
       slotPoints = 125;
     }
 
@@ -139,9 +149,9 @@ slots.forEach((slotEndTime, slotIndex) => {
 
       if (ENABLE_DEBUG && account.toLowerCase() === DEBUG_ADDRESS) {
         console.log(
-          `Slot ${String(slotIndex + 1).padStart(2, "0")} points: `,
+          `${moment.utc(slotEndTime * 1000).format("YYYY-MM-DD HH:mm")} : Slot ${String(slotIndex + 1).padStart(2, "0")} points: `,
           slotPoints,
-          balance.toFixed(2)
+          balance.toString()
         );
       }
     }
