@@ -11,7 +11,8 @@ import {
   Text,
   Title,
   Input,
-  Badge
+  Badge,
+  Tooltip
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { useAtom } from "jotai";
@@ -32,6 +33,7 @@ import poll from "~/utils/pool";
 import css from "./Delegate.module.scss";
 
 import IconB3tr from "~/assets/tokens/b3tr.svg?react";
+import { IconInfoCircle } from "@tabler/icons-react";
 
 function formatDate(date: Date) {
   const year = date.getFullYear();
@@ -640,9 +642,22 @@ export default function Delegate() {
                 </Title>
               </Tabs.Tab>
               <Tabs.Tab value="better" fw="600" px="0" py="8">
-                <Title order={6} m="0" c="white" display="flex">
-                  <IconB3tr width={20} style={{ marginRight: 8 }} />
+                <Title
+                  order={6}
+                  m="0"
+                  c="white"
+                  display="flex"
+                  style={{ alignItems: "center", gap: 6 }}
+                >
+                  <IconB3tr width={20} />
                   Better Rewards
+                  <Tooltip
+                    label="60% B3TR reward will distributed to user based on VeStation points, Snapshots taken 4 times/day, with points awarded based on staked B3TR/VOT3 (1K = 1 pt, 10K = 5 pts, 100K = 25 pts, 1M = 125 pts), check points on leaderboard page."
+                    multiline
+                    w={360}
+                  >
+                    <IconInfoCircle size="20" />
+                  </Tooltip>
                 </Title>
               </Tabs.Tab>
             </Tabs.List>
