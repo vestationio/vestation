@@ -41,7 +41,7 @@ export default function Leaderboard() {
             Total Points
           </Tabs.Tab>
           <Tabs.Tab value="weekly" fw="600">
-            Week Points
+            Weekly Points
           </Tabs.Tab>
           <Tabs.Tab value="mine" fw="600">
             My Points
@@ -101,7 +101,7 @@ export default function Leaderboard() {
               <Table.Tbody>
                 {myPoints.map((i: any, idx: number) => (
                   <Table.Tr key={`mine-${idx}`}>
-                    <Table.Td>Round {i.weekIndex}</Table.Td>
+                    <Table.Td>Round {36 + i.weekIndex}</Table.Td>
                     <Table.Td>{i.weekPoints}</Table.Td>
                     <Table.Td ta="right">{i.totalPoints}</Table.Td>
                   </Table.Tr>

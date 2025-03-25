@@ -1,7 +1,7 @@
 import { find } from "lodash";
 import { useAtom } from "jotai";
 import BigNumber from "bignumber.js";
-import { Container, Button, Center, Loader } from "@mantine/core";
+import { Container, Button, Center, Loader, Title, Text, Stack } from "@mantine/core";
 import { useState, useMemo, useEffect } from "react";
 import { useWallet, useConnex } from "@vechain/dapp-kit-react";
 import Card from "~/components/Card";
@@ -9,14 +9,19 @@ import ABI_MerkleDistributor from "~/abis/MerkleDistributor.json";
 import poll from "~/utils/pool";
 import { atomTransactionStatus } from "~/store";
 
-// import rewardRonud1Data from "./round-1.json";
+import rewardRonud37Data from "./data/round-37.json";
+import rewardRonud38Data from "./data/round-38.json";
 
 const roundList = [
   {
-    title: "Round 1",
-    address: "",
-    userList: {}
-    // userList: rewardRonud1Data.claims
+    title: "Round 38",
+    address: "0x67233bb9a6ce5ae041829a41c2143640ba9de78e",
+    userList: rewardRonud38Data.claims
+  },
+  {
+    title: "Round 37",
+    address: "0x95e895ea7de4c320b6bdc5af7f6528d196025a16",
+    userList: rewardRonud37Data.claims
   }
 ];
 
@@ -143,25 +148,30 @@ export default function Reward() {
 
   return (
     <Container size="32rem" pb="5rem">
-      {myRewards.map((round: any, idx: number) => {
-        return (
-          <div key={`reward-${idx}`}>
-            <Card>
-              <h2>{round.title}</h2>
-              <div>{BigNumber(round.myClaimData.amount).div(1e18).toFixed(6)}</div>
+      <Stack gap="lg">
+        {myRewards.map((round: any, idx: number) => {
+          return (
+            <Card key={`reward-${idx}`}>
+              <Title order={4} c="white" mb="xs">
+                {round.title}
+              </Title>
+              <Text size="md" mb="sm">
+                {BigNumber(round.myClaimData.amount).div(1e18).toFixed(6)} B3TR
+              </Text>
+
+              {claimedRecord[idx] ? (
+                <Button fullWidth disabled>
+                  Already Claimed
+                </Button>
+              ) : (
+                <Button fullWidth onClick={() => handleClaim(idx, round)}>
+                  Claim
+                </Button>
+              )}
             </Card>
-            {claimedRecord[idx] ? (
-              <Button fullWidth disabled>
-                Already Claimed
-              </Button>
-            ) : (
-              <Button fullWidth onClick={() => handleClaim(idx, round)}>
-                Claim
-              </Button>
-            )}
-          </div>
-        );
-      })}
+          );
+        })}
+      </Stack>
     </Container>
   );
 }
