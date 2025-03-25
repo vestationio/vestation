@@ -1,7 +1,7 @@
 import { find } from "lodash";
 import { useAtom } from "jotai";
 import BigNumber from "bignumber.js";
-import { Container, Button, Center, Loader, Title, Text, Stack } from "@mantine/core";
+import { Container, Button, Center, Loader, Title, Text, Flex } from "@mantine/core";
 import { useState, useMemo, useEffect } from "react";
 import { useWallet, useConnex } from "@vechain/dapp-kit-react";
 import Card from "~/components/Card";
@@ -139,39 +139,31 @@ export default function Reward() {
   }
 
   if (!myRewards.length || myRewards.every((i) => !i)) {
-    return (
-      <Container size="32rem" pb="5rem" ta="center">
-        <Card>Sorry, you have no rewards at this time.</Card>
-      </Container>
-    );
+    return <Text>Sorry, you have no rewards at this time.</Text>;
   }
 
   return (
-    <Container size="32rem" pb="5rem">
-      <Stack gap="lg">
-        {myRewards.map((round: any, idx: number) => {
-          return (
-            <Card key={`reward-${idx}`}>
-              <Title order={4} c="white" mb="xs">
-                {round.title}
-              </Title>
-              <Text size="md" mb="sm">
-                {BigNumber(round.myClaimData.amount).div(1e18).toFixed(6)} B3TR
-              </Text>
+    <div>
+      {myRewards.map((round: any, idx: number) => {
+        return (
+          <Flex key={`reward-${idx}`} align="center" mt="8">
+            <Title mr="auto" order={6}>
+              {round.title}
+            </Title>
+            <Text size="sm">{BigNumber(round.myClaimData.amount).div(1e18).toFixed(6)} B3TR</Text>
 
-              {claimedRecord[idx] ? (
-                <Button fullWidth disabled>
-                  Already Claimed
-                </Button>
-              ) : (
-                <Button fullWidth onClick={() => handleClaim(idx, round)}>
-                  Claim
-                </Button>
-              )}
-            </Card>
-          );
-        })}
-      </Stack>
-    </Container>
+            {claimedRecord[idx] ? (
+              <Button ml="xs" size="compact-xs" disabled>
+                Claim
+              </Button>
+            ) : (
+              <Button ml="xs" size="compact-xs" onClick={() => handleClaim(idx, round)}>
+                Claim
+              </Button>
+            )}
+          </Flex>
+        );
+      })}
+    </div>
   );
 }

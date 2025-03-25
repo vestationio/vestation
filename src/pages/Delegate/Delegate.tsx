@@ -27,6 +27,7 @@ import useMyBalance from "~/hooks/useMyBalance";
 import VeDelegate from "~/abis/VeDelegateV2.json";
 import ABI_ERC20 from "~/abis/erc20.json";
 import Card from "~/components/Card";
+import Reward from "../Reward";
 import poll from "~/utils/pool";
 import css from "./Delegate.module.scss";
 
@@ -634,12 +635,12 @@ export default function Delegate() {
           <Tabs mt="-12" defaultValue="default">
             <Tabs.List justify="center" grow>
               <Tabs.Tab value="default" fw="600" px="0" py="8">
-                <Title order={5} m="0" c="white">
+                <Title order={6} m="0" c="white">
                   Claim Rewards
                 </Title>
               </Tabs.Tab>
               <Tabs.Tab value="better" fw="600" px="0" py="8">
-                <Title order={5} m="0" c="white" display="flex">
+                <Title order={6} m="0" c="white" display="flex">
                   <IconB3tr width={20} style={{ marginRight: 8 }} />
                   Better Rewards
                 </Title>
@@ -681,7 +682,7 @@ export default function Delegate() {
               )}
             </Tabs.Panel>
             <Tabs.Panel value="better" pt="sm">
-              <Text size="sm">Coming soon...</Text>
+              <Reward />
             </Tabs.Panel>
           </Tabs>
         </Card>

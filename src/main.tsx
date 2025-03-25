@@ -13,7 +13,6 @@ import NotMatchPage from "./components/NotMatchPage";
 import LandingPage from "./pages/LandingPage";
 // import Dashboard from "./pages/Dashboard";
 // import MyPositions from "./pages/MyPositions";
-import Reward from "./pages/Reward";
 import Delegate from "./pages/Delegate";
 import Leaderboard from "./pages/Leaderboard";
 
@@ -42,10 +41,6 @@ const router = createBrowserRouter([
       {
         path: "/delegate",
         element: <Delegate />
-      },
-      {
-        path: "/rewards",
-        element: <Reward />
       },
       {
         path: "/leaderboard",

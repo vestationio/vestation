@@ -44,10 +44,6 @@ export default function PageLayout() {
           Leaderboard
         </NavLink>
 
-        <NavLink to="/rewards" className={css.nav__link}>
-          Rewards
-        </NavLink>
-
         <button className={css.nav__wallet} onClick={open}>
           {buttonText}
         </button>
