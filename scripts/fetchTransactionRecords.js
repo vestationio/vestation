@@ -5,10 +5,10 @@ import { fileURLToPath } from "url";
 import BigNumber from "bignumber.js";
 import { TRANSACTION_INDEX, END_TIME } from "./config.js";
 
-const END_TIMESTAMP = Math.ceil(new Date(END_TIME).getTime() / 1000);
+const END_TIMESTAMP = Math.floor(new Date(END_TIME).getTime() / 1000);
 
 async function fetchTransactions(index) {
-  return await fetch(`http://35.241.81.247:8000/subgraphs/name/vestation/record`, {
+  return await fetch(`http://34.150.93.179:8000/subgraphs/name/vestation/record`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"

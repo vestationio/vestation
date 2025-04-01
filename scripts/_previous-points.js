@@ -1,79 +1,87 @@
 export const totalPoints = [
   {
     "account": "0xe72579caa11601b62fbdf0833fb9e305c2eba1e2",
-    "points": 7000
+    "points": 10500
   },
   {
     "account": "0xae67edcc185b0858ce5e756d79e018ea0c88dd05",
-    "points": 1400
+    "points": 2100
   },
   {
     "account": "0x9a536685fbc1198696677c4316245e860b212c90",
-    "points": 1400
+    "points": 2100
   },
   {
     "account": "0x9de115246c883779b33df5b443e1d37322cb49a5",
-    "points": 1400
+    "points": 2100
   },
   {
     "account": "0xaf68b2051e8050ea5c140677acbf48614608c263",
-    "points": 1400
+    "points": 2100
   },
   {
     "account": "0x5bfcf4ee00226284778f6ac1b90d469113418903",
-    "points": 1400
+    "points": 2100
   },
   {
     "account": "0x15bccf377f1a9bbd0cd8e24d031c9451326f29a0",
-    "points": 1400
+    "points": 2100
   },
   {
     "account": "0x9fbaad5acc6a17b60908f903cc9ea73903906e74",
-    "points": 975
+    "points": 1675
   },
   {
     "account": "0x94e46c71c85b218cdec9edd6af16e12981fc40bb",
-    "points": 935
+    "points": 1235
+  },
+  {
+    "account": "0xf1cfc0e8d93fd5ae250925b3aadb6da03ff99f3e",
+    "points": 625
   },
   {
     "account": "0x380852f53c63352abf4b9fffce8640d6accc24f7",
     "points": 600
   },
   {
-    "account": "0x489359c2d04aa007a8066395d888d73b944f7a37",
-    "points": 280
-  },
-  {
-    "account": "0x0b9be6f42ee67b59ada178764af66110676734b3",
-    "points": 280
-  },
-  {
-    "account": "0x8d126a05bf00bb88035f2272126575cc1fac2efc",
-    "points": 280
-  },
-  {
-    "account": "0xf7c8a7c36296b969af380ae23bc76d28d6f30959",
-    "points": 280
+    "account": "0x6720c0a8179cf8bc349a1a5976f96e18279a55b2",
+    "points": 575
   },
   {
     "account": "0x7982ac686e7bf8942a72ca1964932cf121d2fb0e",
-    "points": 280
+    "points": 440
   },
   {
-    "account": "0x5700bde789b905b4cfd939407365a4283633e129",
-    "points": 280
+    "account": "0x489359c2d04aa007a8066395d888d73b944f7a37",
+    "points": 420
+  },
+  {
+    "account": "0x0b9be6f42ee67b59ada178764af66110676734b3",
+    "points": 420
+  },
+  {
+    "account": "0x8d126a05bf00bb88035f2272126575cc1fac2efc",
+    "points": 420
+  },
+  {
+    "account": "0xf7c8a7c36296b969af380ae23bc76d28d6f30959",
+    "points": 420
   },
   {
     "account": "0x5ddbe7e6b9defe981a3dd54fa7b4810f9d56e44e",
-    "points": 280
+    "points": 415
   },
   {
-    "account": "0x6720c0a8179cf8bc349a1a5976f96e18279a55b2",
-    "points": 275
+    "account": "0x5700bde789b905b4cfd939407365a4283633e129",
+    "points": 285
   },
   {
     "account": "0x84ee2c1f65d62656fd6d6667a4c2cbd10bf6f8d4",
     "points": 270
+  },
+  {
+    "account": "0x1fa6ae04e89ece93e87537e79c1e227c39b2256f",
+    "points": 220
   },
   {
     "account": "0x5476f5f81e1c4fc9a2da620474bb4bff38c592a8",
@@ -81,138 +89,182 @@ export const totalPoints = [
   },
   {
     "account": "0x6506872f621f90f29dbfee3eae48eeedee9ba94c",
-    "points": 120
+    "points": 150
   },
   {
-    "account": "0x1fa6ae04e89ece93e87537e79c1e227c39b2256f",
-    "points": 110
+    "account": "0x707899897317db1e01225da7c5f327ab39a0f978",
+    "points": 140
   },
   {
     "account": "0xf4d9794a8fa6d18351b137f9885a3774f7d10daf",
-    "points": 90
+    "points": 120
+  },
+  {
+    "account": "0xd5f7a894ffbca39a1df589fc6ce5fdfa64d42e4b",
+    "points": 85
   },
   {
     "account": "0x6e47f8acc84d62a81a0656ee989656d4de242d10",
-    "points": 56
+    "points": 84
   },
   {
     "account": "0x4d03ab4d5b5bc50a341469b05a3a51f8c9b4ec51",
-    "points": 56
+    "points": 84
   },
   {
     "account": "0xab3f62008628f869d3276fc5af192ccd04dbf8a7",
-    "points": 56
+    "points": 84
   },
   {
     "account": "0xa4a7a2da245d2179e40850f233c0e6b521749da0",
-    "points": 56
+    "points": 84
   },
   {
     "account": "0xc9750eb30fc7a301c24742a73b9c53166c5182ac",
-    "points": 56
-  },
-  {
-    "account": "0xe9dc67650e9fe5e99ee24a70f6a9dc048bb57da3",
-    "points": 56
+    "points": 84
   },
   {
     "account": "0x1685c6b285151721c5ab4edb0c61f79a40656ac4",
-    "points": 56
+    "points": 84
   },
   {
     "account": "0xe55a2c621a6d4e403a57356d97e706ce9b85f8d5",
-    "points": 56
+    "points": 84
   },
   {
     "account": "0x49d20b0eeb65607de24bb9c338f2b6c747f6ff86",
-    "points": 56
+    "points": 84
   },
   {
     "account": "0x400543f693a8e23374ffa36d77268d7b440d437a",
-    "points": 56
-  },
-  {
-    "account": "0x1e7462c32f89284c293d1643c5605934d8de5410",
-    "points": 56
+    "points": 84
   },
   {
     "account": "0x09009d483f1b130bc5e3162106cc3495f9b2b5a0",
-    "points": 56
+    "points": 83
+  },
+  {
+    "account": "0xe9dc67650e9fe5e99ee24a70f6a9dc048bb57da3",
+    "points": 75
+  },
+  {
+    "account": "0x05c8614f31037c2c5908c6ac652619f35435606f",
+    "points": 74
+  },
+  {
+    "account": "0x1e7462c32f89284c293d1643c5605934d8de5410",
+    "points": 70
   },
   {
     "account": "0xa9e266cbdeec3c1fe857af3f2c3cc20f149fb726",
-    "points": 56
+    "points": 58
+  },
+  {
+    "account": "0xb6fbfa4a6ba5d659aa30696952fbf753b2738fd6",
+    "points": 50
+  },
+  {
+    "account": "0xdfee1a2bbe20f62d3c9d5778c56b52fe87f864b8",
+    "points": 48
+  },
+  {
+    "account": "0x587aa18dbaaa100cf88415e966e62aa96f0efe93",
+    "points": 47
+  },
+  {
+    "account": "0x0a6e3a8a0fd21948df99fcc3597d82a2656542e5",
+    "points": 47
   },
   {
     "account": "0x5be9fc783220811a1a7b4f42231773d867a6625a",
     "points": 46
   },
   {
-    "account": "0x05c8614f31037c2c5908c6ac652619f35435606f",
+    "account": "0xbb5a4a289b5ca1c42f747a8b949a32fac974c3bc",
     "points": 46
   },
   {
+    "account": "0x047253c91a2fdd900ad7ac429daf73762cea3af2",
+    "points": 45
+  },
+  {
+    "account": "0x90cc17152f5f62441d28326cf3a81fe8a6097454",
+    "points": 44
+  },
+  {
+    "account": "0x91a6aee6a32b7e10e77c2ceb0d07373ec6b125fb",
+    "points": 43
+  },
+  {
+    "account": "0x10e587091af7881666b8558b17bf2bb604360a92",
+    "points": 42
+  },
+  {
+    "account": "0x5b0e804364e9a351bc2e519643f6fb8dac5a27be",
+    "points": 42
+  },
+  {
+    "account": "0x4d08ffff4edb700c974ef4469fc553a84e8358e0",
+    "points": 40
+  },
+  {
     "account": "0xcb53e551c160c427ba1dfc05cae4499d276ef263",
-    "points": 38
+    "points": 39
+  },
+  {
+    "account": "0x01211d7d1210129026754e78ddb48852448c5444",
+    "points": 39
   },
   {
     "account": "0x2271540d8c9305b14f3cd8ff55c38733a8951b25",
     "points": 35
   },
   {
-    "account": "0x01211d7d1210129026754e78ddb48852448c5444",
+    "account": "0xd0868ef8fe4013987dcf9ee9c58205ac7bc2e379",
+    "points": 32
+  },
+  {
+    "account": "0x5fb3b00cbf55143fd967d0ce880ca05cdc901ea9",
     "points": 29
+  },
+  {
+    "account": "0x9e1f31509bab4463731283ef507d642a9ef67ade",
+    "points": 25
   },
   {
     "account": "0x4cde60a98ea4738e410302deb6d8717279a247fd",
     "points": 24
   },
   {
-    "account": "0xbb5a4a289b5ca1c42f747a8b949a32fac974c3bc",
+    "account": "0xe4dadf1a2846fb9400fe6b7b07248294e7e29523",
     "points": 22
   },
   {
-    "account": "0xdfee1a2bbe20f62d3c9d5778c56b52fe87f864b8",
-    "points": 20
-  },
-  {
-    "account": "0x587aa18dbaaa100cf88415e966e62aa96f0efe93",
+    "account": "0x74dbdacb960b40f553c7fa4eed7c5cb575262203",
     "points": 19
   },
   {
-    "account": "0x0a6e3a8a0fd21948df99fcc3597d82a2656542e5",
-    "points": 19
+    "account": "0x4353c300430af19fc48500d9693ed43be4e7fd37",
+    "points": 18
   },
   {
-    "account": "0x047253c91a2fdd900ad7ac429daf73762cea3af2",
-    "points": 17
-  },
-  {
-    "account": "0x90cc17152f5f62441d28326cf3a81fe8a6097454",
-    "points": 16
-  },
-  {
-    "account": "0x4d08ffff4edb700c974ef4469fc553a84e8358e0",
-    "points": 15
-  },
-  {
-    "account": "0x10e587091af7881666b8558b17bf2bb604360a92",
+    "account": "0x255bb20a1a905ec852f0db69b3909a6b6357cd03",
     "points": 14
-  },
-  {
-    "account": "0x5b0e804364e9a351bc2e519643f6fb8dac5a27be",
-    "points": 14
-  },
-  {
-    "account": "0x38e5935319a7a1ae0f49cd8baa7e83a2f3c582bf",
-    "points": 8
   },
   {
     "account": "0x6749f9a00149efe81af2aa647348833b9e016ee9",
-    "points": 7
+    "points": 12
+  },
+  {
+    "account": "0x38e5935319a7a1ae0f49cd8baa7e83a2f3c582bf",
+    "points": 9
   },
   {
     "account": "0x5b8ef1027a27f9a10b0905b95ce0265f2dc52f65",
+    "points": 6
+  },
+  {
+    "account": "0x74d3a8373424dfdbe4a266c3843ad9bbf5a2587e",
     "points": 6
   },
   {
@@ -220,17 +272,18 @@ export const totalPoints = [
     "points": 5
   },
   {
-    "account": "0xd0868ef8fe4013987dcf9ee9c58205ac7bc2e379",
-    "points": 4
-  },
-  {
-    "account": "0x5fb3b00cbf55143fd967d0ce880ca05cdc901ea9",
-    "points": 1
+    "account": "0x50e96104ea42210f96032f317e6795e61535868c",
+    "points": 2
   }
 ];
 
 export const pointsLog = {
   "0xae67edcc185b0858ce5e756d79e018ea0c88dd05": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 700,
+      "totalPoints": 2100
+    },
     {
       "weekIndex": 2,
       "weekPoints": 700,
@@ -244,6 +297,11 @@ export const pointsLog = {
   ],
   "0xe72579caa11601b62fbdf0833fb9e305c2eba1e2": [
     {
+      "weekIndex": 3,
+      "weekPoints": 3500,
+      "totalPoints": 10500
+    },
+    {
       "weekIndex": 2,
       "weekPoints": 3500,
       "totalPoints": 7000
@@ -255,6 +313,11 @@ export const pointsLog = {
     }
   ],
   "0x9a536685fbc1198696677c4316245e860b212c90": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 700,
+      "totalPoints": 2100
+    },
     {
       "weekIndex": 2,
       "weekPoints": 700,
@@ -268,6 +331,11 @@ export const pointsLog = {
   ],
   "0x9de115246c883779b33df5b443e1d37322cb49a5": [
     {
+      "weekIndex": 3,
+      "weekPoints": 700,
+      "totalPoints": 2100
+    },
+    {
       "weekIndex": 2,
       "weekPoints": 700,
       "totalPoints": 1400
@@ -279,6 +347,11 @@ export const pointsLog = {
     }
   ],
   "0xaf68b2051e8050ea5c140677acbf48614608c263": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 700,
+      "totalPoints": 2100
+    },
     {
       "weekIndex": 2,
       "weekPoints": 700,
@@ -292,6 +365,11 @@ export const pointsLog = {
   ],
   "0x489359c2d04aa007a8066395d888d73b944f7a37": [
     {
+      "weekIndex": 3,
+      "weekPoints": 140,
+      "totalPoints": 420
+    },
+    {
       "weekIndex": 2,
       "weekPoints": 140,
       "totalPoints": 280
@@ -303,6 +381,11 @@ export const pointsLog = {
     }
   ],
   "0x0b9be6f42ee67b59ada178764af66110676734b3": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 140,
+      "totalPoints": 420
+    },
     {
       "weekIndex": 2,
       "weekPoints": 140,
@@ -316,6 +399,11 @@ export const pointsLog = {
   ],
   "0x6e47f8acc84d62a81a0656ee989656d4de242d10": [
     {
+      "weekIndex": 3,
+      "weekPoints": 28,
+      "totalPoints": 84
+    },
+    {
       "weekIndex": 2,
       "weekPoints": 28,
       "totalPoints": 56
@@ -327,6 +415,11 @@ export const pointsLog = {
     }
   ],
   "0x8d126a05bf00bb88035f2272126575cc1fac2efc": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 140,
+      "totalPoints": 420
+    },
     {
       "weekIndex": 2,
       "weekPoints": 140,
@@ -340,6 +433,11 @@ export const pointsLog = {
   ],
   "0x4d03ab4d5b5bc50a341469b05a3a51f8c9b4ec51": [
     {
+      "weekIndex": 3,
+      "weekPoints": 28,
+      "totalPoints": 84
+    },
+    {
       "weekIndex": 2,
       "weekPoints": 28,
       "totalPoints": 56
@@ -351,6 +449,11 @@ export const pointsLog = {
     }
   ],
   "0xab3f62008628f869d3276fc5af192ccd04dbf8a7": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 28,
+      "totalPoints": 84
+    },
     {
       "weekIndex": 2,
       "weekPoints": 28,
@@ -364,6 +467,11 @@ export const pointsLog = {
   ],
   "0xa4a7a2da245d2179e40850f233c0e6b521749da0": [
     {
+      "weekIndex": 3,
+      "weekPoints": 28,
+      "totalPoints": 84
+    },
+    {
       "weekIndex": 2,
       "weekPoints": 28,
       "totalPoints": 56
@@ -375,6 +483,11 @@ export const pointsLog = {
     }
   ],
   "0x5bfcf4ee00226284778f6ac1b90d469113418903": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 700,
+      "totalPoints": 2100
+    },
     {
       "weekIndex": 2,
       "weekPoints": 700,
@@ -388,6 +501,11 @@ export const pointsLog = {
   ],
   "0xc9750eb30fc7a301c24742a73b9c53166c5182ac": [
     {
+      "weekIndex": 3,
+      "weekPoints": 28,
+      "totalPoints": 84
+    },
+    {
       "weekIndex": 2,
       "weekPoints": 28,
       "totalPoints": 56
@@ -399,6 +517,11 @@ export const pointsLog = {
     }
   ],
   "0xe9dc67650e9fe5e99ee24a70f6a9dc048bb57da3": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 19,
+      "totalPoints": 75
+    },
     {
       "weekIndex": 2,
       "weekPoints": 28,
@@ -412,6 +535,11 @@ export const pointsLog = {
   ],
   "0x1685c6b285151721c5ab4edb0c61f79a40656ac4": [
     {
+      "weekIndex": 3,
+      "weekPoints": 28,
+      "totalPoints": 84
+    },
+    {
       "weekIndex": 2,
       "weekPoints": 28,
       "totalPoints": 56
@@ -423,6 +551,11 @@ export const pointsLog = {
     }
   ],
   "0xe55a2c621a6d4e403a57356d97e706ce9b85f8d5": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 28,
+      "totalPoints": 84
+    },
     {
       "weekIndex": 2,
       "weekPoints": 28,
@@ -436,6 +569,11 @@ export const pointsLog = {
   ],
   "0x49d20b0eeb65607de24bb9c338f2b6c747f6ff86": [
     {
+      "weekIndex": 3,
+      "weekPoints": 28,
+      "totalPoints": 84
+    },
+    {
       "weekIndex": 2,
       "weekPoints": 28,
       "totalPoints": 56
@@ -447,6 +585,11 @@ export const pointsLog = {
     }
   ],
   "0xf7c8a7c36296b969af380ae23bc76d28d6f30959": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 140,
+      "totalPoints": 420
+    },
     {
       "weekIndex": 2,
       "weekPoints": 140,
@@ -460,6 +603,11 @@ export const pointsLog = {
   ],
   "0x400543f693a8e23374ffa36d77268d7b440d437a": [
     {
+      "weekIndex": 3,
+      "weekPoints": 28,
+      "totalPoints": 84
+    },
+    {
       "weekIndex": 2,
       "weekPoints": 28,
       "totalPoints": 56
@@ -471,6 +619,11 @@ export const pointsLog = {
     }
   ],
   "0x1e7462c32f89284c293d1643c5605934d8de5410": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 14,
+      "totalPoints": 70
+    },
     {
       "weekIndex": 2,
       "weekPoints": 28,
@@ -484,6 +637,11 @@ export const pointsLog = {
   ],
   "0x15bccf377f1a9bbd0cd8e24d031c9451326f29a0": [
     {
+      "weekIndex": 3,
+      "weekPoints": 700,
+      "totalPoints": 2100
+    },
+    {
       "weekIndex": 2,
       "weekPoints": 700,
       "totalPoints": 1400
@@ -495,6 +653,11 @@ export const pointsLog = {
     }
   ],
   "0x7982ac686e7bf8942a72ca1964932cf121d2fb0e": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 160,
+      "totalPoints": 440
+    },
     {
       "weekIndex": 2,
       "weekPoints": 140,
@@ -544,6 +707,11 @@ export const pointsLog = {
   ],
   "0x5700bde789b905b4cfd939407365a4283633e129": [
     {
+      "weekIndex": 3,
+      "weekPoints": 5,
+      "totalPoints": 285
+    },
+    {
       "weekIndex": 2,
       "weekPoints": 140,
       "totalPoints": 280
@@ -555,6 +723,11 @@ export const pointsLog = {
     }
   ],
   "0x5ddbe7e6b9defe981a3dd54fa7b4810f9d56e44e": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 135,
+      "totalPoints": 415
+    },
     {
       "weekIndex": 2,
       "weekPoints": 140,
@@ -568,6 +741,11 @@ export const pointsLog = {
   ],
   "0x09009d483f1b130bc5e3162106cc3495f9b2b5a0": [
     {
+      "weekIndex": 3,
+      "weekPoints": 27,
+      "totalPoints": 83
+    },
+    {
       "weekIndex": 2,
       "weekPoints": 28,
       "totalPoints": 56
@@ -579,6 +757,11 @@ export const pointsLog = {
     }
   ],
   "0xa9e266cbdeec3c1fe857af3f2c3cc20f149fb726": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 2,
+      "totalPoints": 58
+    },
     {
       "weekIndex": 2,
       "weekPoints": 28,
@@ -592,6 +775,11 @@ export const pointsLog = {
   ],
   "0x05c8614f31037c2c5908c6ac652619f35435606f": [
     {
+      "weekIndex": 3,
+      "weekPoints": 28,
+      "totalPoints": 74
+    },
+    {
       "weekIndex": 2,
       "weekPoints": 28,
       "totalPoints": 46
@@ -604,6 +792,11 @@ export const pointsLog = {
   ],
   "0x94e46c71c85b218cdec9edd6af16e12981fc40bb": [
     {
+      "weekIndex": 3,
+      "weekPoints": 300,
+      "totalPoints": 1235
+    },
+    {
       "weekIndex": 2,
       "weekPoints": 700,
       "totalPoints": 935
@@ -615,6 +808,11 @@ export const pointsLog = {
     }
   ],
   "0x9fbaad5acc6a17b60908f903cc9ea73903906e74": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 700,
+      "totalPoints": 1675
+    },
     {
       "weekIndex": 2,
       "weekPoints": 700,
@@ -639,6 +837,11 @@ export const pointsLog = {
     }
   ],
   "0xcb53e551c160c427ba1dfc05cae4499d276ef263": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 1,
+      "totalPoints": 39
+    },
     {
       "weekIndex": 2,
       "weekPoints": 28,
@@ -676,6 +879,11 @@ export const pointsLog = {
   ],
   "0x01211d7d1210129026754e78ddb48852448c5444": [
     {
+      "weekIndex": 3,
+      "weekPoints": 10,
+      "totalPoints": 39
+    },
+    {
       "weekIndex": 2,
       "weekPoints": 28,
       "totalPoints": 29
@@ -687,6 +895,11 @@ export const pointsLog = {
     }
   ],
   "0x6506872f621f90f29dbfee3eae48eeedee9ba94c": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 30,
+      "totalPoints": 150
+    },
     {
       "weekIndex": 2,
       "weekPoints": 120,
@@ -709,12 +922,22 @@ export const pointsLog = {
   ],
   "0x1fa6ae04e89ece93e87537e79c1e227c39b2256f": [
     {
+      "weekIndex": 3,
+      "weekPoints": 110,
+      "totalPoints": 220
+    },
+    {
       "weekIndex": 2,
       "weekPoints": 110,
       "totalPoints": 110
     }
   ],
   "0xbb5a4a289b5ca1c42f747a8b949a32fac974c3bc": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 24,
+      "totalPoints": 46
+    },
     {
       "weekIndex": 2,
       "weekPoints": 22,
@@ -723,12 +946,22 @@ export const pointsLog = {
   ],
   "0xdfee1a2bbe20f62d3c9d5778c56b52fe87f864b8": [
     {
+      "weekIndex": 3,
+      "weekPoints": 28,
+      "totalPoints": 48
+    },
+    {
       "weekIndex": 2,
       "weekPoints": 20,
       "totalPoints": 20
     }
   ],
   "0x587aa18dbaaa100cf88415e966e62aa96f0efe93": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 28,
+      "totalPoints": 47
+    },
     {
       "weekIndex": 2,
       "weekPoints": 19,
@@ -737,12 +970,22 @@ export const pointsLog = {
   ],
   "0x0a6e3a8a0fd21948df99fcc3597d82a2656542e5": [
     {
+      "weekIndex": 3,
+      "weekPoints": 28,
+      "totalPoints": 47
+    },
+    {
       "weekIndex": 2,
       "weekPoints": 19,
       "totalPoints": 19
     }
   ],
   "0xf4d9794a8fa6d18351b137f9885a3774f7d10daf": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 30,
+      "totalPoints": 120
+    },
     {
       "weekIndex": 2,
       "weekPoints": 90,
@@ -751,12 +994,22 @@ export const pointsLog = {
   ],
   "0x047253c91a2fdd900ad7ac429daf73762cea3af2": [
     {
+      "weekIndex": 3,
+      "weekPoints": 28,
+      "totalPoints": 45
+    },
+    {
       "weekIndex": 2,
       "weekPoints": 17,
       "totalPoints": 17
     }
   ],
   "0x90cc17152f5f62441d28326cf3a81fe8a6097454": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 28,
+      "totalPoints": 44
+    },
     {
       "weekIndex": 2,
       "weekPoints": 16,
@@ -765,12 +1018,22 @@ export const pointsLog = {
   ],
   "0x4d08ffff4edb700c974ef4469fc553a84e8358e0": [
     {
+      "weekIndex": 3,
+      "weekPoints": 25,
+      "totalPoints": 40
+    },
+    {
       "weekIndex": 2,
       "weekPoints": 15,
       "totalPoints": 15
     }
   ],
   "0x10e587091af7881666b8558b17bf2bb604360a92": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 28,
+      "totalPoints": 42
+    },
     {
       "weekIndex": 2,
       "weekPoints": 14,
@@ -779,12 +1042,22 @@ export const pointsLog = {
   ],
   "0x5b0e804364e9a351bc2e519643f6fb8dac5a27be": [
     {
+      "weekIndex": 3,
+      "weekPoints": 28,
+      "totalPoints": 42
+    },
+    {
       "weekIndex": 2,
       "weekPoints": 14,
       "totalPoints": 14
     }
   ],
   "0x6720c0a8179cf8bc349a1a5976f96e18279a55b2": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 300,
+      "totalPoints": 575
+    },
     {
       "weekIndex": 2,
       "weekPoints": 275,
@@ -793,12 +1066,22 @@ export const pointsLog = {
   ],
   "0x38e5935319a7a1ae0f49cd8baa7e83a2f3c582bf": [
     {
+      "weekIndex": 3,
+      "weekPoints": 1,
+      "totalPoints": 9
+    },
+    {
       "weekIndex": 2,
       "weekPoints": 8,
       "totalPoints": 8
     }
   ],
   "0x6749f9a00149efe81af2aa647348833b9e016ee9": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 5,
+      "totalPoints": 12
+    },
     {
       "weekIndex": 2,
       "weekPoints": 7,
@@ -807,6 +1090,11 @@ export const pointsLog = {
   ],
   "0xd0868ef8fe4013987dcf9ee9c58205ac7bc2e379": [
     {
+      "weekIndex": 3,
+      "weekPoints": 28,
+      "totalPoints": 32
+    },
+    {
       "weekIndex": 2,
       "weekPoints": 4,
       "totalPoints": 4
@@ -814,9 +1102,98 @@ export const pointsLog = {
   ],
   "0x5fb3b00cbf55143fd967d0ce880ca05cdc901ea9": [
     {
+      "weekIndex": 3,
+      "weekPoints": 28,
+      "totalPoints": 29
+    },
+    {
       "weekIndex": 2,
       "weekPoints": 1,
       "totalPoints": 1
+    }
+  ],
+  "0x707899897317db1e01225da7c5f327ab39a0f978": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 140,
+      "totalPoints": 140
+    }
+  ],
+  "0x9e1f31509bab4463731283ef507d642a9ef67ade": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 25,
+      "totalPoints": 25
+    }
+  ],
+  "0xe4dadf1a2846fb9400fe6b7b07248294e7e29523": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 22,
+      "totalPoints": 22
+    }
+  ],
+  "0x74dbdacb960b40f553c7fa4eed7c5cb575262203": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 19,
+      "totalPoints": 19
+    }
+  ],
+  "0x4353c300430af19fc48500d9693ed43be4e7fd37": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 18,
+      "totalPoints": 18
+    }
+  ],
+  "0xd5f7a894ffbca39a1df589fc6ce5fdfa64d42e4b": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 85,
+      "totalPoints": 85
+    }
+  ],
+  "0x255bb20a1a905ec852f0db69b3909a6b6357cd03": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 14,
+      "totalPoints": 14
+    }
+  ],
+  "0x91a6aee6a32b7e10e77c2ceb0d07373ec6b125fb": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 43,
+      "totalPoints": 43
+    }
+  ],
+  "0x74d3a8373424dfdbe4a266c3843ad9bbf5a2587e": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 6,
+      "totalPoints": 6
+    }
+  ],
+  "0xf1cfc0e8d93fd5ae250925b3aadb6da03ff99f3e": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 625,
+      "totalPoints": 625
+    }
+  ],
+  "0xb6fbfa4a6ba5d659aa30696952fbf753b2738fd6": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 50,
+      "totalPoints": 50
+    }
+  ],
+  "0x50e96104ea42210f96032f317e6795e61535868c": [
+    {
+      "weekIndex": 3,
+      "weekPoints": 2,
+      "totalPoints": 2
     }
   ]
 };
