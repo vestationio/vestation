@@ -11,8 +11,14 @@ import { atomTransactionStatus } from "~/store";
 
 import rewardRonud37Data from "./data/round-37.json";
 import rewardRonud38Data from "./data/round-38.json";
+import rewardRonud39Data from "./data/round-39.json";
 
 const roundList = [
+  {
+    title: "Round 39",
+    address: "0xc99a2ca34585a1f50d486807ef3cb5c9825e4a0f",
+    userList: rewardRonud39Data.claims
+  },
   {
     title: "Round 38",
     address: "0x67233bb9a6ce5ae041829a41c2143640ba9de78e",
